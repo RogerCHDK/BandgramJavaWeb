@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="BoletosEditDlg" widgetVar="BoletosEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditBoletosTitle}">
+            <h:form id="BoletosEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{boletosController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditBoletosLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{boletosController.selected.id}" title="#{bundle.EditBoletosTitle_id}" required="true" requiredMessage="#{bundle.EditBoletosRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.EditBoletosLabel_precio}" for="precio" />
+                        <p:inputText id="precio" value="#{boletosController.selected.precio}" title="#{bundle.EditBoletosTitle_precio}" required="true" requiredMessage="#{bundle.EditBoletosRequiredMessage_precio}"/>
+                        <p:outputLabel value="#{bundle.EditBoletosLabel_status}" for="status" />
+                        <p:inputText id="status" value="#{boletosController.selected.status}" title="#{bundle.EditBoletosTitle_status}" required="true" requiredMessage="#{bundle.EditBoletosRequiredMessage_status}"/>
+                        <p:outputLabel value="#{bundle.EditBoletosLabel_eventoId}" for="eventoId" />
+                        <p:selectOneMenu id="eventoId" value="#{boletosController.selected.eventoId}" required="true" requiredMessage="#{bundle.EditBoletosRequiredMessage_eventoId}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{eventosController.itemsAvailableSelectOne}"
+                                           var="eventoIdItem"
+                                           itemValue="#{eventoIdItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditBoletosLabel_zonaId}" for="zonaId" />
+                        <p:selectOneMenu id="zonaId" value="#{boletosController.selected.zonaId}" required="true" requiredMessage="#{bundle.EditBoletosRequiredMessage_zonaId}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{zonasController.itemsAvailableSelectOne}"
+                                           var="zonaIdItem"
+                                           itemValue="#{zonaIdItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{boletosController.update}" value="#{bundle.Save}" update="display,:BoletosListForm:datalist,:growl" oncomplete="handleSubmit(args, 'BoletosEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="BoletosEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

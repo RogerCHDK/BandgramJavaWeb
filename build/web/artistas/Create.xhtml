@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ArtistasCreateDlg" widgetVar="ArtistasCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateArtistasTitle}">
+            <h:form id="ArtistasCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{artistasController.selected != null}">
+                        
+                        <p:outputLabel value="#{bundle.CreateArtistasLabel_nombre}" for="nombre" />
+                        <p:inputText id="nombre" value="#{artistasController.selected.nombre}" title="#{bundle.CreateArtistasTitle_nombre}" required="true" requiredMessage="#{bundle.CreateArtistasRequiredMessage_nombre}"/>
+                        <p:outputLabel value="#{bundle.CreateArtistasLabel_apPaterno}" for="apPaterno" />
+                        <p:inputText id="apPaterno" value="#{artistasController.selected.apPaterno}" title="#{bundle.CreateArtistasTitle_apPaterno}" required="true" requiredMessage="#{bundle.CreateArtistasRequiredMessage_apPaterno}"/>
+                        <p:outputLabel value="#{bundle.CreateArtistasLabel_apMaterno}" for="apMaterno" />
+                        <p:inputText id="apMaterno" value="#{artistasController.selected.apMaterno}" title="#{bundle.CreateArtistasTitle_apMaterno}" required="true" requiredMessage="#{bundle.CreateArtistasRequiredMessage_apMaterno}"/>
+                        <p:outputLabel value="#{bundle.CreateArtistasLabel_foto}" for="foto" />
+                        <p:inputText id="foto" value="#{artistasController.selected.foto}" title="#{bundle.CreateArtistasTitle_foto}" />
+                        <p:outputLabel value="#{bundle.CreateArtistasLabel_biografia}" for="biografia" />
+                        <p:inputTextarea rows="4" cols="30" id="biografia" value="#{artistasController.selected.biografia}" title="#{bundle.CreateArtistasTitle_biografia}" required="true" requiredMessage="#{bundle.CreateArtistasRequiredMessage_biografia}"/>
+                        <p:outputLabel value="#{bundle.CreateArtistasLabel_email}" for="email" />
+                        <p:inputText id="email" value="#{artistasController.selected.email}" title="#{bundle.CreateArtistasTitle_email}" required="true" requiredMessage="#{bundle.CreateArtistasRequiredMessage_email}"/>
+                        <p:outputLabel value="#{bundle.CreateArtistasLabel_password}" for="password" />
+                        <p:inputText id="password" value="#{artistasController.selected.password}" title="#{bundle.CreateArtistasTitle_password}" required="true" requiredMessage="#{bundle.CreateArtistasRequiredMessage_password}"/>
+                        <p:outputLabel value="#{bundle.CreateArtistasLabel_tipoUsuario}" for="tipoUsuario" />
+                        <p:selectOneMenu id="tipoUsuario" value="#{artistasController.selected.tipoUsuario}" required="true" requiredMessage="#{bundle.EditArtistasRequiredMessage_tipoUsuario}">
+                            <f:selectItems value="#{tiposUsuariosController.itemsAvailableSelectOne}"
+                                           var="tipoUsuarioItem"
+                                           itemValue="#{tipoUsuarioItem}"/> 
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateArtistasLabel_generoId}" for="generoId" />
+                        <p:selectOneMenu id="generoId" value="#{artistasController.selected.generoId}" required="true" requiredMessage="#{bundle.EditArtistasRequiredMessage_generoId}">
+                            <f:selectItems value="#{generosMusicalesController.itemsAvailableSelectOne}"
+                                           var="generoIdItem"
+                                           itemValue="#{generoIdItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{artistasController.create}" value="#{bundle.Save}" update="display,:ArtistasListForm:datalist,:growl" oncomplete="handleSubmit(args,'ArtistasCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ArtistasCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="FotosEventoViewDlg" widgetVar="FotosEventoViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewFotosEventoTitle}">
+            <h:form id="FotosEventoViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{fotosEventoController.selected != null}">
+                        <h:outputText value="#{bundle.ViewFotosEventoLabel_id}"/>
+                        <h:outputText value="#{fotosEventoController.selected.id}" title="#{bundle.ViewFotosEventoTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewFotosEventoLabel_foto}"/>
+                        <h:outputText value="#{fotosEventoController.selected.foto}" title="#{bundle.ViewFotosEventoTitle_foto}"/>
+                        <h:outputText value="#{bundle.ViewFotosEventoLabel_status}"/>
+                        <h:outputText value="#{fotosEventoController.selected.status}" title="#{bundle.ViewFotosEventoTitle_status}"/>
+                        <h:outputText value="#{bundle.ViewFotosEventoLabel_eventoId}"/>
+                        <h:outputText value="#{fotosEventoController.selected.eventoId}" title="#{bundle.ViewFotosEventoTitle_eventoId}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="FotosEventoViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="IntegrantesCreateDlg" widgetVar="IntegrantesCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateIntegrantesTitle}">
+            <h:form id="IntegrantesCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{integrantesController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateIntegrantesLabel_artistaId}" for="artistaId" />
+                        <p:selectOneMenu id="artistaId" value="#{integrantesController.selected.artistaId}" required="true" requiredMessage="#{bundle.EditIntegrantesRequiredMessage_artistaId}">
+                            <f:selectItems value="#{artistasController.itemsAvailableSelectOne}"
+                                           var="artistaIdItem"
+                                           itemValue="#{artistaIdItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateIntegrantesLabel_bandaId}" for="bandaId" />
+                        <p:selectOneMenu id="bandaId" value="#{integrantesController.selected.bandaId}" required="true" requiredMessage="#{bundle.EditIntegrantesRequiredMessage_bandaId}">
+                            <f:selectItems value="#{bandasController.itemsAvailableSelectOne}"
+                                           var="bandaIdItem"
+                                           itemValue="#{bandaIdItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{integrantesController.create}" value="#{bundle.Save}" update="display,:IntegrantesListForm:datalist,:growl" oncomplete="handleSubmit(args,'IntegrantesCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="IntegrantesCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

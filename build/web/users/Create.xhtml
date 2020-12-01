@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="UsersCreateDlg" widgetVar="UsersCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateUsersTitle}">
+            <h:form id="UsersCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{usersController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateUsersLabel_nombre}" for="nombre" />
+                        <p:inputText id="nombre" value="#{usersController.selected.nombre}" title="#{bundle.CreateUsersTitle_nombre}" required="true" requiredMessage="#{bundle.CreateUsersRequiredMessage_nombre}"/>
+                        <p:outputLabel value="#{bundle.CreateUsersLabel_apPaterno}" for="apPaterno" />
+                        <p:inputText id="apPaterno" value="#{usersController.selected.apPaterno}" title="#{bundle.CreateUsersTitle_apPaterno}" required="true" requiredMessage="#{bundle.CreateUsersRequiredMessage_apPaterno}"/>
+                        <p:outputLabel value="#{bundle.CreateUsersLabel_apMaterno}" for="apMaterno" />
+                        <p:inputText id="apMaterno" value="#{usersController.selected.apMaterno}" title="#{bundle.CreateUsersTitle_apMaterno}" required="true" requiredMessage="#{bundle.CreateUsersRequiredMessage_apMaterno}"/>
+                        <p:outputLabel value="#{bundle.CreateUsersLabel_fechaNacimiento}" for="fechaNacimiento" />
+                        <p:calendar id="fechaNacimiento" pattern="MM/dd/yyyy" value="#{usersController.selected.fechaNacimiento}" title="#{bundle.EditUsersTitle_fechaNacimiento}" required="true" requiredMessage="#{bundle.EditUsersRequiredMessage_fechaNacimiento}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateUsersLabel_genero}" for="genero" />
+                        <p:inputText id="genero" value="#{usersController.selected.genero}" title="#{bundle.CreateUsersTitle_genero}" required="true" requiredMessage="#{bundle.CreateUsersRequiredMessage_genero}"/>
+                        <p:outputLabel value="#{bundle.CreateUsersLabel_calle}" for="calle" />
+                        <p:inputText id="calle" value="#{usersController.selected.calle}" title="#{bundle.CreateUsersTitle_calle}" />
+                        <p:outputLabel value="#{bundle.CreateUsersLabel_colonia}" for="colonia" />
+                        <p:inputText id="colonia" value="#{usersController.selected.colonia}" title="#{bundle.CreateUsersTitle_colonia}" />
+                        <p:outputLabel value="#{bundle.CreateUsersLabel_email}" for="email" />
+                        <p:inputText id="email" value="#{usersController.selected.email}" title="#{bundle.CreateUsersTitle_email}" required="true" requiredMessage="#{bundle.CreateUsersRequiredMessage_email}"/>
+                        <p:outputLabel value="#{bundle.CreateUsersLabel_password}" for="password" />
+                        <p:inputText id="password" value="#{usersController.selected.password}" title="#{bundle.CreateUsersTitle_password}" required="true" requiredMessage="#{bundle.CreateUsersRequiredMessage_password}"/>
+                        <p:outputLabel value="#{bundle.CreateUsersLabel_estadoId}" for="estadoId" />
+                        <p:selectOneMenu id="estadoId" value="#{usersController.selected.estadoId}" required="true" requiredMessage="#{bundle.EditUsersRequiredMessage_estadoId}">
+                            <f:selectItems value="#{estadosController.itemsAvailableSelectOne}"
+                                           var="estadoIdItem"
+                                           itemValue="#{estadoIdItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateUsersLabel_paisId}" for="paisId" />
+                        <p:selectOneMenu id="paisId" value="#{usersController.selected.paisId}" required="true" requiredMessage="#{bundle.EditUsersRequiredMessage_paisId}">
+                            <f:selectItems value="#{paisesController.itemsAvailableSelectOne}"
+                                           var="paisIdItem"
+                                           itemValue="#{paisIdItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateUsersLabel_municipioId}" for="municipioId" />
+                        <p:selectOneMenu id="municipioId" value="#{usersController.selected.municipioId}" required="true" requiredMessage="#{bundle.EditUsersRequiredMessage_municipioId}">
+                            <f:selectItems value="#{municipiosController.itemsAvailableSelectOne}"
+                                           var="municipioIdItem"
+                                           itemValue="#{municipioIdItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateUsersLabel_tipoUsuario}" for="tipoUsuario" />
+                        <p:selectOneMenu id="tipoUsuario" value="#{usersController.selected.tipoUsuario}" required="true" requiredMessage="#{bundle.EditUsersRequiredMessage_tipoUsuario}">
+                            <f:selectItems value="#{tiposUsuariosController.itemsAvailableSelectOne}"
+                                           var="tipoUsuarioItem"
+                                           itemValue="#{tipoUsuarioItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{usersController.create}" value="#{bundle.Save}" update="display,:UsersListForm:datalist,:growl" oncomplete="handleSubmit(args,'UsersCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="UsersCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

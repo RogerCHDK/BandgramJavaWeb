@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="EventosCreateDlg" widgetVar="EventosCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateEventosTitle}">
+            <h:form id="EventosCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{eventosController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateEventosLabel_descripcion}" for="descripcion" />
+                        <p:inputTextarea rows="4" cols="30" id="descripcion" value="#{eventosController.selected.descripcion}" title="#{bundle.CreateEventosTitle_descripcion}" required="true" requiredMessage="#{bundle.CreateEventosRequiredMessage_descripcion}"/>
+                        <p:outputLabel value="#{bundle.CreateEventosLabel_fechaCreacion}" for="fechaCreacion" />
+                        <p:calendar id="fechaCreacion" pattern="MM/dd/yyyy" value="#{eventosController.selected.fechaCreacion}" title="#{bundle.EditEventosTitle_fechaCreacion}" required="true" requiredMessage="#{bundle.EditEventosRequiredMessage_fechaCreacion}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateEventosLabel_fechaInicio}" for="fechaInicio" />
+                        <p:calendar id="fechaInicio" pattern="MM/dd/yyyy" value="#{eventosController.selected.fechaInicio}" title="#{bundle.EditEventosTitle_fechaInicio}" required="true" requiredMessage="#{bundle.EditEventosRequiredMessage_fechaInicio}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateEventosLabel_horaInicio}" for="horaInicio" />
+                        <p:calendar id="horaInicio" pattern="HH:mm:ss" value="#{eventosController.selected.horaInicio}" title="#{bundle.EditEventosTitle_horaInicio}" required="true" requiredMessage="#{bundle.EditEventosRequiredMessage_horaInicio}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateEventosLabel_locacionId}" for="locacionId" />
+                        <p:selectOneMenu id="locacionId" value="#{eventosController.selected.locacionId}" required="true" requiredMessage="#{bundle.EditEventosRequiredMessage_locacionId}">
+                            <f:selectItems value="#{locacionesController.itemsAvailableSelectOne}"
+                                           var="locacionIdItem"
+                                           itemValue="#{locacionIdItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateEventosLabel_artistaId}" for="artistaId" />
+                        <p:selectOneMenu id="artistaId" value="#{eventosController.selected.artistaId}" required="true" requiredMessage="#{bundle.EditEventosRequiredMessage_artistaId}">
+                            <f:selectItems value="#{artistasController.itemsAvailableSelectOne}"
+                                           var="artistaIdItem"
+                                           itemValue="#{artistaIdItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{eventosController.create}" value="#{bundle.Save}" update="display,:EventosListForm:datalist,:growl" oncomplete="handleSubmit(args,'EventosCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="EventosCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

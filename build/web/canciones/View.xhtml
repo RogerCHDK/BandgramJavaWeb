@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CancionesViewDlg" widgetVar="CancionesViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewCancionesTitle}">
+            <h:form id="CancionesViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{cancionesController.selected != null}">
+                        <h:outputText value="#{bundle.ViewCancionesLabel_id}"/>
+                        <h:outputText value="#{cancionesController.selected.id}" title="#{bundle.ViewCancionesTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewCancionesLabel_nombre}"/>
+                        <h:outputText value="#{cancionesController.selected.nombre}" title="#{bundle.ViewCancionesTitle_nombre}"/>
+                        <h:outputText value="#{bundle.ViewCancionesLabel_ruta}"/>
+                        <h:outputText value="#{cancionesController.selected.ruta}" title="#{bundle.ViewCancionesTitle_ruta}"/>
+                        <h:outputText value="#{bundle.ViewCancionesLabel_album}"/>
+                        <h:outputText value="#{cancionesController.selected.album}" title="#{bundle.ViewCancionesTitle_album}"/>
+                        <h:outputText value="#{bundle.ViewCancionesLabel_foto}"/>
+                        <h:outputText value="#{cancionesController.selected.foto}" title="#{bundle.ViewCancionesTitle_foto}"/>
+                        <h:outputText value="#{bundle.ViewCancionesLabel_status}"/>
+                        <h:outputText value="#{cancionesController.selected.status}" title="#{bundle.ViewCancionesTitle_status}"/>
+                        <h:outputText value="#{bundle.ViewCancionesLabel_artistaId}"/>
+                        <h:outputText value="#{cancionesController.selected.artistaId}" title="#{bundle.ViewCancionesTitle_artistaId}"/>
+                        <h:outputText value="#{bundle.ViewCancionesLabel_generoId}"/>
+                        <h:outputText value="#{cancionesController.selected.generoId}" title="#{bundle.ViewCancionesTitle_generoId}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="CancionesViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

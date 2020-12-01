@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TarjetaCreditoEditDlg" widgetVar="TarjetaCreditoEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditTarjetaCreditoTitle}">
+            <h:form id="TarjetaCreditoEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tarjetaCreditoController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditTarjetaCreditoLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{tarjetaCreditoController.selected.id}" title="#{bundle.EditTarjetaCreditoTitle_id}" required="true" requiredMessage="#{bundle.EditTarjetaCreditoRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.EditTarjetaCreditoLabel_titular}" for="titular" />
+                        <p:inputText id="titular" value="#{tarjetaCreditoController.selected.titular}" title="#{bundle.EditTarjetaCreditoTitle_titular}" required="true" requiredMessage="#{bundle.EditTarjetaCreditoRequiredMessage_titular}"/>
+                        <p:outputLabel value="#{bundle.EditTarjetaCreditoLabel_numero}" for="numero" />
+                        <p:inputText id="numero" value="#{tarjetaCreditoController.selected.numero}" title="#{bundle.EditTarjetaCreditoTitle_numero}" required="true" requiredMessage="#{bundle.EditTarjetaCreditoRequiredMessage_numero}"/>
+                        <p:outputLabel value="#{bundle.EditTarjetaCreditoLabel_mes}" for="mes" />
+                        <p:inputText id="mes" value="#{tarjetaCreditoController.selected.mes}" title="#{bundle.EditTarjetaCreditoTitle_mes}" required="true" requiredMessage="#{bundle.EditTarjetaCreditoRequiredMessage_mes}"/>
+                        <p:outputLabel value="#{bundle.EditTarjetaCreditoLabel_anio}" for="anio" />
+                        <p:inputText id="anio" value="#{tarjetaCreditoController.selected.anio}" title="#{bundle.EditTarjetaCreditoTitle_anio}" required="true" requiredMessage="#{bundle.EditTarjetaCreditoRequiredMessage_anio}"/>
+                        <p:outputLabel value="#{bundle.EditTarjetaCreditoLabel_status}" for="status" />
+                        <p:inputText id="status" value="#{tarjetaCreditoController.selected.status}" title="#{bundle.EditTarjetaCreditoTitle_status}" required="true" requiredMessage="#{bundle.EditTarjetaCreditoRequiredMessage_status}"/>
+                        <p:outputLabel value="#{bundle.EditTarjetaCreditoLabel_userId}" for="userId" />
+                        <p:selectOneMenu id="userId" value="#{tarjetaCreditoController.selected.userId}" required="true" requiredMessage="#{bundle.EditTarjetaCreditoRequiredMessage_userId}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{usersController.itemsAvailableSelectOne}"
+                                           var="userIdItem"
+                                           itemValue="#{userIdItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{tarjetaCreditoController.update}" value="#{bundle.Save}" update="display,:TarjetaCreditoListForm:datalist,:growl" oncomplete="handleSubmit(args, 'TarjetaCreditoEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="TarjetaCreditoEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="IntegrantesViewDlg" widgetVar="IntegrantesViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewIntegrantesTitle}">
+            <h:form id="IntegrantesViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{integrantesController.selected != null}">
+                        <h:outputText value="#{bundle.ViewIntegrantesLabel_id}"/>
+                        <h:outputText value="#{integrantesController.selected.id}" title="#{bundle.ViewIntegrantesTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewIntegrantesLabel_status}"/>
+                        <h:outputText value="#{integrantesController.selected.status}" title="#{bundle.ViewIntegrantesTitle_status}"/>
+                        <h:outputText value="#{bundle.ViewIntegrantesLabel_artistaId}"/>
+                        <h:outputText value="#{integrantesController.selected.artistaId}" title="#{bundle.ViewIntegrantesTitle_artistaId}"/>
+                        <h:outputText value="#{bundle.ViewIntegrantesLabel_bandaId}"/>
+                        <h:outputText value="#{integrantesController.selected.bandaId}" title="#{bundle.ViewIntegrantesTitle_bandaId}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="IntegrantesViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

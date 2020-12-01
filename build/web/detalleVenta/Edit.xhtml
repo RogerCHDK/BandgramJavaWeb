@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DetalleVentaEditDlg" widgetVar="DetalleVentaEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditDetalleVentaTitle}">
+            <h:form id="DetalleVentaEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{detalleVentaController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditDetalleVentaLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{detalleVentaController.selected.id}" title="#{bundle.EditDetalleVentaTitle_id}" required="true" requiredMessage="#{bundle.EditDetalleVentaRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.EditDetalleVentaLabel_cantidad}" for="cantidad" />
+                        <p:inputText id="cantidad" value="#{detalleVentaController.selected.cantidad}" title="#{bundle.EditDetalleVentaTitle_cantidad}" required="true" requiredMessage="#{bundle.EditDetalleVentaRequiredMessage_cantidad}"/>
+                        <p:outputLabel value="#{bundle.EditDetalleVentaLabel_precioUnitario}" for="precioUnitario" />
+                        <p:inputText id="precioUnitario" value="#{detalleVentaController.selected.precioUnitario}" title="#{bundle.EditDetalleVentaTitle_precioUnitario}" required="true" requiredMessage="#{bundle.EditDetalleVentaRequiredMessage_precioUnitario}"/>
+                        <p:outputLabel value="#{bundle.EditDetalleVentaLabel_status}" for="status" />
+                        <p:inputText id="status" value="#{detalleVentaController.selected.status}" title="#{bundle.EditDetalleVentaTitle_status}" required="true" requiredMessage="#{bundle.EditDetalleVentaRequiredMessage_status}"/>
+                        <p:outputLabel value="#{bundle.EditDetalleVentaLabel_ventaId}" for="ventaId" />
+                        <p:selectOneMenu id="ventaId" value="#{detalleVentaController.selected.ventaId}" required="true" requiredMessage="#{bundle.EditDetalleVentaRequiredMessage_ventaId}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{ventasController.itemsAvailableSelectOne}"
+                                           var="ventaIdItem"
+                                           itemValue="#{ventaIdItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditDetalleVentaLabel_productoId}" for="productoId" />
+                        <p:selectOneMenu id="productoId" value="#{detalleVentaController.selected.productoId}" required="true" requiredMessage="#{bundle.EditDetalleVentaRequiredMessage_productoId}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{productosController.itemsAvailableSelectOne}"
+                                           var="productoIdItem"
+                                           itemValue="#{productoIdItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{detalleVentaController.update}" value="#{bundle.Save}" update="display,:DetalleVentaListForm:datalist,:growl" oncomplete="handleSubmit(args, 'DetalleVentaEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="DetalleVentaEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

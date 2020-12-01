@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TarjetaCreditoViewDlg" widgetVar="TarjetaCreditoViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewTarjetaCreditoTitle}">
+            <h:form id="TarjetaCreditoViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tarjetaCreditoController.selected != null}">
+                        <h:outputText value="#{bundle.ViewTarjetaCreditoLabel_id}"/>
+                        <h:outputText value="#{tarjetaCreditoController.selected.id}" title="#{bundle.ViewTarjetaCreditoTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewTarjetaCreditoLabel_titular}"/>
+                        <h:outputText value="#{tarjetaCreditoController.selected.titular}" title="#{bundle.ViewTarjetaCreditoTitle_titular}"/>
+                        <h:outputText value="#{bundle.ViewTarjetaCreditoLabel_numero}"/>
+                        <h:outputText value="#{tarjetaCreditoController.selected.numero}" title="#{bundle.ViewTarjetaCreditoTitle_numero}"/>
+                        <h:outputText value="#{bundle.ViewTarjetaCreditoLabel_mes}"/>
+                        <h:outputText value="#{tarjetaCreditoController.selected.mes}" title="#{bundle.ViewTarjetaCreditoTitle_mes}"/>
+                        <h:outputText value="#{bundle.ViewTarjetaCreditoLabel_anio}"/>
+                        <h:outputText value="#{tarjetaCreditoController.selected.anio}" title="#{bundle.ViewTarjetaCreditoTitle_anio}"/>
+                        <h:outputText value="#{bundle.ViewTarjetaCreditoLabel_status}"/>
+                        <h:outputText value="#{tarjetaCreditoController.selected.status}" title="#{bundle.ViewTarjetaCreditoTitle_status}"/>
+                        <h:outputText value="#{bundle.ViewTarjetaCreditoLabel_userId}"/>
+                        <h:outputText value="#{tarjetaCreditoController.selected.userId}" title="#{bundle.ViewTarjetaCreditoTitle_userId}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="TarjetaCreditoViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="EventosEditDlg" widgetVar="EventosEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditEventosTitle}">
+            <h:form id="EventosEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{eventosController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditEventosLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{eventosController.selected.id}" title="#{bundle.EditEventosTitle_id}" required="true" requiredMessage="#{bundle.EditEventosRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.EditEventosLabel_descripcion}" for="descripcion" />
+                        <p:inputTextarea rows="4" cols="30" id="descripcion" value="#{eventosController.selected.descripcion}" title="#{bundle.EditEventosTitle_descripcion}" required="true" requiredMessage="#{bundle.EditEventosRequiredMessage_descripcion}"/>
+                        <p:outputLabel value="#{bundle.EditEventosLabel_fechaCreacion}" for="fechaCreacion" />
+                        <p:calendar id="fechaCreacion" pattern="MM/dd/yyyy" value="#{eventosController.selected.fechaCreacion}" title="#{bundle.EditEventosTitle_fechaCreacion}" required="true" requiredMessage="#{bundle.EditEventosRequiredMessage_fechaCreacion}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditEventosLabel_fechaInicio}" for="fechaInicio" />
+                        <p:calendar id="fechaInicio" pattern="MM/dd/yyyy" value="#{eventosController.selected.fechaInicio}" title="#{bundle.EditEventosTitle_fechaInicio}" required="true" requiredMessage="#{bundle.EditEventosRequiredMessage_fechaInicio}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditEventosLabel_horaInicio}" for="horaInicio" />
+                        <p:calendar id="horaInicio" pattern="HH:mm:ss" value="#{eventosController.selected.horaInicio}" title="#{bundle.EditEventosTitle_horaInicio}" required="true" requiredMessage="#{bundle.EditEventosRequiredMessage_horaInicio}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditEventosLabel_status}" for="status" />
+                        <p:inputText id="status" value="#{eventosController.selected.status}" title="#{bundle.EditEventosTitle_status}" required="true" requiredMessage="#{bundle.EditEventosRequiredMessage_status}"/>
+                        <p:outputLabel value="#{bundle.EditEventosLabel_locacionId}" for="locacionId" />
+                        <p:selectOneMenu id="locacionId" value="#{eventosController.selected.locacionId}" required="true" requiredMessage="#{bundle.EditEventosRequiredMessage_locacionId}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{locacionesController.itemsAvailableSelectOne}"
+                                           var="locacionIdItem"
+                                           itemValue="#{locacionIdItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditEventosLabel_artistaId}" for="artistaId" />
+                        <p:selectOneMenu id="artistaId" value="#{eventosController.selected.artistaId}" required="true" requiredMessage="#{bundle.EditEventosRequiredMessage_artistaId}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{artistasController.itemsAvailableSelectOne}"
+                                           var="artistaIdItem"
+                                           itemValue="#{artistaIdItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{eventosController.update}" value="#{bundle.Save}" update="display,:EventosListForm:datalist,:growl" oncomplete="handleSubmit(args, 'EventosEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="EventosEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

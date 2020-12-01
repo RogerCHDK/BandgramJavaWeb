@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="LocacionesViewDlg" widgetVar="LocacionesViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewLocacionesTitle}">
+            <h:form id="LocacionesViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{locacionesController.selected != null}">
+                        <h:outputText value="#{bundle.ViewLocacionesLabel_id}"/>
+                        <h:outputText value="#{locacionesController.selected.id}" title="#{bundle.ViewLocacionesTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewLocacionesLabel_calle}"/>
+                        <h:outputText value="#{locacionesController.selected.calle}" title="#{bundle.ViewLocacionesTitle_calle}"/>
+                        <h:outputText value="#{bundle.ViewLocacionesLabel_colonia}"/>
+                        <h:outputText value="#{locacionesController.selected.colonia}" title="#{bundle.ViewLocacionesTitle_colonia}"/>
+                        <h:outputText value="#{bundle.ViewLocacionesLabel_nombre}"/>
+                        <h:outputText value="#{locacionesController.selected.nombre}" title="#{bundle.ViewLocacionesTitle_nombre}"/>
+                        <h:outputText value="#{bundle.ViewLocacionesLabel_status}"/>
+                        <h:outputText value="#{locacionesController.selected.status}" title="#{bundle.ViewLocacionesTitle_status}"/>
+                        <h:outputText value="#{bundle.ViewLocacionesLabel_estadoId}"/>
+                        <h:outputText value="#{locacionesController.selected.estadoId}" title="#{bundle.ViewLocacionesTitle_estadoId}"/>
+                        <h:outputText value="#{bundle.ViewLocacionesLabel_paisId}"/>
+                        <h:outputText value="#{locacionesController.selected.paisId}" title="#{bundle.ViewLocacionesTitle_paisId}"/>
+                        <h:outputText value="#{bundle.ViewLocacionesLabel_municipioId}"/>
+                        <h:outputText value="#{locacionesController.selected.municipioId}" title="#{bundle.ViewLocacionesTitle_municipioId}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="LocacionesViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

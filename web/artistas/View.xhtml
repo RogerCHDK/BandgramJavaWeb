@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ArtistasViewDlg" widgetVar="ArtistasViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewArtistasTitle}">
+            <h:form id="ArtistasViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{artistasController.selected != null}">
+                        <h:outputText value="#{bundle.ViewArtistasLabel_id}"/>
+                        <h:outputText value="#{artistasController.selected.id}" title="#{bundle.ViewArtistasTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewArtistasLabel_nombre}"/>
+                        <h:outputText value="#{artistasController.selected.nombre}" title="#{bundle.ViewArtistasTitle_nombre}"/>
+                        <h:outputText value="#{bundle.ViewArtistasLabel_apPaterno}"/>
+                        <h:outputText value="#{artistasController.selected.apPaterno}" title="#{bundle.ViewArtistasTitle_apPaterno}"/>
+                        <h:outputText value="#{bundle.ViewArtistasLabel_apMaterno}"/>
+                        <h:outputText value="#{artistasController.selected.apMaterno}" title="#{bundle.ViewArtistasTitle_apMaterno}"/>
+                        <h:outputText value="#{bundle.ViewArtistasLabel_foto}"/>
+                        <h:outputText value="#{artistasController.selected.foto}" title="#{bundle.ViewArtistasTitle_foto}"/>
+                        <h:outputText value="#{bundle.ViewArtistasLabel_biografia}"/>
+                        <h:outputText value="#{artistasController.selected.biografia}" title="#{bundle.ViewArtistasTitle_biografia}"/>
+                        <h:outputText value="#{bundle.ViewArtistasLabel_email}"/>
+                        <h:outputText value="#{artistasController.selected.email}" title="#{bundle.ViewArtistasTitle_email}"/>
+                        <h:outputText value="#{bundle.ViewArtistasLabel_password}"/>
+                        <h:outputText value="#{artistasController.selected.password}" title="#{bundle.ViewArtistasTitle_password}"/>
+                        <h:outputText value="#{bundle.ViewArtistasLabel_status}"/>
+                        <h:outputText value="#{artistasController.selected.status}" title="#{bundle.ViewArtistasTitle_status}"/>
+                        <h:outputText value="#{bundle.ViewArtistasLabel_tipoUsuario}"/>
+                        <h:outputText value="#{artistasController.selected.tipoUsuario}" title="#{bundle.ViewArtistasTitle_tipoUsuario}"/>
+                        <h:outputText value="#{bundle.ViewArtistasLabel_generoId}"/>
+                        <h:outputText value="#{artistasController.selected.generoId}" title="#{bundle.ViewArtistasTitle_generoId}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="ArtistasViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

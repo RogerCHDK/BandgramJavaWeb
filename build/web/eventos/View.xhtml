@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="EventosViewDlg" widgetVar="EventosViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewEventosTitle}">
+            <h:form id="EventosViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{eventosController.selected != null}">
+                        <h:outputText value="#{bundle.ViewEventosLabel_id}"/>
+                        <h:outputText value="#{eventosController.selected.id}" title="#{bundle.ViewEventosTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewEventosLabel_descripcion}"/>
+                        <h:outputText value="#{eventosController.selected.descripcion}" title="#{bundle.ViewEventosTitle_descripcion}"/>
+                        <h:outputText value="#{bundle.ViewEventosLabel_fechaCreacion}"/>
+                        <h:outputText value="#{eventosController.selected.fechaCreacion}" title="#{bundle.ViewEventosTitle_fechaCreacion}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewEventosLabel_fechaInicio}"/>
+                        <h:outputText value="#{eventosController.selected.fechaInicio}" title="#{bundle.ViewEventosTitle_fechaInicio}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewEventosLabel_horaInicio}"/>
+                        <h:outputText value="#{eventosController.selected.horaInicio}" title="#{bundle.ViewEventosTitle_horaInicio}">
+                            <f:convertDateTime pattern="HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewEventosLabel_status}"/>
+                        <h:outputText value="#{eventosController.selected.status}" title="#{bundle.ViewEventosTitle_status}"/>
+                        <h:outputText value="#{bundle.ViewEventosLabel_locacionId}"/>
+                        <h:outputText value="#{eventosController.selected.locacionId}" title="#{bundle.ViewEventosTitle_locacionId}"/>
+                        <h:outputText value="#{bundle.ViewEventosLabel_artistaId}"/>
+                        <h:outputText value="#{eventosController.selected.artistaId}" title="#{bundle.ViewEventosTitle_artistaId}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="EventosViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

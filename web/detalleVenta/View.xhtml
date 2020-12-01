@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DetalleVentaViewDlg" widgetVar="DetalleVentaViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewDetalleVentaTitle}">
+            <h:form id="DetalleVentaViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{detalleVentaController.selected != null}">
+                        <h:outputText value="#{bundle.ViewDetalleVentaLabel_id}"/>
+                        <h:outputText value="#{detalleVentaController.selected.id}" title="#{bundle.ViewDetalleVentaTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewDetalleVentaLabel_cantidad}"/>
+                        <h:outputText value="#{detalleVentaController.selected.cantidad}" title="#{bundle.ViewDetalleVentaTitle_cantidad}"/>
+                        <h:outputText value="#{bundle.ViewDetalleVentaLabel_precioUnitario}"/>
+                        <h:outputText value="#{detalleVentaController.selected.precioUnitario}" title="#{bundle.ViewDetalleVentaTitle_precioUnitario}"/>
+                        <h:outputText value="#{bundle.ViewDetalleVentaLabel_status}"/>
+                        <h:outputText value="#{detalleVentaController.selected.status}" title="#{bundle.ViewDetalleVentaTitle_status}"/>
+                        <h:outputText value="#{bundle.ViewDetalleVentaLabel_ventaId}"/>
+                        <h:outputText value="#{detalleVentaController.selected.ventaId}" title="#{bundle.ViewDetalleVentaTitle_ventaId}"/>
+                        <h:outputText value="#{bundle.ViewDetalleVentaLabel_productoId}"/>
+                        <h:outputText value="#{detalleVentaController.selected.productoId}" title="#{bundle.ViewDetalleVentaTitle_productoId}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="DetalleVentaViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

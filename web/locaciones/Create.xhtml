@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="LocacionesCreateDlg" widgetVar="LocacionesCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateLocacionesTitle}">
+            <h:form id="LocacionesCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{locacionesController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateLocacionesLabel_calle}" for="calle" />
+                        <p:inputText id="calle" value="#{locacionesController.selected.calle}" title="#{bundle.CreateLocacionesTitle_calle}" required="true" requiredMessage="#{bundle.CreateLocacionesRequiredMessage_calle}"/>
+                        <p:outputLabel value="#{bundle.CreateLocacionesLabel_colonia}" for="colonia" />
+                        <p:inputText id="colonia" value="#{locacionesController.selected.colonia}" title="#{bundle.CreateLocacionesTitle_colonia}" required="true" requiredMessage="#{bundle.CreateLocacionesRequiredMessage_colonia}"/>
+                        <p:outputLabel value="#{bundle.CreateLocacionesLabel_nombre}" for="nombre" />
+                        <p:inputText id="nombre" value="#{locacionesController.selected.nombre}" title="#{bundle.CreateLocacionesTitle_nombre}" required="true" requiredMessage="#{bundle.CreateLocacionesRequiredMessage_nombre}"/>
+                        <p:outputLabel value="#{bundle.CreateLocacionesLabel_estadoId}" for="estadoId" />
+                        <p:selectOneMenu id="estadoId" value="#{locacionesController.selected.estadoId}" required="true" requiredMessage="#{bundle.EditLocacionesRequiredMessage_estadoId}">
+                            <f:selectItems value="#{estadosController.itemsAvailableSelectOne}"
+                                           var="estadoIdItem"
+                                           itemValue="#{estadoIdItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateLocacionesLabel_paisId}" for="paisId" />
+                        <p:selectOneMenu id="paisId" value="#{locacionesController.selected.paisId}" required="true" requiredMessage="#{bundle.EditLocacionesRequiredMessage_paisId}">
+                            <f:selectItems value="#{paisesController.itemsAvailableSelectOne}"
+                                           var="paisIdItem"
+                                           itemValue="#{paisIdItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateLocacionesLabel_municipioId}" for="municipioId" />
+                        <p:selectOneMenu id="municipioId" value="#{locacionesController.selected.municipioId}" required="true" requiredMessage="#{bundle.EditLocacionesRequiredMessage_municipioId}">
+                            <f:selectItems value="#{municipiosController.itemsAvailableSelectOne}"
+                                           var="municipioIdItem"
+                                           itemValue="#{municipioIdItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{locacionesController.create}" value="#{bundle.Save}" update="display,:LocacionesListForm:datalist,:growl" oncomplete="handleSubmit(args,'LocacionesCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="LocacionesCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
