@@ -74,6 +74,7 @@
                             <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":BandasViewForm" oncomplete="PF('BandasViewDialog').show()" disabled="#{empty bandasController.selected}"/>
                             <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":BandasEditForm" oncomplete="PF('BandasEditDialog').show()" disabled="#{empty bandasController.selected}"/>
                             <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{bandasController.destroy}" update=":growl,datalist" disabled="#{empty bandasController.selected}"/>
+                        <h:link outcome="/bandas/ListEliminados" value="VER BANDAS ELIMINADAS" class="button" />
                         </f:facet>
                     </p:dataTable>
                 </p:panel>

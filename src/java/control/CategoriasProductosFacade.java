@@ -5,9 +5,11 @@
  */
 package control;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import modelo.CategoriasProductos;
 
 /**
@@ -27,6 +29,26 @@ public class CategoriasProductosFacade extends AbstractFacade<CategoriasProducto
 
     public CategoriasProductosFacade() {
         super(CategoriasProductos.class);
+    }
+    
+    public List<CategoriasProductos> Consultar_activos(){
+    Query consulta = em.createNamedQuery("CategoriasProductos.CategoriasActivas", CategoriasProductos.class);
+    List<CategoriasProductos> lista = consulta.getResultList(); 
+         
+    if(!lista.isEmpty())
+             return lista;
+         else
+            return null;
+    }
+    
+    public List<CategoriasProductos> Consultar_eliminados(){
+    Query consulta = em.createNamedQuery("CategoriasProductos.CategoriasEliminadas", CategoriasProductos.class);
+    List<CategoriasProductos> lista = consulta.getResultList(); 
+         
+    if(!lista.isEmpty())
+             return lista;
+         else
+            return null;
     }
     
 }

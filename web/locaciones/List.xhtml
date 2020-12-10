@@ -80,6 +80,7 @@
                             <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":LocacionesViewForm" oncomplete="PF('LocacionesViewDialog').show()" disabled="#{empty locacionesController.selected}"/>
                             <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":LocacionesEditForm" oncomplete="PF('LocacionesEditDialog').show()" disabled="#{empty locacionesController.selected}"/>
                             <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{locacionesController.destroy}" update=":growl,datalist" disabled="#{empty locacionesController.selected}"/>
+                            <h:link outcome="/locaciones/ListEliminados" value="VER LOCACIONES ELIMINADAS" type="button"/>
                         </f:facet>
                     </p:dataTable>
                 </p:panel>

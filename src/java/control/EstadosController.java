@@ -25,7 +25,19 @@ public class EstadosController implements Serializable {
     @EJB
     private control.EstadosFacade ejbFacade;
     private List<Estados> items = null;
+    private List<Estados> items_eliminados = null;
     private Estados selected;
+
+    public List<Estados> getItems_eliminados() {
+        if (items_eliminados == null) {
+            items_eliminados = ejbFacade.Consultar_eliminados();
+        }
+        return items_eliminados;
+    }
+
+    public void setItems_eliminados(List<Estados> items_eliminados) {
+        this.items_eliminados = items_eliminados;
+    }
 
     public EstadosController() {
     }
@@ -67,16 +79,30 @@ public class EstadosController implements Serializable {
     }
 
     public void destroy() {
-        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("EstadosDeleted"));
+        selected.setStatus(0);
+        //persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("EstadosDeleted"));
+        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("EstadosUpdated"));      
         if (!JsfUtil.isValidationFailed()) {
             selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
+            items_eliminados = null;
+        }
+    }
+    
+    public void restaurar() {
+        selected.setStatus(1);
+        //persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("EstadosDeleted"));
+        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("EstadosUpdated"));      
+        if (!JsfUtil.isValidationFailed()) {
+            selected = null; // Remove selection
+            items = null;    // Invalidate list of items to trigger re-query.
+            items_eliminados = null;
         }
     }
 
     public List<Estados> getItems() {
         if (items == null) {
-            items = getFacade().findAll();
+            items = ejbFacade.Consultar_activos();
         }
         return items;
     }

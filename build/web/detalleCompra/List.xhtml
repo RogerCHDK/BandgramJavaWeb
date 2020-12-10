@@ -6,7 +6,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 
-    <ui:composition template="/template.xhtml">
+    <ui:composition template="/template.xhtml"> 
 
 
         <ui:define name="title">
@@ -74,6 +74,7 @@
                             <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":DetalleCompraViewForm" oncomplete="PF('DetalleCompraViewDialog').show()" disabled="#{empty detalleCompraController.selected}"/>
                             <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":DetalleCompraEditForm" oncomplete="PF('DetalleCompraEditDialog').show()" disabled="#{empty detalleCompraController.selected}"/>
                             <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{detalleCompraController.destroy}" update=":growl,datalist" disabled="#{empty detalleCompraController.selected}"/>
+                            <h:link outcome="/detalleCompra/ListEliminados" value="VER ELIMINADOS" type="button"/>
                         </f:facet>
                     </p:dataTable>
                 </p:panel>

@@ -82,6 +82,7 @@
                             <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":ComprasViewForm" oncomplete="PF('ComprasViewDialog').show()" disabled="#{empty comprasController.selected}"/>
                             <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":ComprasEditForm" oncomplete="PF('ComprasEditDialog').show()" disabled="#{empty comprasController.selected}"/>
                             <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{comprasController.destroy}" update=":growl,datalist" disabled="#{empty comprasController.selected}"/>
+                            <h:link outcome="/compras/ListEliminados" value="VER COMPRAS ELIMINADAS" type="button"/>
                         </f:facet>
                     </p:dataTable>
                 </p:panel>

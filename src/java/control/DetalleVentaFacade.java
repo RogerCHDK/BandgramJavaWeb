@@ -5,9 +5,11 @@
  */
 package control;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import modelo.DetalleVenta;
 
 /**
@@ -27,6 +29,26 @@ public class DetalleVentaFacade extends AbstractFacade<DetalleVenta> {
 
     public DetalleVentaFacade() {
         super(DetalleVenta.class);
+    }
+    
+    public List<DetalleVenta> Consultar_activos(){
+    Query consulta = em.createNamedQuery("DetalleVenta.DetalleVentaActivos", DetalleVenta.class);
+    List<DetalleVenta> lista = consulta.getResultList(); 
+         
+    if(!lista.isEmpty())
+             return lista;
+         else
+            return null;
+    }
+    
+    public List<DetalleVenta> Consultar_eliminados(){
+    Query consulta = em.createNamedQuery("DetalleVenta.DetalleVentaEliminados", DetalleVenta.class);
+    List<DetalleVenta> lista = consulta.getResultList(); 
+         
+    if(!lista.isEmpty())
+             return lista;
+         else
+            return null;
     }
     
 }

@@ -25,6 +25,18 @@ public class UsersController implements Serializable {
     @EJB
     private control.UsersFacade ejbFacade;
     private List<Users> items = null;
+    private List<Users> items_eliminados = null;
+
+    public List<Users> getItems_eliminados() {
+        if (items_eliminados == null) {
+            items_eliminados = ejbFacade.Consultar_eliminados();
+        }
+        return items_eliminados;
+    }
+
+    public void setItems_eliminados(List<Users> items_eliminados) {
+        this.items_eliminados = items_eliminados;
+    }
     private Users selected;
 
     public UsersController() {
@@ -67,16 +79,30 @@ public class UsersController implements Serializable {
     }
 
     public void destroy() {
-        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("UsersDeleted"));
+        selected.setStatus(0);
+        //persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("UsersDeleted"));
+        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("UsersUpdated"));        
         if (!JsfUtil.isValidationFailed()) {
             selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
+            items_eliminados = null;
+        }
+    }
+    
+    public void restaurar() {
+        selected.setStatus(1);
+        //persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("UsersDeleted"));
+        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("UsersUpdated"));        
+        if (!JsfUtil.isValidationFailed()) {
+            selected = null; // Remove selection
+            items = null;    // Invalidate list of items to trigger re-query.
+            items_eliminados = null;
         }
     }
 
     public List<Users> getItems() {
         if (items == null) {
-            items = getFacade().findAll();
+            items = ejbFacade.Consultar_activos();
         }
         return items;
     }

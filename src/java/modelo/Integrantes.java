@@ -30,6 +30,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Integrantes.findAll", query = "SELECT i FROM Integrantes i")
     , @NamedQuery(name = "Integrantes.findById", query = "SELECT i FROM Integrantes i WHERE i.id = :id")
+    , @NamedQuery(name = "Integrantes.IntegrantesActivos", query = "SELECT i FROM Integrantes i WHERE i.status = 1")
+    , @NamedQuery(name = "Integrantes.IntegrantesEliminados", query = "SELECT i FROM Integrantes i WHERE i.status = 0")
     , @NamedQuery(name = "Integrantes.findByStatus", query = "SELECT i FROM Integrantes i WHERE i.status = :status")})
 public class Integrantes implements Serializable {
 

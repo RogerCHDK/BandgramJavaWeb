@@ -5,9 +5,11 @@
  */
 package control;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import modelo.Bandas;
 
 /**
@@ -27,6 +29,26 @@ public class BandasFacade extends AbstractFacade<Bandas> {
 
     public BandasFacade() {
         super(Bandas.class);
+    }
+    
+    public List<Bandas> Consultar_eliminados(){
+       
+        Query consulta = em.createNamedQuery("Bandas.BandasEliminados",Bandas.class);
+         List<Bandas> lista = consulta.getResultList(); 
+         if(!lista.isEmpty())
+             return lista;
+         else
+            return null;
+    }
+    
+    public List<Bandas> Consultar_activos(){
+       
+        Query consulta = em.createNamedQuery("Bandas.BandasActivos",Bandas.class);
+         List<Bandas> lista = consulta.getResultList(); 
+         if(!lista.isEmpty())
+             return lista;
+         else
+            return null;
     }
     
 }

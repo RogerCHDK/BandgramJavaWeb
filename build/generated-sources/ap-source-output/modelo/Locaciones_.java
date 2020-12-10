@@ -9,7 +9,7 @@ import modelo.Eventos;
 import modelo.Municipios;
 import modelo.Paises;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2020-11-30T21:59:52")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2020-12-05T16:37:07")
 @StaticMetamodel(Locaciones.class)
 public class Locaciones_ { 
 

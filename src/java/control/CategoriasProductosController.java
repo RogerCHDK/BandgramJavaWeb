@@ -25,6 +25,18 @@ public class CategoriasProductosController implements Serializable {
     @EJB
     private control.CategoriasProductosFacade ejbFacade;
     private List<CategoriasProductos> items = null;
+    private List<CategoriasProductos> items_eliminados = null;
+
+    public List<CategoriasProductos> getItems_eliminados() {
+        if (items_eliminados == null) {
+            items_eliminados = ejbFacade.Consultar_eliminados();
+        }
+        return items_eliminados;
+    }
+
+    public void setItems_eliminados(List<CategoriasProductos> items_eliminados) {
+        this.items_eliminados = items_eliminados;
+    }
     private CategoriasProductos selected;
 
     public CategoriasProductosController() {
@@ -67,16 +79,31 @@ public class CategoriasProductosController implements Serializable {
     }
 
     public void destroy() {
-        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("CategoriasProductosDeleted"));
+        selected.setStatus(0);
+        //persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("CategoriasProductosDeleted"));
+        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("CategoriasProductosUpdated"));
         if (!JsfUtil.isValidationFailed()) {
             selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
+            items_eliminados = null; 
+        }
+    }
+    
+    public void restaurar() {
+        selected.setStatus(1);
+        //persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("CategoriasProductosDeleted"));
+        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("CategoriasProductosUpdated"));
+        if (!JsfUtil.isValidationFailed()) {
+            selected = null; // Remove selection
+            items = null;    // Invalidate list of items to trigger re-query.
+            items_eliminados = null; 
         }
     }
 
     public List<CategoriasProductos> getItems() {
         if (items == null) {
-            items = getFacade().findAll();
+            //items = getFacade().findAll();
+            items = ejbFacade.Consultar_activos();
         }
         return items;
     }

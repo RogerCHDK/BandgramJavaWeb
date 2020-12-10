@@ -50,6 +50,7 @@
                             <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":ZonasViewForm" oncomplete="PF('ZonasViewDialog').show()" disabled="#{empty zonasController.selected}"/>
                             <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":ZonasEditForm" oncomplete="PF('ZonasEditDialog').show()" disabled="#{empty zonasController.selected}"/>
                             <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{zonasController.destroy}" update=":growl,datalist" disabled="#{empty zonasController.selected}"/>
+                            <h:link outcome="/zonas/ListEliminados" value="VER ZONAS ELIMINADAS" type="button"/>
                         </f:facet>
                     </p:dataTable>
                 </p:panel>

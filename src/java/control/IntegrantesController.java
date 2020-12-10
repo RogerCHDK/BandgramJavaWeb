@@ -25,6 +25,18 @@ public class IntegrantesController implements Serializable {
     @EJB
     private control.IntegrantesFacade ejbFacade;
     private List<Integrantes> items = null;
+    private List<Integrantes> items_eliminados = null;
+
+    public List<Integrantes> getItems_eliminados() {
+        if (items_eliminados == null) {
+            items_eliminados = ejbFacade.Consultar_eliminados();
+        }
+        return items_eliminados;
+    }
+
+    public void setItems_eliminados(List<Integrantes> items_eliminados) {
+        this.items_eliminados = items_eliminados;
+    }
     private Integrantes selected;
 
     public IntegrantesController() {
@@ -67,16 +79,30 @@ public class IntegrantesController implements Serializable {
     }
 
     public void destroy() {
-        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("IntegrantesDeleted"));
+        selected.setStatus(0);
+        //persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("IntegrantesDeleted"));
+        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("IntegrantesUpdated"));        
         if (!JsfUtil.isValidationFailed()) {
             selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
+            items_eliminados = null;
+        }
+    }
+    
+    public void restaurar() {
+        selected.setStatus(1);
+        //persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("IntegrantesDeleted"));
+        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("IntegrantesUpdated"));        
+        if (!JsfUtil.isValidationFailed()) {
+            selected = null; // Remove selection
+            items = null;    // Invalidate list of items to trigger re-query.
+            items_eliminados = null;
         }
     }
 
     public List<Integrantes> getItems() {
         if (items == null) {
-            items = getFacade().findAll();
+            items = ejbFacade.Consultar_activos();
         }
         return items;
     }

@@ -25,6 +25,18 @@ public class PaisesController implements Serializable {
     @EJB
     private control.PaisesFacade ejbFacade;
     private List<Paises> items = null;
+    private List<Paises> items_eliminados = null;
+
+    public List<Paises> getItems_eliminados() {
+        if (items_eliminados == null) {
+            items_eliminados = ejbFacade.Consultar_eliminados();
+        }
+        return items_eliminados;
+    }
+
+    public void setItems_eliminados(List<Paises> items_eliminados) {
+        this.items_eliminados = items_eliminados;
+    }
     private Paises selected;
 
     public PaisesController() {
@@ -67,16 +79,30 @@ public class PaisesController implements Serializable {
     }
 
     public void destroy() {
-        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("PaisesDeleted"));
+        selected.setStatus(0);
+        //persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("PaisesDeleted"));
+        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("PaisesUpdated"));        
         if (!JsfUtil.isValidationFailed()) {
             selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
+            items_eliminados = null;
+        }
+    }
+    
+    public void restaurar() {
+        selected.setStatus(1);
+        //persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("PaisesDeleted"));
+        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("PaisesUpdated"));        
+        if (!JsfUtil.isValidationFailed()) {
+            selected = null; // Remove selection
+            items = null;    // Invalidate list of items to trigger re-query.
+            items_eliminados = null;
         }
     }
 
     public List<Paises> getItems() {
         if (items == null) {
-            items = getFacade().findAll();
+            items = ejbFacade.Consultar_activos();
         }
         return items;
     }

@@ -5,9 +5,11 @@
  */
 package control;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import modelo.Integrantes;
 
 /**
@@ -27,6 +29,26 @@ public class IntegrantesFacade extends AbstractFacade<Integrantes> {
 
     public IntegrantesFacade() {
         super(Integrantes.class);
+    }
+    
+    public List<Integrantes> Consultar_activos(){
+    Query consulta = em.createNamedQuery("Integrantes.IntegrantesActivos", Integrantes.class);
+    List<Integrantes> lista = consulta.getResultList(); 
+         
+    if(!lista.isEmpty())
+             return lista;
+         else
+            return null;
+    }
+    
+    public List<Integrantes> Consultar_eliminados(){
+    Query consulta = em.createNamedQuery("Integrantes.IntegrantesEliminados", Integrantes.class);
+    List<Integrantes> lista = consulta.getResultList(); 
+         
+    if(!lista.isEmpty())
+             return lista;
+         else
+            return null;
     }
     
 }

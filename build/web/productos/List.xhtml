@@ -80,6 +80,7 @@
                             <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":ProductosViewForm" oncomplete="PF('ProductosViewDialog').show()" disabled="#{empty productosController.selected}"/>
                             <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":ProductosEditForm" oncomplete="PF('ProductosEditDialog').show()" disabled="#{empty productosController.selected}"/>
                             <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{productosController.destroy}" update=":growl,datalist" disabled="#{empty productosController.selected}"/>
+                            <h:link outcome="/productos/ListEliminados" value="VER PRODUCTOS ELIMINADOS" type="button"/>
                         </f:facet>
                     </p:dataTable>
                 </p:panel>

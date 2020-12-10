@@ -56,6 +56,7 @@
                             <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":TiposUsuariosViewForm" oncomplete="PF('TiposUsuariosViewDialog').show()" disabled="#{empty tiposUsuariosController.selected}"/>
                             <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":TiposUsuariosEditForm" oncomplete="PF('TiposUsuariosEditDialog').show()" disabled="#{empty tiposUsuariosController.selected}"/>
                             <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{tiposUsuariosController.destroy}" update=":growl,datalist" disabled="#{empty tiposUsuariosController.selected}"/>
+                            <h:link outcome="/tiposUsuarios/ListEliminados" value="VER TIPOS USUARIOS ELIMINADOS" type="button"/>
                         </f:facet>
                     </p:dataTable>
                 </p:panel>

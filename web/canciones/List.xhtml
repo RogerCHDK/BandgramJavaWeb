@@ -80,6 +80,7 @@
                             <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":CancionesViewForm" oncomplete="PF('CancionesViewDialog').show()" disabled="#{empty cancionesController.selected}"/>
                             <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":CancionesEditForm" oncomplete="PF('CancionesEditDialog').show()" disabled="#{empty cancionesController.selected}"/>
                             <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{cancionesController.destroy}" update=":growl,datalist" disabled="#{empty cancionesController.selected}"/>
+                            <h:link outcome="/canciones/ListEliminados" value="CANCIONES ELIMINADAS" type="button"/>
                         </f:facet>
                     </p:dataTable>
                 </p:panel>

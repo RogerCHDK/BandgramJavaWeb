@@ -74,6 +74,7 @@
                             <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":TarjetaCreditoViewForm" oncomplete="PF('TarjetaCreditoViewDialog').show()" disabled="#{empty tarjetaCreditoController.selected}"/>
                             <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":TarjetaCreditoEditForm" oncomplete="PF('TarjetaCreditoEditDialog').show()" disabled="#{empty tarjetaCreditoController.selected}"/>
                             <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{tarjetaCreditoController.destroy}" update=":growl,datalist" disabled="#{empty tarjetaCreditoController.selected}"/>
+                            <h:link outcome="/tarjetaCredito/ListEliminados" value="VER TARJETAS ELIMINADAS" type="button"/>
                         </f:facet>
                     </p:dataTable>
                 </p:panel>

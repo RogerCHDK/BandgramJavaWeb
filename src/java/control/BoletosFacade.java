@@ -5,9 +5,11 @@
  */
 package control;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import modelo.Boletos;
 
 /**
@@ -27,6 +29,26 @@ public class BoletosFacade extends AbstractFacade<Boletos> {
 
     public BoletosFacade() {
         super(Boletos.class);
+    }
+    
+    public List<Boletos> Consultar_activos(){
+       
+        Query consulta = em.createNamedQuery("Boletos.BoletosActivos",Boletos.class);
+         List<Boletos> lista = consulta.getResultList(); 
+         if(!lista.isEmpty())
+             return lista;
+         else
+            return null;
+    }
+    
+    public List<Boletos> Consultar_eliminados(){
+       
+        Query consulta = em.createNamedQuery("Boletos.BoletosEliminados",Boletos.class);
+         List<Boletos> lista = consulta.getResultList(); 
+         if(!lista.isEmpty())
+             return lista;
+         else
+            return null;
     }
     
 }

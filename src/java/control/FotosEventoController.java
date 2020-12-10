@@ -25,7 +25,19 @@ public class FotosEventoController implements Serializable {
     @EJB
     private control.FotosEventoFacade ejbFacade;
     private List<FotosEvento> items = null;
+    private List<FotosEvento> items_eliminados = null;
     private FotosEvento selected;
+
+    public List<FotosEvento> getItems_eliminados() {
+        if (items_eliminados == null) {
+            items_eliminados = ejbFacade.Consultar_eliminados();
+        }
+        return items_eliminados;
+    }
+
+    public void setItems_eliminados(List<FotosEvento> items_eliminados) {
+        this.items_eliminados = items_eliminados;
+    }
 
     public FotosEventoController() {
     }
@@ -67,16 +79,30 @@ public class FotosEventoController implements Serializable {
     }
 
     public void destroy() {
-        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("FotosEventoDeleted"));
+        selected.setStatus(0);
+        //persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("FotosEventoDeleted"));
+        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("FotosEventoUpdated"));        
         if (!JsfUtil.isValidationFailed()) {
             selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
+            items_eliminados = null; 
+        }
+    }
+    
+    public void restaurar() {
+        selected.setStatus(1);
+        //persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("FotosEventoDeleted"));
+        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("FotosEventoUpdated"));        
+        if (!JsfUtil.isValidationFailed()) {
+            selected = null; // Remove selection
+            items = null;    // Invalidate list of items to trigger re-query.
+            items_eliminados = null; 
         }
     }
 
     public List<FotosEvento> getItems() {
         if (items == null) {
-            items = getFacade().findAll();
+            items = ejbFacade.Consultar_activos();
         }
         return items;
     }

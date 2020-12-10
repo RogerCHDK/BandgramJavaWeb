@@ -25,7 +25,19 @@ public class CancionesController implements Serializable {
     @EJB
     private control.CancionesFacade ejbFacade;
     private List<Canciones> items = null;
+    private List<Canciones> items_eliminados = null;
     private Canciones selected;
+
+    public List<Canciones> getItems_eliminados() {
+        if (items_eliminados == null) {
+            items_eliminados = ejbFacade.Consultar_eliminados();
+        }
+        return items_eliminados;
+    }
+
+    public void setItems_eliminados(List<Canciones> items_eliminados) {
+        this.items_eliminados = items_eliminados;
+    }
 
     public CancionesController() {
     }
@@ -67,16 +79,31 @@ public class CancionesController implements Serializable {
     }
 
     public void destroy() {
-        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("CancionesDeleted"));
+        selected.setStatus(0);
+        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("CancionesUpdated"));
+        //persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("CancionesDeleted"));
         if (!JsfUtil.isValidationFailed()) {
             selected = null; // Remove selection
-            items = null;    // Invalidate list of items to trigger re-query.
+            items = null;
+            items_eliminados = null;// Invalidate list of items to trigger re-query.
+        }
+    }
+    
+    public void restaurar() {
+        selected.setStatus(1);
+        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("CancionesUpdated"));
+        //persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("CancionesDeleted"));
+        if (!JsfUtil.isValidationFailed()) {
+            selected = null; // Remove selection
+            items = null;
+            items_eliminados = null;// Invalidate list of items to trigger re-query.
         }
     }
 
     public List<Canciones> getItems() {
         if (items == null) {
-            items = getFacade().findAll();
+            //items = getFacade().findAll();
+            items = ejbFacade.Consultar_activos();
         }
         return items;
     }

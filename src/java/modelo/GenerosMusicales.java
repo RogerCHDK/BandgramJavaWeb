@@ -33,6 +33,8 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "GenerosMusicales.findAll", query = "SELECT g FROM GenerosMusicales g")
     , @NamedQuery(name = "GenerosMusicales.findById", query = "SELECT g FROM GenerosMusicales g WHERE g.id = :id")
+    , @NamedQuery(name = "GenerosMusicales.GenerosMusicalesActivos", query = "SELECT g FROM GenerosMusicales g WHERE g.status = 1")
+    , @NamedQuery(name = "GenerosMusicales.GenerosMusicalesEliminados", query = "SELECT g FROM GenerosMusicales g WHERE g.status = 0")
     , @NamedQuery(name = "GenerosMusicales.findByNombre", query = "SELECT g FROM GenerosMusicales g WHERE g.nombre = :nombre")
     , @NamedQuery(name = "GenerosMusicales.findByStatus", query = "SELECT g FROM GenerosMusicales g WHERE g.status = :status")})
 public class GenerosMusicales implements Serializable {

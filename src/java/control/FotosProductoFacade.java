@@ -5,9 +5,11 @@
  */
 package control;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import modelo.FotosProducto;
 
 /**
@@ -29,4 +31,23 @@ public class FotosProductoFacade extends AbstractFacade<FotosProducto> {
         super(FotosProducto.class);
     }
     
+    public List<FotosProducto> Consultar_activos(){
+    Query consulta = em.createNamedQuery("FotosProducto.FotosProductosActivos", FotosProducto.class);
+    List<FotosProducto> lista = consulta.getResultList(); 
+         
+    if(!lista.isEmpty())
+             return lista;
+         else
+            return null;
+    }
+    
+    public List<FotosProducto> Consultar_eliminados(){
+    Query consulta = em.createNamedQuery("FotosProducto.FotosProductosEliminados", FotosProducto.class);
+    List<FotosProducto> lista = consulta.getResultList(); 
+         
+    if(!lista.isEmpty())
+             return lista;
+         else
+            return null;
+    }
 }

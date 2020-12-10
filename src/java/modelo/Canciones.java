@@ -31,6 +31,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Canciones.findAll", query = "SELECT c FROM Canciones c")
     , @NamedQuery(name = "Canciones.findById", query = "SELECT c FROM Canciones c WHERE c.id = :id")
+    , @NamedQuery(name = "Canciones.CancionesActivas", query = "SELECT c FROM Canciones c WHERE c.status = 1")
+    , @NamedQuery(name = "Canciones.CancionesEliminadas", query = "SELECT c FROM Canciones c WHERE c.status = 0")
     , @NamedQuery(name = "Canciones.findByNombre", query = "SELECT c FROM Canciones c WHERE c.nombre = :nombre")
     , @NamedQuery(name = "Canciones.findByRuta", query = "SELECT c FROM Canciones c WHERE c.ruta = :ruta")
     , @NamedQuery(name = "Canciones.findByAlbum", query = "SELECT c FROM Canciones c WHERE c.album = :album")

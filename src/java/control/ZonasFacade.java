@@ -5,9 +5,11 @@
  */
 package control;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import modelo.Zonas;
 
 /**
@@ -27,6 +29,26 @@ public class ZonasFacade extends AbstractFacade<Zonas> {
 
     public ZonasFacade() {
         super(Zonas.class);
+    }
+    
+    public List<Zonas> Consultar_activos(){
+    Query consulta = em.createNamedQuery("Zonas.ZonasActivas", Zonas.class);
+    List<Zonas> lista = consulta.getResultList(); 
+         
+    if(!lista.isEmpty())
+             return lista;
+         else
+            return null;
+    }
+    
+    public List<Zonas> Consultar_eliminados(){
+    Query consulta = em.createNamedQuery("Zonas.ZonasEliminadas", Zonas.class);
+    List<Zonas> lista = consulta.getResultList(); 
+         
+    if(!lista.isEmpty())
+             return lista;
+         else
+            return null;
     }
     
 }

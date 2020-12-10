@@ -5,9 +5,11 @@
  */
 package control;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import modelo.TarjetaCredito;
 
 /**
@@ -27,6 +29,26 @@ public class TarjetaCreditoFacade extends AbstractFacade<TarjetaCredito> {
 
     public TarjetaCreditoFacade() {
         super(TarjetaCredito.class);
+    }
+    
+    public List<TarjetaCredito> Consultar_activos(){
+    Query consulta = em.createNamedQuery("TarjetaCredito.TarjetaCreditoActivas", TarjetaCredito.class);
+    List<TarjetaCredito> lista = consulta.getResultList(); 
+         
+    if(!lista.isEmpty())
+             return lista;
+         else
+            return null;
+    }
+    
+    public List<TarjetaCredito> Consultar_eliminados(){
+    Query consulta = em.createNamedQuery("TarjetaCredito.TarjetaCreditoEliminadas", TarjetaCredito.class);
+    List<TarjetaCredito> lista = consulta.getResultList(); 
+         
+    if(!lista.isEmpty())
+             return lista;
+         else
+            return null;
     }
     
 }

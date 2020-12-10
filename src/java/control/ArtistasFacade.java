@@ -5,9 +5,11 @@
  */
 package control;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import modelo.Artistas;
 
 /**
@@ -27,6 +29,26 @@ public class ArtistasFacade extends AbstractFacade<Artistas> {
 
     public ArtistasFacade() {
         super(Artistas.class);
+    }
+    
+    public List<Artistas> Consultar_activos(){
+       
+        Query consulta = em.createNamedQuery("Artistas.ArtistasActivos",Artistas.class);
+         List<Artistas> lista = consulta.getResultList(); 
+         if(!lista.isEmpty())
+             return lista;
+         else
+            return null;
+    }
+    
+    public List<Artistas> Consultar_eliminados(){
+       
+        Query consulta = em.createNamedQuery("Artistas.ArtistasEliminados",Artistas.class);
+         List<Artistas> lista = consulta.getResultList(); 
+         if(!lista.isEmpty())
+             return lista;
+         else
+            return null;
     }
     
 }

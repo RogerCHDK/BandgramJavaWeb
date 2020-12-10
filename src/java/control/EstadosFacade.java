@@ -5,9 +5,11 @@
  */
 package control;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import modelo.Estados;
 
 /**
@@ -29,4 +31,23 @@ public class EstadosFacade extends AbstractFacade<Estados> {
         super(Estados.class);
     }
     
+    public List<Estados> Consultar_activos(){
+    Query consulta = em.createNamedQuery("Estados.EstadosActivos", Estados.class);
+    List<Estados> lista = consulta.getResultList(); 
+         
+    if(!lista.isEmpty())
+             return lista;
+         else
+            return null;
+    }
+    
+    public List<Estados> Consultar_eliminados(){
+    Query consulta = em.createNamedQuery("Estados.EstadosEliminados", Estados.class);
+    List<Estados> lista = consulta.getResultList(); 
+         
+    if(!lista.isEmpty())
+             return lista;
+         else
+            return null;
+    }
 }

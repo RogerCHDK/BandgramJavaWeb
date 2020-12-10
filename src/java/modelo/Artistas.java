@@ -36,6 +36,8 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Artistas.findAll", query = "SELECT a FROM Artistas a")
     , @NamedQuery(name = "Artistas.findById", query = "SELECT a FROM Artistas a WHERE a.id = :id")
+    , @NamedQuery(name = "Artistas.ArtistasActivos", query = "SELECT a FROM Artistas a WHERE a.status = 1") 
+    , @NamedQuery(name = "Artistas.ArtistasEliminados", query = "SELECT a FROM Artistas a WHERE a.status = 0")     
     , @NamedQuery(name = "Artistas.findByNombre", query = "SELECT a FROM Artistas a WHERE a.nombre = :nombre")
     , @NamedQuery(name = "Artistas.findByApPaterno", query = "SELECT a FROM Artistas a WHERE a.apPaterno = :apPaterno")
     , @NamedQuery(name = "Artistas.findByApMaterno", query = "SELECT a FROM Artistas a WHERE a.apMaterno = :apMaterno")

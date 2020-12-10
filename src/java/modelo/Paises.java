@@ -33,6 +33,8 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Paises.findAll", query = "SELECT p FROM Paises p")
     , @NamedQuery(name = "Paises.findById", query = "SELECT p FROM Paises p WHERE p.id = :id")
+    , @NamedQuery(name = "Paises.PaisesActivos", query = "SELECT p FROM Paises p WHERE p.status = 1")
+    , @NamedQuery(name = "Paises.PaisesEliminados", query = "SELECT p FROM Paises p WHERE p.status = 0")
     , @NamedQuery(name = "Paises.findByNombre", query = "SELECT p FROM Paises p WHERE p.nombre = :nombre")
     , @NamedQuery(name = "Paises.findByStatus", query = "SELECT p FROM Paises p WHERE p.status = :status")})
 public class Paises implements Serializable {

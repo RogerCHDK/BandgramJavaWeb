@@ -56,6 +56,7 @@
                             <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":IntegrantesViewForm" oncomplete="PF('IntegrantesViewDialog').show()" disabled="#{empty integrantesController.selected}"/>
                             <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":IntegrantesEditForm" oncomplete="PF('IntegrantesEditDialog').show()" disabled="#{empty integrantesController.selected}"/>
                             <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{integrantesController.destroy}" update=":growl,datalist" disabled="#{empty integrantesController.selected}"/>
+                            <h:link outcome="/integrantes/ListEliminados" value="VER INTEGRANTES ELIMINADOS" type="button"/>
                         </f:facet>
                     </p:dataTable>
                 </p:panel>

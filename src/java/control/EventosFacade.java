@@ -5,9 +5,11 @@
  */
 package control;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import modelo.Eventos;
 
 /**
@@ -27,6 +29,26 @@ public class EventosFacade extends AbstractFacade<Eventos> {
 
     public EventosFacade() {
         super(Eventos.class);
+    }
+    
+    public List<Eventos> Consultar_activos(){
+    Query consulta = em.createNamedQuery("Eventos.EventosActivos", Eventos.class);
+    List<Eventos> lista = consulta.getResultList(); 
+         
+    if(!lista.isEmpty())
+             return lista;
+         else
+            return null;
+    }
+    
+    public List<Eventos> Consultar_eliminados(){
+    Query consulta = em.createNamedQuery("Eventos.EventosEliminados", Eventos.class);
+    List<Eventos> lista = consulta.getResultList(); 
+         
+    if(!lista.isEmpty())
+             return lista;
+         else
+            return null;
     }
     
 }

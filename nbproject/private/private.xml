@@ -3,7 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/rogelio/NetBeansProjects/bandgram/web/fotosProducto/Create.xhtml</file>
+            <file>file:/home/rogelio/NetBeansProjects/bandgram/src/java/control/ZonasController.java</file>
+            <file>file:/home/rogelio/NetBeansProjects/bandgram/src/java/control/ZonasFacade.java</file>
+            <file>file:/home/rogelio/NetBeansProjects/bandgram/src/java/control/EventosFacade.java</file>
+            <file>file:/home/rogelio/NetBeansProjects/bandgram/web/zonas/ListEliminados.xhtml</file>
+            <file>file:/home/rogelio/NetBeansProjects/bandgram/web/zonas/List.xhtml</file>
+            <file>file:/home/rogelio/NetBeansProjects/bandgram/src/java/modelo/Zonas.java</file>
         </group>
     </open-files>
 </project-private>

@@ -5,9 +5,11 @@
  */
 package control;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import modelo.Videos;
 
 /**
@@ -29,4 +31,23 @@ public class VideosFacade extends AbstractFacade<Videos> {
         super(Videos.class);
     }
     
+    public List<Videos> Consultar_activos(){
+    Query consulta = em.createNamedQuery("Videos.VideosActivos", Videos.class);
+    List<Videos> lista = consulta.getResultList(); 
+         
+    if(!lista.isEmpty())
+             return lista;
+         else
+            return null;
+    }
+    
+    public List<Videos> Consultar_eliminados(){
+    Query consulta = em.createNamedQuery("Videos.VideosEliminados", Videos.class);
+    List<Videos> lista = consulta.getResultList(); 
+         
+    if(!lista.isEmpty())
+             return lista;
+         else
+            return null;
+    }
 }

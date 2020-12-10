@@ -31,6 +31,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "FotosEvento.findAll", query = "SELECT f FROM FotosEvento f")
     , @NamedQuery(name = "FotosEvento.findById", query = "SELECT f FROM FotosEvento f WHERE f.id = :id")
+    , @NamedQuery(name = "FotosEvento.FotosEventoActivos", query = "SELECT f FROM FotosEvento f WHERE f.status = 1")
+    , @NamedQuery(name = "FotosEvento.FotosEventoEliminados", query = "SELECT f FROM FotosEvento f WHERE f.status = 0")
     , @NamedQuery(name = "FotosEvento.findByFoto", query = "SELECT f FROM FotosEvento f WHERE f.foto = :foto")
     , @NamedQuery(name = "FotosEvento.findByStatus", query = "SELECT f FROM FotosEvento f WHERE f.status = :status")})
 public class FotosEvento implements Serializable {

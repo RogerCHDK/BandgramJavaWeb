@@ -50,6 +50,7 @@
                             <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":PaisesViewForm" oncomplete="PF('PaisesViewDialog').show()" disabled="#{empty paisesController.selected}"/>
                             <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":PaisesEditForm" oncomplete="PF('PaisesEditDialog').show()" disabled="#{empty paisesController.selected}"/>
                             <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{paisesController.destroy}" update=":growl,datalist" disabled="#{empty paisesController.selected}"/>
+                            <h:link outcome="/paises/ListEliminados" value="VER PAISES ELIMINADOS" type="button"/>
                         </f:facet>
                     </p:dataTable>
                 </p:panel>

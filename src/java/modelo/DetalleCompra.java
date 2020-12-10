@@ -30,6 +30,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "DetalleCompra.findAll", query = "SELECT d FROM DetalleCompra d")
     , @NamedQuery(name = "DetalleCompra.findById", query = "SELECT d FROM DetalleCompra d WHERE d.id = :id")
+    , @NamedQuery(name = "DetalleCompra.DetalleCompraActivos", query = "SELECT d FROM DetalleCompra d WHERE d.status = 1")
+    , @NamedQuery(name = "DetalleCompra.DetalleCompraEliminados", query = "SELECT d FROM DetalleCompra d WHERE d.status = 0")
     , @NamedQuery(name = "DetalleCompra.findByCantidad", query = "SELECT d FROM DetalleCompra d WHERE d.cantidad = :cantidad")
     , @NamedQuery(name = "DetalleCompra.findByPrecioCompra", query = "SELECT d FROM DetalleCompra d WHERE d.precioCompra = :precioCompra")
     , @NamedQuery(name = "DetalleCompra.findByPrecioVenta", query = "SELECT d FROM DetalleCompra d WHERE d.precioVenta = :precioVenta")
