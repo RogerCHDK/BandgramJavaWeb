@@ -13,7 +13,7 @@ import modelo.TarjetaCredito;
 import modelo.TiposUsuarios;
 import modelo.Ventas;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2020-12-11T14:20:37")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2020-12-17T14:57:41")
 @StaticMetamodel(Users.class)
 public class Users_ { 
 

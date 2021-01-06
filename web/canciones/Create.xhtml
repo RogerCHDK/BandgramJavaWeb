@@ -9,13 +9,15 @@
     <ui:composition>
 
         <p:dialog id="CancionesCreateDlg" widgetVar="CancionesCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateCancionesTitle}">
-            <h:form id="CancionesCreateForm">
+            <h:form id="CancionesCreateForm" enctype="multipart/form-data">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{cancionesController.selected != null}">
                         <p:outputLabel value="#{bundle.CreateCancionesLabel_nombre}" for="nombre" />
                         <p:inputText id="nombre" value="#{cancionesController.selected.nombre}" title="#{bundle.CreateCancionesTitle_nombre}" required="true" requiredMessage="#{bundle.CreateCancionesRequiredMessage_nombre}"/>
-                        <p:outputLabel value="#{bundle.CreateCancionesLabel_ruta}" for="ruta" />
-                        <p:inputText id="ruta" value="#{cancionesController.selected.ruta}" title="#{bundle.CreateCancionesTitle_ruta}" required="true" requiredMessage="#{bundle.CreateCancionesRequiredMessage_ruta}"/>
+                        
+                        <p:outputLabel value="Selecciona una cancion" for="cancion" />
+                        <p:fileUpload id="cancion" value="#{cancionesController.cancion}" required="true" mode="simple" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" requiredMessage="#{bundle.CreateCancionesRequiredMessage_ruta}"/>
+                        
                         <p:outputLabel value="#{bundle.CreateCancionesLabel_album}" for="album" />
                         <p:inputText id="album" value="#{cancionesController.selected.album}" title="#{bundle.CreateCancionesTitle_album}" />
                         <p:outputLabel value="#{bundle.CreateCancionesLabel_foto}" for="foto" />
@@ -33,7 +35,16 @@
                                            itemValue="#{generoIdItem}"/>
                         </p:selectOneMenu>
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{cancionesController.create}" value="#{bundle.Save}" update="display,:CancionesListForm:datalist,:growl" oncomplete="handleSubmit(args,'CancionesCreateDialog');"/>
+                    
+                    <p:inputText id="aux" value="#{cancionesController.aux}" title="aux" type="hidden"/> 
+                    
+                    <p:commandButton
+                        value="Guardar"
+                        action="#{cancionesController.NuevoDocumento()}"
+                        ajax="false"
+                        update="display,:FotosproductosListForm:datalist,:growl"
+                        />
+                    
                     <p:commandButton value="#{bundle.Cancel}" onclick="CancionesCreateDialog.hide()"/>
                 </h:panelGroup>
             </h:form>

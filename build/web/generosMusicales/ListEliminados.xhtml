@@ -6,7 +6,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 
-    <ui:composition template="/template.xhtml">
+    <ui:composition template="/template/templateArtista.xhtml">
 
 
         <ui:define name="title">
@@ -14,6 +14,7 @@
         </ui:define>
 
         <ui:define name="body">
+            <p:graphicImage name="assets2/img/background/fondoNegro.png" width="1500" height="120"></p:graphicImage>
             <h:form id="GenerosMusicalesListForm">
                 <p:panel header="#{bundle.ListGenerosMusicalesTitle}">
                     <p:dataTable id="datalist" value="#{generosMusicalesController.items_eliminados}" var="item"

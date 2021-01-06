@@ -6,22 +6,32 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 
-    <ui:composition>
+    <ui:composition>  
 
         <p:dialog id="FotosProductoCreateDlg" widgetVar="FotosProductoCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateFotosProductoTitle}">
-            <h:form id="FotosProductoCreateForm">
+            <h:form id="FotosProductoCreateForm" enctype="multipart/form-data">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{fotosProductoController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateFotosProductoLabel_foto}" for="foto" />
-                        <p:inputText id="foto" value="#{fotosProductoController.selected.foto}" title="#{bundle.CreateFotosProductoTitle_foto}" required="true" requiredMessage="#{bundle.CreateFotosProductoRequiredMessage_foto}"/>
+                        
+                        <p:outputLabel value="Seleeciona una foto" for="imagen" />
+                        <p:fileUpload id="imagen" value="#{fotosProductoController.imagen}" required="true"  mode="simple" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" requiredMessage="#{bundle.CreateFotosProductoRequiredMessage_foto}"/>
+                        
                         <p:outputLabel value="#{bundle.CreateFotosProductoLabel_productoId}" for="productoId" />
                         <p:selectOneMenu id="productoId" value="#{fotosProductoController.selected.productoId}" required="true" requiredMessage="#{bundle.EditFotosProductoRequiredMessage_productoId}">
                             <f:selectItems value="#{productosController.itemsAvailableSelectOne}"
                                            var="productoIdItem"
                                            itemValue="#{productoIdItem}"/>
-                        </p:selectOneMenu>
+                        </p:selectOneMenu> 
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{fotosProductoController.create}" value="#{bundle.Save}" update="display,:FotosProductoListForm:datalist,:growl" oncomplete="handleSubmit(args,'FotosProductoCreateDialog');"/>
+                    
+                    <p:inputText id="aux" value="#{fotosProductoController.aux}" title="aux" type="hidden"/>    
+                    
+                    <p:commandButton
+                        value="Submit"
+                        action="#{fotosProductoController.NuevoDocumento()}"
+                        ajax="false"
+                        update="display,:FotosproductosListForm:datalist,:growl"
+                        />
                     <p:commandButton value="#{bundle.Cancel}" onclick="FotosProductoCreateDialog.hide()"/>
                 </h:panelGroup>
             </h:form>

@@ -6,7 +6,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 
-    <ui:composition template="/template.xhtml">
+   <ui:composition template="/template/templateArtista.xhtml">
 
 
         <ui:define name="title">
@@ -14,6 +14,7 @@
         </ui:define>
 
         <ui:define name="body">
+            <p:graphicImage name="assets2/img/background/fondoNegro.png" width="1500" height="120"></p:graphicImage>
             <h:form id="FotosProductoListForm">
                 <p:panel header="#{bundle.ListFotosProductoTitle}">
                     <p:dataTable id="datalist" value="#{fotosProductoController.items}" var="item"
@@ -51,6 +52,21 @@
                             </f:facet>
                             <h:outputText value="#{item.productoId}"/>
                         </p:column>
+                        
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Foto"/>
+                            </f:facet>
+                            <p:graphicImage name="#{item.foto}" width="250px"/>
+                        </p:column>
+                        
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="desc"/>
+                            </f:facet>
+                            <h:link outcome="/resources#{item.foto}" value="Descargar archivo" target="_blank"/>
+                        </p:column>
+                        
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{fotosProductoController.prepareCreate}" update=":FotosProductoCreateForm" oncomplete="PF('FotosProductoCreateDialog').show()"/>
                             <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":FotosProductoViewForm" oncomplete="PF('FotosProductoViewDialog').show()" disabled="#{empty fotosProductoController.selected}"/>
