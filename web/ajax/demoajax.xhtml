@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <ui:composition template="/template/templateArtista.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="Demo ajax"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            <p:graphicImage name="assets2/img/background/fondoNegro.png" width="1500" height="120"></p:graphicImage>
+            
+            <div class="container">
+                <h:form>
+                    <h:panelGrid columns="1">
+                        <h:inputText 
+                            id="nombre_entrada"
+                            value="#{ajax.nombre}"
+                            />
+                        <h:commandButton value="Cambiar">
+                            <f:ajax
+                                execute="nombre_entrada"
+                                render="nombre_salida"/>
+                        </h:commandButton>
+                        <h:outputLabel
+                            id="nombre_salida"
+                            value="#{ajax.nombre}"/>
+                    </h:panelGrid>
+                    
+                    <h:panelGrid columns="1">
+                        <h:inputText
+                            id="nombre_entrada2"
+                            value="#{ajax.nombre2}"/>
+                        <f:ajax
+                            event="keyup"
+                            execute="nombre_entrada2"
+                            render="nombre_salida2"/>
+                        <h:outputLabel
+                            id="nombre_salida2"
+                            value="#{ajax.nombre2}"/>
+                    </h:panelGrid>
+                    <br/>
+                    <br/>
+                    <h:head>Con Primefaces</h:head>
+                    <h:panelGrid columns="1">
+                        <p:inputText
+                            id="nombre_entrada_prime"
+                            value="#{ajax.nombre}"/>
+                        <p:commandButton value="Cambiar">
+                            <f:ajax
+                               execute="nombre_entrada_prime"
+                               render="nombre_salida_prime" />
+                        </p:commandButton>
+                        <p:outputLabel
+                            id="nombre_salida_prime"
+                            value="#{ajax.nombre}"/>
+                    </h:panelGrid>
+                </h:form>
+            </div>
+        </ui:define>
+    </ui:composition>
+</html>

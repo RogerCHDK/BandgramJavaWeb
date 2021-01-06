@@ -11,7 +11,7 @@ import modelo.DetalleCompra;
 import modelo.DetalleVenta;
 import modelo.FotosProducto;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2020-12-17T14:57:41")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2021-01-06T14:35:11")
 @StaticMetamodel(Productos.class)
 public class Productos_ { 
 

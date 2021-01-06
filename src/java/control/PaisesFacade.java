@@ -31,6 +31,15 @@ public class PaisesFacade extends AbstractFacade<Paises> {
         super(Paises.class);
     }
     
+    public String  Cambia_status_p(int nuevo, int idpais){
+        Query consulta = em.createNamedQuery("Paises.cambia1",Paises.class)
+                .setParameter("status_p", nuevo)
+                .setParameter("id_p", idpais);
+        consulta.executeUpdate();
+         return "ok";
+    }
+    
+    
     public List<Paises> Consultar_activos(){
     Query consulta = em.createNamedQuery("Paises.PaisesActivos", Paises.class);
     List<Paises> lista = consulta.getResultList(); 
