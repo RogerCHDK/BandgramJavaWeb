@@ -26,6 +26,7 @@ public class PaisesController implements Serializable {
     private control.PaisesFacade ejbFacade;
     private List<Paises> items = null;
     private List<Paises> items_eliminados = null;
+    
 
     public List<Paises> getItems_eliminados() {
         if (items_eliminados == null) {

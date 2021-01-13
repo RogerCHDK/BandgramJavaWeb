@@ -30,7 +30,13 @@ public class MunicipiosFacade extends AbstractFacade<Municipios> {
     public MunicipiosFacade() {
         super(Municipios.class);
     }
-    
+     public List<Municipios> Buscar(int identidad){
+        Query consulta = em.createNamedQuery("Municipios.buscar",Municipios.class)
+                .setParameter("id_entidad", identidad);
+        List<Municipios> lista = consulta.getResultList();
+        return lista;
+    }
+     
     public List<Municipios> Consultar_activos(){
     Query consulta = em.createNamedQuery("Municipios.MunicipiosActivos", Municipios.class);
     List<Municipios> lista = consulta.getResultList(); 

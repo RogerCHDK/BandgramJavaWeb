@@ -11,9 +11,10 @@
         <p:dialog id="UsersCreateDlg" widgetVar="UsersCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateUsersTitle}">
             <h:form id="UsersCreateForm">
                 <h:panelGroup id="display">
-                    <p:panelGrid columns="2" rendered="#{usersController.selected != null}">
+                    <p:panelGrid columns="4"  rendered="#{usersController.selected != null}">
                         <p:outputLabel value="#{bundle.CreateUsersLabel_nombre}" for="nombre" />
                         <p:inputText id="nombre" value="#{usersController.selected.nombre}" title="#{bundle.CreateUsersTitle_nombre}" required="true" requiredMessage="#{bundle.CreateUsersRequiredMessage_nombre}"/>
+                       
                         <p:outputLabel value="#{bundle.CreateUsersLabel_apPaterno}" for="apPaterno" />
                         <p:inputText id="apPaterno" value="#{usersController.selected.apPaterno}" title="#{bundle.CreateUsersTitle_apPaterno}" required="true" requiredMessage="#{bundle.CreateUsersRequiredMessage_apPaterno}"/>
                         <p:outputLabel value="#{bundle.CreateUsersLabel_apMaterno}" for="apMaterno" />
@@ -27,27 +28,78 @@
                         <p:outputLabel value="#{bundle.CreateUsersLabel_colonia}" for="colonia" />
                         <p:inputText id="colonia" value="#{usersController.selected.colonia}" title="#{bundle.CreateUsersTitle_colonia}" />
                         <p:outputLabel value="#{bundle.CreateUsersLabel_email}" for="email" />
-                        <p:inputText id="email" value="#{usersController.selected.email}" title="#{bundle.CreateUsersTitle_email}" required="true" requiredMessage="#{bundle.CreateUsersRequiredMessage_email}"/>
+                        <p:inputText id="email" value="#{usersController.selected.email}" title="#{bundle.CreateUsersTitle_email}" required="true" requiredMessage="#{bundle.CreateUsersRequiredMessage_email}">
+                            <f:ajax
+                                event="keyup"
+                                execute="email"
+                                render="mensaje"
+                                listener="#{usersController.buscarCorreo}"
+                                />
+                            </p:inputText>
                         <p:outputLabel value="#{bundle.CreateUsersLabel_password}" for="password" />
                         <p:inputText id="password" value="#{usersController.selected.password}" title="#{bundle.CreateUsersTitle_password}" required="true" requiredMessage="#{bundle.CreateUsersRequiredMessage_password}"/>
-                        <p:outputLabel value="#{bundle.CreateUsersLabel_estadoId}" for="estadoId" />
-                        <p:selectOneMenu id="estadoId" value="#{usersController.selected.estadoId}" required="true" requiredMessage="#{bundle.EditUsersRequiredMessage_estadoId}">
-                            <f:selectItems value="#{estadosController.itemsAvailableSelectOne}"
-                                           var="estadoIdItem"
-                                           itemValue="#{estadoIdItem}"/>
-                        </p:selectOneMenu>
+                        
+                             <p:outputLabel value="#{usersController.mensaje}" id="mensaje" />
+                             <p:inputText  type="hidden"/>
+                        
                         <p:outputLabel value="#{bundle.CreateUsersLabel_paisId}" for="paisId" />
-                        <p:selectOneMenu id="paisId" value="#{usersController.selected.paisId}" required="true" requiredMessage="#{bundle.EditUsersRequiredMessage_paisId}">
-                            <f:selectItems value="#{paisesController.itemsAvailableSelectOne}"
-                                           var="paisIdItem"
-                                           itemValue="#{paisIdItem}"/>
+                        <p:selectOneMenu 
+                            id="paisId" 
+                            value="#{usersController.selected.paisId}" 
+                            filter="true"
+                            style="width: 350px"
+                            required="true" requiredMessage="#{bundle.EditUsersRequiredMessage_paisId}">
+                            <f:selectItems 
+                                value="#{usersController.listpaises}"
+                                var="paisIdItem"
+                                itemValue="#{paisIdItem}"/>
+                            <p:ajax
+                                event="change"
+                                update="estadoId"
+                                listener="#{usersController.buscarEstado}"
+                                rendered="true"
+                                />
                         </p:selectOneMenu>
+                        
+                   
+                        
+
+                        
+                        <p:outputLabel value="#{bundle.CreateUsersLabel_estadoId}" for="estadoId" />
+                        <p:selectOneMenu 
+                            id="estadoId" 
+                            value="#{usersController.selected.estadoId}" 
+                            filter="true"
+                            style="width: 350px"
+                            required="true" requiredMessage="#{bundle.EditUsersRequiredMessage_estadoId}">
+                            <f:selectItems 
+                                value="#{usersController.listestados}"
+                                var="estadoIdItem"
+                                itemValue="#{estadoIdItem}"/>
+                            <p:ajax
+                                event="change"
+                                update="municipioId"
+                                listener="#{usersController.buscarMunicipio}"
+                                rendered="true"
+                                />
+                        </p:selectOneMenu>
+
+
                         <p:outputLabel value="#{bundle.CreateUsersLabel_municipioId}" for="municipioId" />
-                        <p:selectOneMenu id="municipioId" value="#{usersController.selected.municipioId}" required="true" requiredMessage="#{bundle.EditUsersRequiredMessage_municipioId}">
-                            <f:selectItems value="#{municipiosController.itemsAvailableSelectOne}"
-                                           var="municipioIdItem"
-                                           itemValue="#{municipioIdItem}"/>
+                        <p:selectOneMenu 
+                            id="municipioId" 
+                            value="#{usersController.selected.municipioId}"
+                            filter="true"
+                            style="width: 350px"
+                            required="true" requiredMessage="#{bundle.EditUsersRequiredMessage_municipioId}">
+                            <f:selectItems 
+                                value="#{usersController.listmunicipios}"
+                                var="municipioIdItem"
+                                itemValue="#{municipioIdItem}"/>
                         </p:selectOneMenu>
+                    
+                        
+                    
                         <p:outputLabel value="#{bundle.CreateUsersLabel_tipoUsuario}" for="tipoUsuario" />
                         <p:selectOneMenu id="tipoUsuario" value="#{usersController.selected.tipoUsuario}" required="true" requiredMessage="#{bundle.EditUsersRequiredMessage_tipoUsuario}">
                             <f:selectItems value="#{tiposUsuariosController.itemsAvailableSelectOne}"

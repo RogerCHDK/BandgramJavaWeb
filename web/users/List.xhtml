@@ -6,7 +6,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 
-    <ui:composition template="/template/templateArtista.xhtml">
+    <ui:composition template="/template.xhtml">
 
 
         <ui:define name="title">
@@ -14,7 +14,7 @@
         </ui:define>
 
         <ui:define name="body">
-            <p:graphicImage name="assets2/img/background/fondoNegro.png" width="1500" height="120"></p:graphicImage>
+            
             <h:form id="UsersListForm">
                 <p:panel header="#{bundle.ListUsersTitle}">
                     <p:dataTable id="datalist" value="#{usersController.items}" var="item"
@@ -100,25 +100,25 @@
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListUsersTitle_estadoId}"/>
                             </f:facet>
-                            <h:outputText value="#{item.estadoId}"/>
+                            <h:outputText value="#{item.estadoId.nombre}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListUsersTitle_paisId}"/>
                             </f:facet>
-                            <h:outputText value="#{item.paisId}"/>
+                            <h:outputText value="#{item.paisId.nombre}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListUsersTitle_municipioId}"/>
                             </f:facet>
-                            <h:outputText value="#{item.municipioId}"/>
+                            <h:outputText value="#{item.municipioId.nombre}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListUsersTitle_tipoUsuario}"/>
                             </f:facet>
-                            <h:outputText value="#{item.tipoUsuario}"/>
+                            <h:outputText value="#{item.tipoUsuario.nombre}"/>
                         </p:column>
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{usersController.prepareCreate}" update=":UsersCreateForm" oncomplete="PF('UsersCreateDialog').show()"/>

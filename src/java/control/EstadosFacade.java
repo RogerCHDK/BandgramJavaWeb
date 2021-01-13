@@ -11,6 +11,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import modelo.Estados;
+import modelo.Paises;
 
 /**
  *
@@ -30,6 +31,15 @@ public class EstadosFacade extends AbstractFacade<Estados> {
     public EstadosFacade() {
         super(Estados.class);
     }
+    
+    public List<Estados> Buscar(int idpais){
+        Query consulta = em.createNamedQuery("Entidades.buscar",Estados.class)
+                .setParameter("clave", idpais);
+        List<Estados> lista = consulta.getResultList();
+        return lista;
+    }
+    
+   
     
     public List<Estados> Consultar_activos(){
     Query consulta = em.createNamedQuery("Estados.EstadosActivos", Estados.class);

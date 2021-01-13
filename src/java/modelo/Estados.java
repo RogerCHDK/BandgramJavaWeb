@@ -34,6 +34,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Estados.findAll", query = "SELECT e FROM Estados e")
+    , @NamedQuery(name = "Entidades.buscar", query = "SELECT e FROM Estados e WHERE e.paisId.id = :clave")
     , @NamedQuery(name = "Estados.findById", query = "SELECT e FROM Estados e WHERE e.id = :id")
     , @NamedQuery(name = "Estados.EstadosActivos", query = "SELECT e FROM Estados e WHERE e.status = 1")
     , @NamedQuery(name = "Estados.EstadosEliminados", query = "SELECT e FROM Estados e WHERE e.status = 0")

@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.inject.Named;
@@ -17,15 +18,91 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import javax.faces.event.AjaxBehaviorEvent;
+import modelo.Estados;
+import modelo.Municipios;
+import modelo.Paises;
 
 @Named("usersController")
 @SessionScoped
 public class UsersController implements Serializable {
 
     @EJB
+    private PaisesFacade paisesFacade;
+    @EJB
+    private EstadosFacade entidadesFacade;
+    @EJB
+    private MunicipiosFacade municipiosFacade;
+    
+    @EJB
     private control.UsersFacade ejbFacade;
     private List<Users> items = null;
     private List<Users> items_eliminados = null;
+    private List<Paises> listpaises;
+    private List<Estados> listestados;
+    private List<Municipios> listmunicipios;
+    private int id_pais;
+    private int id_entidad;
+    private int id_municipio; 
+    private String mensaje;
+
+    public String getMensaje() {
+        return mensaje;
+    }
+
+    public void setMensaje(String mensaje) {
+        this.mensaje = mensaje;
+    }
+
+    public List<Paises> getListpaises() {
+        return listpaises;
+    }
+
+    public void setListpaises(List<Paises> listpaises) {
+        this.listpaises = listpaises;
+    }
+
+    public List<Estados> getListestados() {
+        return listestados;
+    }
+
+    public void setListestados(List<Estados> listestados) {
+        this.listestados = listestados;
+    }
+
+    public List<Municipios> getListmunicipios() {
+        return listmunicipios;
+    }
+
+    public void setListmunicipios(List<Municipios> listmunicipios) {
+        this.listmunicipios = listmunicipios;
+    }
+
+    public int getId_pais() {
+        return id_pais;
+    }
+
+    public void setId_pais(int id_pais) {
+        this.id_pais = id_pais;
+    }
+
+    public int getId_entidad() {
+        return id_entidad;
+    }
+
+    public void setId_entidad(int id_entidad) {
+        this.id_entidad = id_entidad;
+    }
+
+    public int getId_municipio() {
+        return id_municipio;
+    }
+
+    public void setId_municipio(int id_municipio) {
+        this.id_municipio = id_municipio;
+    }
+
+    
 
     public List<Users> getItems_eliminados() {
         if (items_eliminados == null) {
@@ -46,7 +123,7 @@ public class UsersController implements Serializable {
         return selected;
     }
 
-    public void setSelected(Users selected) {
+    public void setSelected(Users selected) { 
         this.selected = selected;
     }
 
@@ -68,6 +145,11 @@ public class UsersController implements Serializable {
 
     public void create() {
         selected.setStatus(1);
+        /*selected.setPaisId(miPais);
+        System.out.println("Entreeeeeeee");
+        System.out.println(selected.getNombre());
+        System.out.println("Pais");
+        System.out.println(miPais.getNombre());*/
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("UsersCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
@@ -105,6 +187,39 @@ public class UsersController implements Serializable {
             items = ejbFacade.Consultar_activos();
         }
         return items;
+    }
+    
+    @PostConstruct
+    private void initialize(){
+        listpaises = paisesFacade.findAll();
+        listestados = entidadesFacade.findAll();
+        listmunicipios = municipiosFacade.findAll();
+        mensaje = "";
+    }
+    
+    public List<Estados> buscarEstado(AjaxBehaviorEvent event){
+        listestados.clear();
+        System.out.println(selected.getPaisId().getId().intValue());
+        listestados = entidadesFacade.Buscar(selected.getPaisId().getId().intValue());
+        FacesContext.getCurrentInstance().renderResponse();
+        return listestados;
+    }
+    
+    public List<Municipios> buscarMunicipio(AjaxBehaviorEvent event){
+        listmunicipios.clear();
+        System.out.println(selected.getEstadoId().getId().intValue());
+        listmunicipios = municipiosFacade.Buscar(selected.getEstadoId().getId().intValue());
+        FacesContext.getCurrentInstance().renderResponse();
+        return listmunicipios;
+    }
+    
+    public void buscarCorreo(AjaxBehaviorEvent event){
+       Users aux = ejbFacade.BuscarEmail(selected.getEmail());
+        if (aux != null) {
+            mensaje = "Correo invalido";
+        }else{
+            mensaje = "Correo valido";
+        }
     }
 
     private void persist(PersistAction persistAction, String successMessage) {

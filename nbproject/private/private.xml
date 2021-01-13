@@ -3,12 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/rogelio/NetBeansProjects/bandgram/web/canciones/List.xhtml</file>
-            <file>file:/home/rogelio/NetBeansProjects/bandgram/src/java/control/FotosProductoController.java</file>
-            <file>file:/home/rogelio/NetBeansProjects/bandgram/web/fotosProducto/Create.xhtml</file>
-            <file>file:/home/rogelio/NetBeansProjects/bandgram/src/java/control/CancionesController.java</file>
-            <file>file:/home/rogelio/NetBeansProjects/bandgram/web/canciones/Create.xhtml</file>
-            <file>file:/home/rogelio/NetBeansProjects/bandgram/web/fotosProducto/List.xhtml</file>
+            <file>file:/home/rogelio/NetBeansProjects/bandgram/src/java/control/Ajax3.java</file>
+            <file>file:/home/rogelio/NetBeansProjects/bandgram/web/users/Create.xhtml</file>
+            <file>file:/home/rogelio/NetBeansProjects/bandgram/web/users/View.xhtml</file>
+            <file>file:/home/rogelio/NetBeansProjects/bandgram/src/java/control/UsersController.java</file>
+            <file>file:/home/rogelio/NetBeansProjects/bandgram/web/users/List.xhtml</file>
+            <file>file:/home/rogelio/NetBeansProjects/bandgram/src/java/control/MunicipiosFacade.java</file>
         </group>
     </open-files>
 </project-private>

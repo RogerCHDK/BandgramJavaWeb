@@ -73,6 +73,10 @@ and open the template in the editor.
                             <div class="limit-box">
                                 <nav class="main-menu">
                                     <ul class="mifuente">
+                                         <li><h:form>
+                                                 <h:outputLabel styleClass="alert alert-danger" value="#{sessionScope.nombre_com}"/>
+                                            </h:form> 
+                                         </li>
                                         <li> <h:link outcome="/bandindex">Home</h:link> </li>
                                         <li>CRUDS
                                             <ul>
@@ -105,7 +109,12 @@ and open the template in the editor.
                                         <li> <a href="album.html"> Albums</a> </li>
                                         <li> <a href="blog.html">Blog</a> </li>
                                         <li> <a href="contact.html">Contact</a> </li>
-                                        <li> <a href="#contact">Login</a> </li>
+                                        <li> <h:link outcome="/login">Login</h:link> </li>
+                                         <li> 
+                                             <h:form>
+                                                 <p:commandLink actionListener="#{login.cerrarSesion()}" value="Cerrar Sesion"/>
+                                             </h:form>
+                                         </li>
                                     </ul>
                                 </nav>
                             </div>

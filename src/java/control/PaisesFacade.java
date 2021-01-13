@@ -39,6 +39,13 @@ public class PaisesFacade extends AbstractFacade<Paises> {
          return "ok";
     }
     
+    public Paises  BuscarId(int idpais){
+        Query consulta = em.createNamedQuery("Paises.findById",Paises.class)
+                .setParameter("id", idpais);
+        Paises idPais = (Paises) consulta.getSingleResult();
+        return idPais;
+    }
+    
     
     public List<Paises> Consultar_activos(){
     Query consulta = em.createNamedQuery("Paises.PaisesActivos", Paises.class);

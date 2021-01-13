@@ -43,7 +43,7 @@
                         <h:outputText value="#{bundle.ViewUsersLabel_municipioId}"/>
                         <h:outputText value="#{usersController.selected.municipioId}" title="#{bundle.ViewUsersTitle_municipioId}"/>
                         <h:outputText value="#{bundle.ViewUsersLabel_tipoUsuario}"/>
-                        <h:outputText value="#{usersController.selected.tipoUsuario}" title="#{bundle.ViewUsersTitle_tipoUsuario}"/>
+                        <h:outputText value="#{usersController.selected.tipoUsuario.nombre}" title="#{bundle.ViewUsersTitle_tipoUsuario}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="UsersViewDialog.hide()"/>
                 </h:panelGroup>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <ui:composition template="/template/templateArtista.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="Demo ajax2"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            <p:graphicImage name="assets2/img/background/fondoNegro.png" width="1500" height="120"></p:graphicImage>
+            
+            <div class="container"> 
+                <h:form>
+                    <h:panelGrid columns="2">
+                        <h:outputLabel value="Pais"/>
+                        <p:selectOneMenu
+                            id="pais"
+                            value="#{ajax3.id_pais}"
+                            filter="true"
+                            style="width: 350px">
+                            <f:selectItem
+                                itemLabel="--Seleccionar--"
+                                itemValue="0"/>
+                            <f:selectItems
+                                value="#{ajax3.listpaises}"/>
+                            <p:ajax
+                                event="change"
+                                update="entidad, municipio"
+                                listener="#{ajax3.buscaentidades}"
+                                rendered="true"/>
+                            
+                        </p:selectOneMenu>
+                   
+                    
+                    <h:outputLabel value="Entidad"/>
+                        <p:selectOneMenu
+                            id="entidad"
+                            value="#{ajax3.id_entidad}"
+                            filter="true"
+                            style="width: 350px">
+                            <f:selectItem
+                                itemLabel="--Seleccionar--"
+                                itemValue="0"/>
+                            <f:selectItems
+                                value="#{ajax3.listentidades}"
+                                itemValue="#{ajax3.id_entidad}"/>
+                            <p:ajax
+                                event="change"
+                                update="municipio"
+                                listener="#{ajax3.buscamunicipios}"
+                                rendered="true"/>
+                            
+                        </p:selectOneMenu>
+                    
+                    
+                    <h:outputLabel value="Municipios"/>
+                        <p:selectOneMenu
+                            id="municipio"
+                            value="#{ajax3.id_municipio}"
+                            filter="true"
+                            style="width: 350px">
+                            <f:selectItem
+                                itemLabel="--Seleccionar--"
+                                itemValue="0"/>
+                            <f:selectItems
+                                value="#{ajax3.listmunicipios}"/>
+                        </p:selectOneMenu>
+                    </h:panelGrid>
+                </h:form>
+            </div>
+        </ui:define>
+    </ui:composition>
+</html>
