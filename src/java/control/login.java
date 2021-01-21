@@ -13,13 +13,14 @@ import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
+import modelo.Artistas;
 import modelo.Users;
 
 /**
  *
  * @author rogelio
  */
-@Named(value = "login")
+@Named(value = "login") 
 @SessionScoped
 public class login implements Serializable {
 
@@ -30,12 +31,24 @@ public class login implements Serializable {
     
     @EJB
     private UsersFacade usufacade;
+    @EJB
+    private ArtistasFacade artistafacade;
     
     private HttpServletRequest httpservlet;
     
     private String username;
     private String password;
     private Users usuautenticado;
+    private Artistas artista;
+    private String tipo_usuario;
+
+    public String getTipo_usuario() {
+        return tipo_usuario;
+    }
+
+    public void setTipo_usuario(String tipo_usuario) {
+        this.tipo_usuario = tipo_usuario;
+    }
 
     public String getUsername() {
         return username;
@@ -65,6 +78,14 @@ public class login implements Serializable {
         httpservlet = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
     }
     
+    public void verificarTipoUsuario() throws IOException{
+        if (tipo_usuario.equals("usuario")) {
+            Acceso();
+        }else{
+            AccesoArtista();
+        }
+    }
+    
     public void Acceso() throws IOException{
         httpservlet = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
         usuautenticado = usufacade.Buscar(username,password);
@@ -77,7 +98,12 @@ public class login implements Serializable {
                 case 1:
                     System.out.println("entreeeeeeeee");
                     System.out.println(FacesContext.getCurrentInstance().getExternalContext());
-                    FacesContext.getCurrentInstance().getExternalContext().redirect("bandindex.xhtml");
+                    FacesContext.getCurrentInstance().getExternalContext().redirect("/bandgram/faces/canciones/ListUsuario.xhtml");
+                    break;
+                case 3:
+                    System.out.println("entreeeeeeeee");
+                    System.out.println(FacesContext.getCurrentInstance().getExternalContext());
+                    FacesContext.getCurrentInstance().getExternalContext().redirect("/bandgram/faces/admin.xhtml");
                     break;
                 default:
                     FacesContext.getCurrentInstance().getExternalContext().redirect("otro.xhtml");
@@ -88,10 +114,33 @@ public class login implements Serializable {
         }
     }
     
+    public void AccesoArtista() throws IOException{
+        httpservlet = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        artista = artistafacade.Buscar(username,password);
+        if (artista != null) {
+            httpservlet.getSession().setAttribute("emailArtista", artista.getEmail());
+            httpservlet.getSession().setAttribute("nombre_comArtista", artista.getNombre()+" "+artista.getApPaterno()+" "+artista.getApMaterno());
+            httpservlet.getSession().setAttribute("nivel_artista", artista.getTipoUsuario().getNivel());
+            httpservlet.getSession().setAttribute("artista", artista);
+            switch(artista.getTipoUsuario().getNivel()){
+                case 2:
+                    System.out.println("entreeeeeeeee");
+                    System.out.println(FacesContext.getCurrentInstance().getExternalContext());
+                    FacesContext.getCurrentInstance().getExternalContext().redirect("/bandgram/faces/canciones/ListArtista.xhtml");
+                    break;
+                default:
+                    FacesContext.getCurrentInstance().getExternalContext().redirect("/bandgram/faces/sin_privilegios.xhtml");
+                    break;
+            }
+        }else{
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Usuario o password incorrecto",null));
+        }
+    }
+    
     public void cerrarSesion(){
         try {
             FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-            FacesContext.getCurrentInstance().getExternalContext().redirect("/bandgram/faces/login.xhtml");
+            FacesContext.getCurrentInstance().getExternalContext().redirect("/bandgram/faces/bandindex.xhtml");
         } catch (Exception e) {
         }
         
@@ -100,14 +149,39 @@ public class login implements Serializable {
     public void verificaSesionynivel(int nivel) throws IOException{
         httpservlet = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
         Users usu = (Users) httpservlet.getSession().getAttribute("usuario");
-        if (usu != null) {
+        Artistas artista = (Artistas) httpservlet.getSession().getAttribute("artista");
+        if (artista != null) {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("/bandgram/faces/sin_privilegios.xhtml");
+        } else {
+            if (usu != null) {
             if (usu.getTipoUsuario().getNivel() != nivel) {
+                FacesContext.getCurrentInstance().getExternalContext().redirect("/bandgram/faces/sin_privilegios.xhtml");
+            }
+        }else{
+            FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+            FacesContext.getCurrentInstance().getExternalContext().redirect("/bandgram/faces/login.xhtml");
+        }
+        }
+        
+    }
+    
+    public void verificaSesionArtista(int nivel) throws IOException{
+        httpservlet = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        Artistas artista = (Artistas) httpservlet.getSession().getAttribute("artista");
+         Users usu = (Users) httpservlet.getSession().getAttribute("usuario");
+         if (usu != null) {
+             FacesContext.getCurrentInstance().getExternalContext().redirect("/bandgram/faces/sin_privilegios.xhtml");
+        } else {
+            if (artista != null) {
+            if (artista.getTipoUsuario().getNivel() != nivel) {
                 FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
             }
         }else{
             FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
             FacesContext.getCurrentInstance().getExternalContext().redirect("/bandgram/faces/login.xhtml");
         }
+        }
+        
     }
     
 }

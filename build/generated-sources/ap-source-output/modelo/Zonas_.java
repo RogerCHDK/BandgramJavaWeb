@@ -6,7 +6,7 @@ import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 import modelo.Boletos;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2021-01-13T14:00:30")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2021-01-20T18:34:33")
 @StaticMetamodel(Zonas.class)
 public class Zonas_ { 
 

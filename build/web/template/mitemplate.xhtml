@@ -73,48 +73,13 @@ and open the template in the editor.
                             <div class="limit-box">
                                 <nav class="main-menu">
                                     <ul class="mifuente">
-                                         <li><h:form>
-                                                 <h:outputLabel styleClass="alert alert-danger" value="#{sessionScope.nombre_com}"/>
-                                            </h:form> 
-                                         </li>
-                                        <li> <h:link outcome="/bandindex">Home</h:link> </li>
-                                        <li>CRUDS
-                                            <ul>
-                                                <li> <h:link outcome="/artistas/List">Artista</h:link> </li>
-                                                <li> <h:link outcome="/bandas/List">Bandas</h:link> </li>
-                                                <li> <h:link outcome="/boletos/List">Boletos</h:link> </li>
-                                                <li><h:link outcome="/canciones/List" value="Canciones"/></li>
-                                                <li><h:link outcome="/categoriasProductos/List" value="Productos"/></li>
-                                                <li><h:link outcome="/compras/List" value="Compras"/></li>
-                                                <li><h:link outcome="/detalleCompra/List" value="DetalleCompra"/></li>
-                                                <li><h:link outcome="/detalleVenta/List" value="DetalleVenta"/></li>
-                                                <li><h:link outcome="/estados/List" value="Estados"/></li>
-                                                <li><h:link outcome="/eventos/List" value="Eventos"/></li>
-                                                <li><h:link outcome="/fotosEvento/List" value="FotosEvento"/></li>
-                                                <li><h:link outcome="/fotosProducto/List" value="FotosProducto"/></li>
-                                                <li><h:link outcome="/generosMusicales/List" value="GenerosMusicales"/></li>
-                                                <li><h:link outcome="/integrantes/List" value="Integrantes"/></li>
-                                                <li><h:link outcome="/locaciones/List" value="Locaciones"/></li>
-                                                <li><h:link outcome="/municipios/List" value="Municipios"/></li>
-                                                <li><h:link outcome="/paises/List" value="Paises"/></li>
-                                                <li><h:link outcome="/productos/List" value="Productos"/></li>
-                                                <li><h:link outcome="/tarjetaCredito/List" value="TarjetaCredito"/></li>
-                                                <li><h:link outcome="/tiposUsuarios/List" value="TiposUsuarios"/></li>
-                                                <li><h:link outcome="/users/List" value="Users"/></li>
-                                                <li><h:link outcome="/ventas/List" value="Ventas"/></li>
-                                                <li><h:link outcome="/videos/List" value="Videos"/></li>
-                                                <li><h:link outcome="/zonas/List" value="Zonas"/></li>
-                                            </ul>
-                                         </li>
-                                        <li> <a href="album.html"> Albums</a> </li>
-                                        <li> <a href="blog.html">Blog</a> </li>
-                                        <li> <a href="contact.html">Contact</a> </li>
+                                         
+                                        <li> <h:link outcome="/bandindex">Inicio</h:link> </li>
+                                        <li> <h:link outcome="/admin">Administrador</h:link> </li>
+                                        <li> <h:link outcome="/canciones/ListArtista">Artista</h:link> </li>
+                                        <li> <h:link outcome="/canciones/ListUsuario">Usuario</h:link> </li>
                                         <li> <h:link outcome="/login">Login</h:link> </li>
-                                         <li> 
-                                             <h:form>
-                                                 <p:commandLink actionListener="#{login.cerrarSesion()}" value="Cerrar Sesion"/>
-                                             </h:form>
-                                         </li>
+                                         
                                     </ul>
                                 </nav>
                             </div>

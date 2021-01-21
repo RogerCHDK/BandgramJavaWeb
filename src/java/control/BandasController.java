@@ -17,6 +17,8 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import javax.servlet.http.HttpServletRequest;
+import modelo.Artistas;
 
 @Named("bandasController")
 @SessionScoped
@@ -26,6 +28,21 @@ public class BandasController implements Serializable {
     private control.BandasFacade ejbFacade;
     private List<Bandas> items = null;
     private List<Bandas> items_eliminados = null;
+    private List<Bandas> items_artista = null;
+    private HttpServletRequest httpservlet;
+
+    public List<Bandas> getItems_artista() {
+        if (items_artista == null) {
+            httpservlet = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        Artistas artista = (Artistas) httpservlet.getSession().getAttribute("artista");
+            items_artista = ejbFacade.Consultar_por_artista(artista.getId().intValue());
+        }
+        return items_artista;
+    }
+
+    public void setItems_artista(List<Bandas> items_artista) {
+        this.items_artista = items_artista;
+    }
     private Bandas selected;
 
     public List<Bandas> getItems_eliminados() {
@@ -74,6 +91,18 @@ public class BandasController implements Serializable {
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
+    
+    public void create2() {
+        httpservlet = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        Artistas artista = (Artistas) httpservlet.getSession().getAttribute("artista");
+        selected.setArtistaId(artista);
+        selected.setStatus(1);
+        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("BandasCreated"));
+        if (!JsfUtil.isValidationFailed()) {
+            items = null;    // Invalidate list of items to trigger re-query.
+        }
+        items_artista=null;
+    }
 
     public void update() {
         persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("BandasUpdated"));
@@ -87,6 +116,7 @@ public class BandasController implements Serializable {
             selected = null; // Remove selection
             items = null; 
             items_eliminados = null;// Invalidate list of items to trigger re-query.
+            items_artista=null;
         }
     }
     

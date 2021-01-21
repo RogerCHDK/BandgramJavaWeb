@@ -17,6 +17,8 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import javax.servlet.http.HttpServletRequest;
+import modelo.Artistas;
 
 @Named("videosController")
 @SessionScoped
@@ -26,6 +28,21 @@ public class VideosController implements Serializable {
     private control.VideosFacade ejbFacade;
     private List<Videos> items = null;
     private List<Videos> items_eliminados = null;
+    private List<Videos> items_artista = null;
+    private HttpServletRequest httpservlet;
+
+    public List<Videos> getItems_artista() {
+        if (items_artista == null) {
+            httpservlet = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        Artistas artista = (Artistas) httpservlet.getSession().getAttribute("artista");
+            items_artista = ejbFacade.Consultar_por_artista(artista.getId().intValue());
+        }
+        return items_artista;
+    }
+
+    public void setItems_artista(List<Videos> items_artista) {
+        this.items_artista = items_artista;
+    }
 
     public List<Videos> getItems_eliminados() {
         if (items_eliminados == null) {
@@ -73,6 +90,18 @@ public class VideosController implements Serializable {
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
+    
+    public void create2() {
+        httpservlet = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        Artistas artista = (Artistas) httpservlet.getSession().getAttribute("artista");
+        selected.setStatus(1);
+        selected.setArtistaId(artista);
+        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("VideosCreated"));
+        if (!JsfUtil.isValidationFailed()) {
+            items = null;    // Invalidate list of items to trigger re-query.
+        }
+        items_artista = null;
+    }
 
     public void update() {
         persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("VideosUpdated"));
@@ -86,6 +115,7 @@ public class VideosController implements Serializable {
             selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
             items_eliminados = null;
+            items_artista = null;
         }
     }
     
@@ -97,6 +127,7 @@ public class VideosController implements Serializable {
             selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
             items_eliminados = null;
+            items_artista = null;
         }
     }
 

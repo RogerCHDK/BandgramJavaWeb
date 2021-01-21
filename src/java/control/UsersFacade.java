@@ -39,7 +39,7 @@ public class UsersFacade extends AbstractFacade<Users> {
         if (!lista.isEmpty()) {
             return lista.get(0);
         }
-        return null;
+        return null; 
     }
     
     public Users BuscarEmail(String email){

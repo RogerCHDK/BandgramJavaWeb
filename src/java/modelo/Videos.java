@@ -31,6 +31,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Videos.findAll", query = "SELECT v FROM Videos v")
     , @NamedQuery(name = "Videos.findById", query = "SELECT v FROM Videos v WHERE v.id = :id")
+    , @NamedQuery(name = "Videos.findByartista", query = "SELECT v FROM Videos v WHERE v.artistaId.id = :id and v.status = 1")
     , @NamedQuery(name = "Videos.VideosActivos", query = "SELECT v FROM Videos v WHERE v.status = 1")
     , @NamedQuery(name = "Videos.VideosEliminados", query = "SELECT v FROM Videos v WHERE v.status = 0")
     , @NamedQuery(name = "Videos.findByNombre", query = "SELECT v FROM Videos v WHERE v.nombre = :nombre")

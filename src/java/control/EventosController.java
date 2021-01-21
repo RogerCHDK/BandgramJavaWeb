@@ -17,6 +17,8 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import javax.servlet.http.HttpServletRequest;
+import modelo.Artistas;
 
 @Named("eventosController")
 @SessionScoped
@@ -26,6 +28,21 @@ public class EventosController implements Serializable {
     private control.EventosFacade ejbFacade;
     private List<Eventos> items = null;
     private List<Eventos> items_eliminados = null;
+    private List<Eventos> items_artista = null;
+    private HttpServletRequest httpservlet;
+
+    public List<Eventos> getItems_artista() {
+        if (items_artista == null) {
+            httpservlet = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        Artistas artista = (Artistas) httpservlet.getSession().getAttribute("artista");
+            items_artista = ejbFacade.Consultar_por_artista(artista.getId().intValue());
+        }
+        return items_artista;
+    }
+
+    public void setItems_artista(List<Eventos> items_artista) {
+        this.items_artista = items_artista;
+    }
     private Eventos selected;
 
     public List<Eventos> getItems_eliminados() {
@@ -73,6 +90,18 @@ public class EventosController implements Serializable {
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
+    
+    public void create2() {
+         httpservlet = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        Artistas artista = (Artistas) httpservlet.getSession().getAttribute("artista");
+        selected.setStatus(1);
+        selected.setArtistaId(artista);
+        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("EventosCreated"));
+        if (!JsfUtil.isValidationFailed()) {
+            items = null;    // Invalidate list of items to trigger re-query.
+        }
+        items_artista=null;
+    }
 
     public void update() {
         persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("EventosUpdated"));
@@ -86,6 +115,7 @@ public class EventosController implements Serializable {
             selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
             items_eliminados = null;
+            items_artista=null;
         }
     }
     
@@ -97,6 +127,7 @@ public class EventosController implements Serializable {
             selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
             items_eliminados = null;
+            items_artista=null;
         }
     }
 

@@ -51,4 +51,15 @@ public class ArtistasFacade extends AbstractFacade<Artistas> {
             return null;
     }
     
+    public Artistas Buscar(String usu, String pas){
+        Query consulta = em.createNamedQuery("Artistas.buscar", Artistas.class)
+                .setParameter("email", usu)
+                .setParameter("password", pas);
+        List<Artistas> lista = consulta.getResultList();
+        if (!lista.isEmpty()) {
+            return lista.get(0);
+        }
+        return null; 
+    }
+    
 }

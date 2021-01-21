@@ -37,7 +37,7 @@ and open the template in the editor.
 		
 		<!-- Favicon -->
                 
-                
+                <f:event type="preRenderView" listener="#{login.verificaSesionArtista(2)}"/>
     </h:head>
     
     <h:body>
@@ -132,13 +132,24 @@ and open the template in the editor.
 						<!-- Collect the nav links, forms, and other content for toggling -->
 			     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				     <ul class="nav navbar-nav navbar-right">
+                                         <li><h:form>
+                                                 <h:outputLabel styleClass="alert alert-danger" value="#{sessionScope.nombre_comArtista}"/>
+                                            </h:form> 
+                                         </li>
 					     <li><h:link outcome="/bandindex" value="Inicio"/></li>
-					     <li><a href="#featuredalbum">Featured Album</a></li>
-					     <li><a href="#joinus">Join Us</a></li>
-					     <li><a href="#portfolio">Portfolio</a></li>
-					     <li><a href="#events">Events</a></li>
-					     <li><a href="#team">Team</a></li>
-					     <li><a href="#contact">Contact</a></li>
+					     <li><h:link outcome="/canciones/ListArtista" value="Canciones"/></li>
+					     <li><h:link outcome="/videos/ListArtista" value="Videos"/></li>
+					     <li><h:link outcome="/eventos/ListArtista" value="Eventos"/></li>
+					     <li><h:link outcome="/productos/ListArtista" value="Productos"/></li>
+                                             <li><h:link outcome="/boletos/ListArtista" value="Boletos"/></li>
+                                             <li><h:link outcome="/bandas/ListArtista" value="Bandas"/></li>
+                                             <li class="nav navbar-nav navbar-right">
+                                              <h:link class="nav navbar-nav navbar-right">
+                                              <h:form >
+                                                 <p:commandLink actionListener="#{login.cerrarSesion()}" value="Cerrar Sesion"/>
+                                             </h:form>
+                                              </h:link>
+                                             </li>
 				     </ul>
 			     </div><!-- /.navbar-collapse -->
 		     </div><!-- /.container-fluid -->

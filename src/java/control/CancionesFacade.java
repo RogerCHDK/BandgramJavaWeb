@@ -51,4 +51,15 @@ public class CancionesFacade extends AbstractFacade<Canciones> {
         }
     }
     
+    public List<Canciones> Consultar_por_artista(int artista_id){
+    Query consulta = em.createNamedQuery("Canciones.findByartista", Canciones.class)
+            .setParameter("id", artista_id);
+    List<Canciones> lista = consulta.getResultList();
+        if (!lista.isEmpty()) {
+            return lista;
+        }else{
+            return null;
+        }
+    }
+    
 }

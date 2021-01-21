@@ -50,4 +50,15 @@ public class VideosFacade extends AbstractFacade<Videos> {
          else
             return null;
     }
+    
+    public List<Videos> Consultar_por_artista(int artista_id){
+    Query consulta = em.createNamedQuery("Videos.findByartista", Videos.class)
+            .setParameter("id", artista_id);
+    List<Videos> lista = consulta.getResultList(); 
+         
+    if(!lista.isEmpty())
+             return lista;
+         else
+            return null;
+    }
 }

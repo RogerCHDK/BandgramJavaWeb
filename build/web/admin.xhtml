@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <ui:composition template="/template/templateAdmon.xhtml">
+        <ui:define name="body">
+              <p:graphicImage name="assets2/img/background/fondoNegro.png" width="1500" height="120"></p:graphicImage>
+                <br/><br/><br/>
+    <!-- music-box  -->
+    <div class="music-box">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+                    <div class="for-box">
+                        <i><h:link outcome="/artistas/List"><p:graphicImage name="assets/icon/icon1.png" alt="icon"></p:graphicImage></h:link></i>
+                        <h3>Artistas</h3>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+                    <div class="for-box">
+                        <i><h:link outcome="/bandas/List"><p:graphicImage name="assets/icon/icon3.png" alt="icon"></p:graphicImage></h:link></i>
+                        <h3>Bandas</h3>
+                     </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+                    <div class="for-box">
+                        <i><h:link outcome="/boletos/List"><p:graphicImage name="assets/icon/icon2.png" alt="icon"></p:graphicImage></h:link></i>
+                        <h3>Boletos</h3>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+                    <div class="for-box">
+                        <i><h:link outcome="/canciones/List"><p:graphicImage name="assets/icon/icon1.png" alt="icon"></p:graphicImage></h:link></i>
+                        <h3>Canciones</h3>
+                    </div>
+                </div>
+            </div>
+        
+            <br/>
+            
+            <div class="row">
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+                    <div class="for-box">
+                        <i><h:link outcome="/categoriasProductos/List"><p:graphicImage name="assets/icon/icon2.png" alt="icon"></p:graphicImage></h:link></i>
+                        <h3>Categorias Productos</h3>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+                    <div class="for-box">
+                        <i><h:link outcome="/compras/List"><p:graphicImage name="assets/icon/icon2.png" alt="icon"></p:graphicImage></h:link></i>
+                        <h3>Compras</h3>
+                     </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+                    <div class="for-box">
+                        <i><h:link outcome="/detalleCompra/List"><p:graphicImage name="assets/icon/icon2.png" alt="icon"></p:graphicImage></h:link></i>
+                        <h3>Detalle Compra</h3>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+                    <div class="for-box">
+                        <i><h:link outcome="/detalleVenta/List"><p:graphicImage name="assets/icon/icon2.png" alt="icon"></p:graphicImage></h:link></i>
+                        <h3>Detalle Venta</h3>
+                    </div>
+                </div>
+            </div>
+            
+             <br/>
+            
+            <div class="row">
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+                    <div class="for-box">
+                        <i><h:link outcome="/estados/List"><p:graphicImage name="assets/icon/icon2.png" alt="icon"></p:graphicImage></h:link></i>
+                        <h3>Estados</h3>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+                    <div class="for-box">
+                        <i><h:link outcome="/eventos/List"><p:graphicImage name="assets/icon/icon3.png" alt="icon"></p:graphicImage></h:link></i>
+                        <h3>Eventos</h3>
+                     </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+                    <div class="for-box">
+                        <i><h:link outcome="/fotosEvento/List"><p:graphicImage name="assets/icon/icon4.png" alt="icon"></p:graphicImage></h:link></i>
+                        <h3>Fotos Evento</h3>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+                    <div class="for-box">
+                        <i><h:link outcome="/fotosProducto/List"><p:graphicImage name="assets/icon/icon4.png" alt="icon"></p:graphicImage></h:link></i>
+                        <h3>Fotos Productos</h3>
+                    </div>
+                </div>
+            </div>
+             
+             <br/>
+            
+            <div class="row">
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+                    <div class="for-box">
+                        <i><h:link outcome="/generosMusicales/List"><p:graphicImage name="assets/icon/icon1.png" alt="icon"></p:graphicImage></h:link></i>
+                        <h3>Generos Musicales</h3>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+                    <div class="for-box">
+                        <i><h:link outcome="/integrantes/List"><p:graphicImage name="assets/icon/icon2.png" alt="icon"></p:graphicImage></h:link></i>
+                        <h3>Integrantes</h3>
+                     </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+                    <div class="for-box">
+                        <i><h:link outcome="/locaciones/List"><p:graphicImage name="assets/icon/icon3.png" alt="icon"></p:graphicImage></h:link></i>
+                        <h3>Locaciones</h3>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+                    <div class="for-box">
+                        <i><h:link outcome="/municipios/List"><p:graphicImage name="assets/icon/icon4.png" alt="icon"></p:graphicImage></h:link></i>
+                        <h3>Municipios</h3>
+                    </div>
+                </div>
+            </div>
+             
+             <br/>
+            
+            <div class="row">
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+                    <div class="for-box">
+                        <i><h:link outcome="/paises/List"><p:graphicImage name="assets/icon/icon1.png" alt="icon"></p:graphicImage></h:link></i>
+                        <h3>Paises</h3>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+                    <div class="for-box">
+                        <i><h:link outcome="/productos/List"><p:graphicImage name="assets/icon/icon2.png" alt="icon"></p:graphicImage></h:link></i>
+                        <h3>Productos</h3>
+                     </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+                    <div class="for-box">
+                        <i><h:link outcome="/tarjetaCredito/List"><p:graphicImage name="assets/icon/icon3.png" alt="icon"></p:graphicImage></h:link></i>
+                        <h3>Tarjeta Credito</h3>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+                    <div class="for-box">
+                        <i><h:link outcome="/tiposUsuarios/List"><p:graphicImage name="assets/icon/icon4.png" alt="icon"></p:graphicImage></h:link></i>
+                        <h3>Tipos de Usuario</h3>
+                    </div>
+                </div>
+            </div>
+             
+             <br/>
+            
+            <div class="row">
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+                    <div class="for-box">
+                        <i><h:link outcome="/users/List"><p:graphicImage name="assets/icon/icon1.png" alt="icon"></p:graphicImage></h:link></i>
+                        <h3>Usuarios</h3>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+                    <div class="for-box">
+                        <i><h:link outcome="/ventas/List"><p:graphicImage name="assets/icon/icon2.png" alt="icon"></p:graphicImage></h:link></i>
+                        <h3>Ventas</h3>
+                     </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+                    <div class="for-box">
+                        <i><h:link outcome="/videos/List"><p:graphicImage name="assets/icon/icon3.png" alt="icon"></p:graphicImage></h:link></i>
+                        <h3>Videos</h3>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+                    <div class="for-box">
+                        <i><h:link outcome="/zonas/List"><p:graphicImage name="assets/icon/icon4.png" alt="icon"></p:graphicImage></h:link></i>
+                        <h3>Zonas</h3>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <!-- end music-box  -->
+
+   
+        </ui:define>
+    </ui:composition>
+    
+</html>

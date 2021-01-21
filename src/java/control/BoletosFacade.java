@@ -51,4 +51,15 @@ public class BoletosFacade extends AbstractFacade<Boletos> {
             return null;
     }
     
+    public List<Boletos> Consultar_por_artista(int artista_id){
+       
+        Query consulta = em.createNamedQuery("Boletos.findByartista",Boletos.class)
+                .setParameter("id", artista_id);
+         List<Boletos> lista = consulta.getResultList(); 
+         if(!lista.isEmpty())
+             return lista;
+         else
+            return null;
+    }
+    
 }

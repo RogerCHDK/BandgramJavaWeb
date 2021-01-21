@@ -12,9 +12,7 @@
             <h:form id="CancionesEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{cancionesController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditCancionesLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{cancionesController.selected.id}" title="#{bundle.EditCancionesTitle_id}" required="true" requiredMessage="#{bundle.EditCancionesRequiredMessage_id}"/>
-                        <p:outputLabel value="#{bundle.EditCancionesLabel_nombre}" for="nombre" />
+                       <p:outputLabel value="#{bundle.EditCancionesLabel_nombre}" for="nombre" />
                         <p:inputText id="nombre" value="#{cancionesController.selected.nombre}" title="#{bundle.EditCancionesTitle_nombre}" required="true" requiredMessage="#{bundle.EditCancionesRequiredMessage_nombre}"/>
                         <p:outputLabel value="#{bundle.EditCancionesLabel_ruta}" for="ruta" />
                         <p:inputText id="ruta" value="#{cancionesController.selected.ruta}" title="#{bundle.EditCancionesTitle_ruta}" required="true" requiredMessage="#{bundle.EditCancionesRequiredMessage_ruta}"/>
@@ -22,15 +20,7 @@
                         <p:inputText id="album" value="#{cancionesController.selected.album}" title="#{bundle.EditCancionesTitle_album}" />
                         <p:outputLabel value="#{bundle.EditCancionesLabel_foto}" for="foto" />
                         <p:inputText id="foto" value="#{cancionesController.selected.foto}" title="#{bundle.EditCancionesTitle_foto}" />
-                        <p:outputLabel value="#{bundle.EditCancionesLabel_status}" for="status" />
-                        <p:inputText id="status" value="#{cancionesController.selected.status}" title="#{bundle.EditCancionesTitle_status}" required="true" requiredMessage="#{bundle.EditCancionesRequiredMessage_status}"/>
-                        <p:outputLabel value="#{bundle.EditCancionesLabel_artistaId}" for="artistaId" />
-                        <p:selectOneMenu id="artistaId" value="#{cancionesController.selected.artistaId}" required="true" requiredMessage="#{bundle.EditCancionesRequiredMessage_artistaId}">
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
-                            <f:selectItems value="#{artistasController.itemsAvailableSelectOne}"
-                                           var="artistaIdItem"
-                                           itemValue="#{artistaIdItem}"/>
-                        </p:selectOneMenu>
+                       
                         <p:outputLabel value="#{bundle.EditCancionesLabel_generoId}" for="generoId" />
                         <p:selectOneMenu id="generoId" value="#{cancionesController.selected.generoId}" required="true" requiredMessage="#{bundle.EditCancionesRequiredMessage_generoId}">
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>

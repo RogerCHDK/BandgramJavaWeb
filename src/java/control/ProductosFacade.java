@@ -50,4 +50,15 @@ public class ProductosFacade extends AbstractFacade<Productos> {
          else
             return null;
     }
+    
+    public List<Productos> Consultar_por_artista(int artista_id){
+    Query consulta = em.createNamedQuery("Productos.findByartista", Productos.class)
+            .setParameter("id", artista_id);
+    List<Productos> lista = consulta.getResultList(); 
+         
+    if(!lista.isEmpty())
+             return lista;
+         else
+            return null;
+    }
 }

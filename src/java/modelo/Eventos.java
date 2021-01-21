@@ -39,6 +39,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Eventos.findAll", query = "SELECT e FROM Eventos e")
     , @NamedQuery(name = "Eventos.findById", query = "SELECT e FROM Eventos e WHERE e.id = :id")
+        , @NamedQuery(name = "Eventos.findByartista", query = "SELECT e FROM Eventos e WHERE e.artistaId.id = :id and e.status = 1")
     , @NamedQuery(name = "Eventos.EventosActivos", query = "SELECT e FROM Eventos e WHERE e.status = 1")
     , @NamedQuery(name = "Eventos.EventosEliminados", query = "SELECT e FROM Eventos e WHERE e.status = 0")
     , @NamedQuery(name = "Eventos.findByFechaCreacion", query = "SELECT e FROM Eventos e WHERE e.fechaCreacion = :fechaCreacion")
@@ -209,7 +210,7 @@ public class Eventos implements Serializable {
 
     @Override
     public String toString() {
-        return id.toString();
+        return fechaInicio.toLocaleString() +" "+ locacionId.getNombre();
     }
     
 }

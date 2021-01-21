@@ -12,16 +12,12 @@
             <h:form id="BandasEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{bandasController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditBandasLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{bandasController.selected.id}" title="#{bundle.EditBandasTitle_id}" required="true" requiredMessage="#{bundle.EditBandasRequiredMessage_id}"/>
                         <p:outputLabel value="#{bundle.EditBandasLabel_nombre}" for="nombre" />
                         <p:inputText id="nombre" value="#{bandasController.selected.nombre}" title="#{bundle.EditBandasTitle_nombre}" required="true" requiredMessage="#{bundle.EditBandasRequiredMessage_nombre}"/>
                         <p:outputLabel value="#{bundle.EditBandasLabel_biografia}" for="biografia" />
                         <p:inputTextarea rows="4" cols="30" id="biografia" value="#{bandasController.selected.biografia}" title="#{bundle.EditBandasTitle_biografia}" required="true" requiredMessage="#{bundle.EditBandasRequiredMessage_biografia}"/>
                         <p:outputLabel value="#{bundle.EditBandasLabel_foto}" for="foto" />
                         <p:inputText id="foto" value="#{bandasController.selected.foto}" title="#{bundle.EditBandasTitle_foto}" />
-                        <p:outputLabel value="#{bundle.EditBandasLabel_status}" for="status" />
-                        <p:inputText id="status" value="#{bandasController.selected.status}" title="#{bundle.EditBandasTitle_status}" required="true" requiredMessage="#{bundle.EditBandasRequiredMessage_status}"/>
                         <p:outputLabel value="#{bundle.EditBandasLabel_artistaId}" for="artistaId" />
                         <p:selectOneMenu id="artistaId" value="#{bandasController.selected.artistaId}" required="true" requiredMessage="#{bundle.EditBandasRequiredMessage_artistaId}">
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>

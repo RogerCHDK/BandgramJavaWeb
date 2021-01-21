@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="BoletosCreateDlg" widgetVar="BoletosCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateBoletosTitle}">
+            <h:form id="BoletosCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{boletosController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateBoletosLabel_precio}" for="precio" />
+                        <p:inputText id="precio" value="#{boletosController.selected.precio}" title="#{bundle.CreateBoletosTitle_precio}" required="true" requiredMessage="#{bundle.CreateBoletosRequiredMessage_precio}"/>
+                        <p:outputLabel value="#{bundle.CreateBoletosLabel_eventoId}" for="eventoId" />
+                        <p:selectOneMenu id="eventoId" value="#{boletosController.selected.eventoId}" required="true" requiredMessage="#{bundle.EditBoletosRequiredMessage_eventoId}">
+                            <f:selectItems value="#{eventosController.items_artista}"
+                                           var="eventoIdItem"
+                                           itemValue="#{eventoIdItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateBoletosLabel_zonaId}" for="zonaId" />
+                        <p:selectOneMenu id="zonaId" value="#{boletosController.selected.zonaId}" required="true" requiredMessage="#{bundle.EditBoletosRequiredMessage_zonaId}">
+                            <f:selectItems value="#{zonasController.itemsAvailableSelectOne}"
+                                           var="zonaIdItem"
+                                           itemValue="#{zonaIdItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{boletosController.create}" value="#{bundle.Save}" update="display,:BoletosListForm:datalist,:growl" oncomplete="handleSubmit(args,'BoletosCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="BoletosCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

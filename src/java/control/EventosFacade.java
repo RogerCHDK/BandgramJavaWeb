@@ -51,4 +51,15 @@ public class EventosFacade extends AbstractFacade<Eventos> {
             return null;
     }
     
+    public List<Eventos> Consultar_por_artista(int artista_id){
+    Query consulta = em.createNamedQuery("Eventos.findByartista", Eventos.class)
+            .setParameter("id", artista_id);
+    List<Eventos> lista = consulta.getResultList(); 
+         
+    if(!lista.isEmpty())
+             return lista;
+         else
+            return null;
+    }
+    
 }

@@ -22,6 +22,8 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import javax.servlet.http.HttpServletRequest;
+import modelo.Artistas;
 import org.primefaces.model.UploadedFile;
 
 @Named("cancionesController")
@@ -32,7 +34,22 @@ public class CancionesController implements Serializable {
     private control.CancionesFacade ejbFacade;
     private List<Canciones> items = null;
     private List<Canciones> items_eliminados = null;
+    private List<Canciones> items_artista = null;
     private Canciones selected;
+     private HttpServletRequest httpservlet;
+
+    public List<Canciones> getItems_artista() {
+        if (items_artista == null) {
+            httpservlet = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        Artistas artista = (Artistas) httpservlet.getSession().getAttribute("artista");
+            items_artista = ejbFacade.Consultar_por_artista(artista.getId().intValue());
+        }
+        return items_artista;
+    }
+
+    public void setItems_artista(List<Canciones> items_artista) {
+        this.items_artista = items_artista;
+    }
     private UploadedFile cancion;
     private String aux;
 
@@ -98,6 +115,21 @@ public class CancionesController implements Serializable {
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
+    
+    public void create2() {
+        httpservlet = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        Artistas artista = (Artistas) httpservlet.getSession().getAttribute("artista");
+        selected.setStatus(1);
+        selected.setRuta(aux);
+        selected.setArtistaId(artista);
+        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("CancionesCreated"));
+        items_artista = null;
+        if (!JsfUtil.isValidationFailed()) {
+            items = null;    // Invalidate list of items to trigger re-query.
+        }
+    }
+    
+    
 
     public void update() {
         persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("CancionesUpdated"));
@@ -110,7 +142,8 @@ public class CancionesController implements Serializable {
         if (!JsfUtil.isValidationFailed()) {
             selected = null; // Remove selection
             items = null;
-            items_eliminados = null;// Invalidate list of items to trigger re-query.
+            items_eliminados = null;
+            items_artista = null;// Invalidate list of items to trigger re-query.
         }
     }
     
@@ -122,12 +155,19 @@ public class CancionesController implements Serializable {
             selected = null; // Remove selection
             items = null;
             items_eliminados = null;// Invalidate list of items to trigger re-query.
+            items_artista = null;
         }
     }
     
     public void NuevoDocumento(){
         if (SubirArchivo()) {
             create();
+            aux = "";
+        }
+    }
+    public void NuevoDocumento2(){
+        if (SubirArchivo()) {
+            create2();
             aux = "";
         }
     }

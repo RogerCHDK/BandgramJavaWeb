@@ -17,6 +17,8 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import javax.servlet.http.HttpServletRequest;
+import modelo.Artistas;
 
 @Named("boletosController")
 @SessionScoped
@@ -26,6 +28,21 @@ public class BoletosController implements Serializable {
     private control.BoletosFacade ejbFacade;
     private List<Boletos> items = null;
     private List<Boletos> items_eliminados = null;
+    private List<Boletos> items_artista = null;
+    private HttpServletRequest httpservlet;
+
+    public List<Boletos> getItems_artista() {
+        if (items_artista == null) {
+            httpservlet = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        Artistas artista = (Artistas) httpservlet.getSession().getAttribute("artista");
+            items_artista = ejbFacade.Consultar_por_artista(artista.getId().intValue());
+        }
+        return items_artista;
+    }
+
+    public void setItems_artista(List<Boletos> items_artista) {
+        this.items_artista = items_artista;
+    }
     private Boletos selected;
 
     public List<Boletos> getItems_eliminados() {
@@ -73,6 +90,7 @@ public class BoletosController implements Serializable {
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
+        items_artista=null;
     }
 
     public void update() {
@@ -87,6 +105,7 @@ public class BoletosController implements Serializable {
             selected = null; // Remove selection
             items = null; 
             items_eliminados = null;// Invalidate list of items to trigger re-query.
+            items_artista=null;
         }
     }
     
@@ -98,6 +117,7 @@ public class BoletosController implements Serializable {
             selected = null; // Remove selection
             items = null; 
             items_eliminados = null;// Invalidate list of items to trigger re-query.
+            items_artista=null;
         }
     }
 

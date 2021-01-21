@@ -12,8 +12,6 @@
             <h:form id="ProductosEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{productosController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditProductosLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{productosController.selected.id}" title="#{bundle.EditProductosTitle_id}" required="true" requiredMessage="#{bundle.EditProductosRequiredMessage_id}"/>
                         <p:outputLabel value="#{bundle.EditProductosLabel_nombre}" for="nombre" />
                         <p:inputText id="nombre" value="#{productosController.selected.nombre}" title="#{bundle.EditProductosTitle_nombre}" required="true" requiredMessage="#{bundle.EditProductosRequiredMessage_nombre}"/>
                         <p:outputLabel value="#{bundle.EditProductosLabel_precio}" for="precio" />
@@ -22,15 +20,7 @@
                         <p:inputTextarea rows="4" cols="30" id="descripcion" value="#{productosController.selected.descripcion}" title="#{bundle.EditProductosTitle_descripcion}" required="true" requiredMessage="#{bundle.EditProductosRequiredMessage_descripcion}"/>
                         <p:outputLabel value="#{bundle.EditProductosLabel_stock}" for="stock" />
                         <p:inputText id="stock" value="#{productosController.selected.stock}" title="#{bundle.EditProductosTitle_stock}" />
-                        <p:outputLabel value="#{bundle.EditProductosLabel_status}" for="status" />
-                        <p:inputText id="status" value="#{productosController.selected.status}" title="#{bundle.EditProductosTitle_status}" required="true" requiredMessage="#{bundle.EditProductosRequiredMessage_status}"/>
-                        <p:outputLabel value="#{bundle.EditProductosLabel_artistaId}" for="artistaId" />
-                        <p:selectOneMenu id="artistaId" value="#{productosController.selected.artistaId}" required="true" requiredMessage="#{bundle.EditProductosRequiredMessage_artistaId}">
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
-                            <f:selectItems value="#{artistasController.itemsAvailableSelectOne}"
-                                           var="artistaIdItem"
-                                           itemValue="#{artistaIdItem}"/>
-                        </p:selectOneMenu>
+                        
                         <p:outputLabel value="#{bundle.EditProductosLabel_categoriaId}" for="categoriaId" />
                         <p:selectOneMenu id="categoriaId" value="#{productosController.selected.categoriaId}" required="true" requiredMessage="#{bundle.EditProductosRequiredMessage_categoriaId}">
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>

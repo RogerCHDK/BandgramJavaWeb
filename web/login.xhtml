@@ -22,6 +22,12 @@ and open the template in the editor.
                  <h:form id="LoginForm">
                      <br/><br/><br/><br/>
                      <h:panelGrid columns="2">
+                         <p:outputLabel for="tipo" value="Usuario"/>
+                         <p:selectOneMenu id="tipo" value="#{login.tipo_usuario}" required="true">
+                            <f:selectItem itemLabel="-- Seleccionar --" itemValue="" ></f:selectItem>
+                            <f:selectItem itemLabel="Usuario" itemValue="usuario" ></f:selectItem>
+                            <f:selectItem itemLabel="Artista" itemValue="artista" ></f:selectItem>
+                        </p:selectOneMenu>
                          <p:outputLabel for="user" value="Usuario"/>
                          <p:inputText
                              id="user"
@@ -36,7 +42,7 @@ and open the template in the editor.
                          
                          <h:column/>
                          <p:commandButton
-                             actionListener="#{login.Acceso()}"
+                             actionListener="#{login.verificarTipoUsuario()}"
                              value="Ingresar"
                              icon="ui-icon-key"
                              update=":growl"/>

@@ -51,4 +51,15 @@ public class BandasFacade extends AbstractFacade<Bandas> {
             return null;
     }
     
+    public List<Bandas> Consultar_por_artista(int artista_id){
+       
+        Query consulta = em.createNamedQuery("Bandas.findByartista",Bandas.class)
+                .setParameter("id", artista_id);
+         List<Bandas> lista = consulta.getResultList(); 
+         if(!lista.isEmpty())
+             return lista;
+         else
+            return null;
+    }
+    
 }

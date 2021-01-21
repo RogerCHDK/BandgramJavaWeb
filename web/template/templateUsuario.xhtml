@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title><ui:insert name="title">Bandgram</ui:insert></title>
+        <!-- Description, Keywords and Author -->
+		<meta name="description" content="Your description"/>
+		<meta name="keywords" content="Your,Keywords"/>
+		<meta name="author" content="HimanshuGupta"/>
+		
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		
+		<!-- Styles -->
+		<!-- Bootstrap CSS -->
+                <h:outputStylesheet name="assets2/css/bootstrap.min.css"/>
+		<!-- Animate CSS -->
+                <h:outputStylesheet name="assets2/css/animate.min.css"/>
+		<!-- Basic stylesheet -->
+                <h:outputStylesheet name="assets2/css/owl.carousel.css"/>
+		<!-- Font awesome CSS -->
+                <h:outputStylesheet name="assets2/css/font-awesome.min.css"/>	
+		<!-- Custom CSS -->
+                <h:outputStylesheet name="assets2/css/style.css"/>
+                <h:outputStylesheet name="assets2/css/style-color.css"/>
+                
+                <h:outputStylesheet library="css" name="jsfcrud.css"/>
+                <h:outputScript library="js" name="jsfcrud.js"/>
+		
+		<!-- Favicon -->
+                <f:event type="preRenderView" listener="#{login.verificaSesionynivel(1)}"/>
+                
+    </h:head>
+    
+    <h:body>
+        <p:growl id="growl" life="3000" />
+        
+       
+        
+        <div class="modal fade" id="bookTicket" tabindex="-1" role="dialog" aria-labelledby="BookTicket">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
+						<h4 class="modal-title" id="myModalLabel">Name of The Event <small><span class="label label-success">Available</span><span class="label label-danger">Not Available</span></small></h4>
+					</div>
+					<!-- form for events ticket booking -->
+					<form>
+						<div class="modal-body">
+							<div class="form-group">
+								<label for="exampleInputEmail1">Email</label>
+								<input type="email" class="form-control" id="exampleInputEmail1" placeholder="example@mail.com"/>
+							</div>
+							<div class="form-group">
+								<label for="exampleInputContact">Contact</label>
+								<input type="text" class="form-control" id="exampleInputContact" placeholder="+91 55 5555 5555"/>
+							</div>
+							<div class="form-group">
+								<label for="exampleInputSeats">Number of Tickets</label>
+								<select class="form-control" id="exampleInputSeats">
+									<option>1</option>
+									<option>2</option>
+									<option>3</option>
+									<option>4</option>
+									<option>5</option>
+								</select>
+							</div>
+							<div class="checkbox">
+								<label>
+									<input type="checkbox"/> I accept the Terms of Service
+								</label>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							<!-- link to payment gatway here -->
+							<button type="button" class="btn btn-primary">Book Now</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+        
+        <header>
+	<!-- secondary menu -->
+	<nav class="secondary-menu">
+            <div class="container">
+						<!-- secondary menu left link area -->
+		<div class="sm-left">
+			<strong>Phone</strong><a href="#">555 555 555</a>
+			<strong>E-mail</strong><a href="#">music.site@melodi.com</a>
+		</div>
+						<!-- secondary menu right link area -->
+            <div class="sm-right">
+							<!-- social link -->
+                    <div class="sm-social-link">
+                            <a class="h-facebook" href="#"><i class="fa fa-facebook"></i></a>
+                            <a class="h-twitter" href="#"><i class="fa fa-twitter"></i></a>
+                            <a class="h-google" href="#"><i class="fa fa-google-plus"></i></a>
+                            <a class="h-linkedin" href="#"><i class="fa fa-linkedin"></i></a>
+                    </div>
+            </div> 
+            <div class="clearfix"></div>
+                </div>
+                    </nav>
+				<!-- primary menu -->
+	     <nav class="navbar navbar-fixed-top navbar-default">
+		     <div class="container">
+						<!-- Brand and toggle get grouped for better mobile display -->
+			     <div class="navbar-header">
+				     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					     <span class="sr-only">Toggle navigation</span>
+					     <span class="icon-bar"></span>
+					     <span class="icon-bar"></span>
+					     <span class="icon-bar"></span>
+				     </button>
+							<!-- logo area -->
+				     <a class="navbar-brand" href="#home">
+								<!-- logo image -->
+					     <img class="img-responsive" src="img/logo/logo.png" alt="" />
+				     </a>
+			     </div>
+
+						<!-- Collect the nav links, forms, and other content for toggling -->
+			     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				     <ul class="nav navbar-nav navbar-right">
+                                         <li><h:form>
+                                                 <h:outputLabel styleClass="alert alert-danger" value="#{sessionScope.nombre_com}"/>
+                                            </h:form> 
+                                         </li>
+					     <li><h:link outcome="/bandindex" value="Inicio"/></li>
+					     <li><h:link outcome="/canciones/ListUsuario" value="Canciones"/></li>
+					     <li><h:link outcome="/videos/ListUsuario" value="Videos"/></li>
+					     <li><h:link outcome="/eventos/ListUsuario" value="Eventos"/></li>
+					     <li><h:link outcome="/productos/ListUsuario" value="Productos"/></li>
+                                             <li><h:link outcome="/boletos/ListUsuario" value="Boletos"/></li>
+                                             <li><h:link outcome="/bandas/ListUsuario" value="Bandas"/></li>
+                                             <li><h:link outcome="/tarjetaCredito/ListUsuario" value="Método Pago"/></li>
+                                             <li><h:link outcome="/canciones/List" value="Paises"/></li>
+                                             <li class="nav navbar-nav navbar-right">
+                                              <h:link class="nav navbar-nav navbar-right">
+                                              <h:form >
+                                                 <p:commandLink actionListener="#{login.cerrarSesion()}" value="Cerrar Sesion"/>
+                                             </h:form>
+                                              </h:link>
+                                             </li>
+				     </ul>
+			     </div><!-- /.navbar-collapse -->
+		     </div><!-- /.container-fluid -->
+	     </nav>
+     </header>   
+     
+             
+        
+    
+            <p:layoutUnit position="center">
+                <ui:insert name="body"/>
+            </p:layoutUnit>
+    
+    <footer>
+	<div class="container">
+					<!-- social media links -->
+		<div class="social">
+			<a class="h-facebook" href="#"><i class="fa fa-facebook"></i></a>
+			<a class="h-google" href="#"><i class="fa fa-google-plus"></i></a>
+			<a class="h-linkedin" href="#"><i class="fa fa-linkedin"></i></a>
+			<a class="h-twitter" href="#"><i class="fa fa-twitter"></i></a>
+		</div>
+					<!-- copy right -->
+		<p class="copy-right"> copyright 2020, All rights are reserved.</p>
+	</div>
+    </footer>
+				
+		<!-- Javascript files -->
+		<!-- Bootstrap JS -->
+                <h:outputScript name="assets2/js/bootstrap.min.js"/>
+		<!-- WayPoints JS -->
+                <h:outputScript name="assets2/js/waypoints.min.js"/>
+		<!-- Include js plugin -->
+                <h:outputScript name="assets2/js/owl.carousel.min.js"/>
+		<!-- One Page Nav -->
+                <h:outputScript name="assets2/js/jquery.nav.js"/>
+		<!-- Respond JS for IE8 -->
+                <h:outputScript name="assets2/js/respond.min.js"/>
+		<!-- HTML5 Support for IE -->
+                <h:outputScript name="assets2/js/html5shiv.js"/>
+		<!-- Custom JS -->
+                <h:outputScript name="assets2/js/custom.js"/>
+        </h:body>
+
+</html>
