@@ -35,6 +35,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "TarjetaCredito.findAll", query = "SELECT t FROM TarjetaCredito t")
     , @NamedQuery(name = "TarjetaCredito.findById", query = "SELECT t FROM TarjetaCredito t WHERE t.id = :id")
+        , @NamedQuery(name = "TarjetaCredito.findByusuario", query = "SELECT t FROM TarjetaCredito t WHERE t.userId.id = :id and t.status = 1")
     , @NamedQuery(name = "TarjetaCredito.TarjetaCreditoActivas", query = "SELECT t FROM TarjetaCredito t WHERE t.status = 1")
     , @NamedQuery(name = "TarjetaCredito.TarjetaCreditoEliminadas", query = "SELECT t FROM TarjetaCredito t WHERE t.status = 0")
     , @NamedQuery(name = "TarjetaCredito.findByTitular", query = "SELECT t FROM TarjetaCredito t WHERE t.titular = :titular")

@@ -62,19 +62,19 @@
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListLocacionesTitle_estadoId}"/>
                             </f:facet>
-                            <h:outputText value="#{item.estadoId}"/>
+                            <h:outputText value="#{item.estadoId.nombre}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListLocacionesTitle_paisId}"/>
                             </f:facet>
-                            <h:outputText value="#{item.paisId}"/>
+                            <h:outputText value="#{item.paisId.nombre}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListLocacionesTitle_municipioId}"/>
                             </f:facet>
-                            <h:outputText value="#{item.municipioId}"/>
+                            <h:outputText value="#{item.municipioId.nombre}"/>
                         </p:column>
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{locacionesController.prepareCreate}" update=":LocacionesCreateForm" oncomplete="PF('LocacionesCreateDialog').show()"/>

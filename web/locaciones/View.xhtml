@@ -23,11 +23,11 @@
                         <h:outputText value="#{bundle.ViewLocacionesLabel_status}"/>
                         <h:outputText value="#{locacionesController.selected.status}" title="#{bundle.ViewLocacionesTitle_status}"/>
                         <h:outputText value="#{bundle.ViewLocacionesLabel_estadoId}"/>
-                        <h:outputText value="#{locacionesController.selected.estadoId}" title="#{bundle.ViewLocacionesTitle_estadoId}"/>
+                        <h:outputText value="#{locacionesController.selected.estadoId.nombre}" title="#{bundle.ViewLocacionesTitle_estadoId}"/>
                         <h:outputText value="#{bundle.ViewLocacionesLabel_paisId}"/>
-                        <h:outputText value="#{locacionesController.selected.paisId}" title="#{bundle.ViewLocacionesTitle_paisId}"/>
+                        <h:outputText value="#{locacionesController.selected.paisId.nombre}" title="#{bundle.ViewLocacionesTitle_paisId}"/>
                         <h:outputText value="#{bundle.ViewLocacionesLabel_municipioId}"/>
-                        <h:outputText value="#{locacionesController.selected.municipioId}" title="#{bundle.ViewLocacionesTitle_municipioId}"/>
+                        <h:outputText value="#{locacionesController.selected.municipioId.nombre}" title="#{bundle.ViewLocacionesTitle_municipioId}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="LocacionesViewDialog.hide()"/>
                 </h:panelGroup>

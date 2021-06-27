@@ -75,7 +75,13 @@ and open the template in the editor.
                                     <ul class="mifuente">
                                         <li> <h:link outcome="/bandindex">Home</h:link> </li>
                                         <li> <h:link outcome="/login">Login</h:link> </li>
-                                         <li> <h:link outcome="/login">Registro</h:link> </li>
+                                         <li>
+                                              <h:link outcome="/registro">Registro
+                                              <h:form >
+                                                  <p:commandLink actionListener="#{usersController.prepareCreate}"/>
+                                             </h:form>
+                                              </h:link>
+                                             </li>
                                     </ul>
                                 </nav>
                             </div>

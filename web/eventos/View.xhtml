@@ -31,9 +31,9 @@
                         <h:outputText value="#{bundle.ViewEventosLabel_status}"/>
                         <h:outputText value="#{eventosController.selected.status}" title="#{bundle.ViewEventosTitle_status}"/>
                         <h:outputText value="#{bundle.ViewEventosLabel_locacionId}"/>
-                        <h:outputText value="#{eventosController.selected.locacionId}" title="#{bundle.ViewEventosTitle_locacionId}"/>
+                        <h:outputText value="#{eventosController.selected.locacionId.nombre}" title="#{bundle.ViewEventosTitle_locacionId}"/>
                         <h:outputText value="#{bundle.ViewEventosLabel_artistaId}"/>
-                        <h:outputText value="#{eventosController.selected.artistaId}" title="#{bundle.ViewEventosTitle_artistaId}"/>
+                        <h:outputText value="#{eventosController.selected.artistaId.nombre} #{eventosController.selected.artistaId.apPaterno} #{eventosController.selected.artistaId.apMaterno}" title="#{bundle.ViewEventosTitle_artistaId}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="EventosViewDialog.hide()"/>
                 </h:panelGroup>

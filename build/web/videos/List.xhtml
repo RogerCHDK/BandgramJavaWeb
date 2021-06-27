@@ -44,7 +44,7 @@
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListVideosTitle_ruta}"/>
                             </f:facet>
-                            <h:outputText value="#{item.ruta}"/>
+                           <video src="/bandgram/faces/javax.faces.resource#{item.ruta}" width="200px" controls="controls">Video no es soportado...</video>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
@@ -56,7 +56,7 @@
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListVideosTitle_artistaId}"/>
                             </f:facet>
-                            <h:outputText value="#{item.artistaId}"/>
+                            <h:outputText value="#{item.artistaId.nombre} #{item.artistaId.apPaterno} #{item.artistaId.apMaterno}"/>
                         </p:column>
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{videosController.prepareCreate}" update=":VideosCreateForm" oncomplete="PF('VideosCreateDialog').show()"/>

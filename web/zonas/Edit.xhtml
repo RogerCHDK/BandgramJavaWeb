@@ -12,13 +12,9 @@
             <h:form id="ZonasEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{zonasController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditZonasLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{zonasController.selected.id}" title="#{bundle.EditZonasTitle_id}" required="true" requiredMessage="#{bundle.EditZonasRequiredMessage_id}"/>
                         <p:outputLabel value="#{bundle.EditZonasLabel_nombre}" for="nombre" />
                         <p:inputText id="nombre" value="#{zonasController.selected.nombre}" title="#{bundle.EditZonasTitle_nombre}" required="true" requiredMessage="#{bundle.EditZonasRequiredMessage_nombre}"/>
-                        <p:outputLabel value="#{bundle.EditZonasLabel_status}" for="status" />
-                        <p:inputText id="status" value="#{zonasController.selected.status}" title="#{bundle.EditZonasTitle_status}" required="true" requiredMessage="#{bundle.EditZonasRequiredMessage_status}"/>
-                    </p:panelGrid>
+                        </p:panelGrid>
                     <p:commandButton actionListener="#{zonasController.update}" value="#{bundle.Save}" update="display,:ZonasListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ZonasEditDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="ZonasEditDialog.hide()"/>
                 </h:panelGroup>

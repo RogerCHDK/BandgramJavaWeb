@@ -12,16 +12,12 @@
             <h:form id="LocacionesEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{locacionesController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditLocacionesLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{locacionesController.selected.id}" title="#{bundle.EditLocacionesTitle_id}" required="true" requiredMessage="#{bundle.EditLocacionesRequiredMessage_id}"/>
                         <p:outputLabel value="#{bundle.EditLocacionesLabel_calle}" for="calle" />
                         <p:inputText id="calle" value="#{locacionesController.selected.calle}" title="#{bundle.EditLocacionesTitle_calle}" required="true" requiredMessage="#{bundle.EditLocacionesRequiredMessage_calle}"/>
                         <p:outputLabel value="#{bundle.EditLocacionesLabel_colonia}" for="colonia" />
                         <p:inputText id="colonia" value="#{locacionesController.selected.colonia}" title="#{bundle.EditLocacionesTitle_colonia}" required="true" requiredMessage="#{bundle.EditLocacionesRequiredMessage_colonia}"/>
                         <p:outputLabel value="#{bundle.EditLocacionesLabel_nombre}" for="nombre" />
                         <p:inputText id="nombre" value="#{locacionesController.selected.nombre}" title="#{bundle.EditLocacionesTitle_nombre}" required="true" requiredMessage="#{bundle.EditLocacionesRequiredMessage_nombre}"/>
-                        <p:outputLabel value="#{bundle.EditLocacionesLabel_status}" for="status" />
-                        <p:inputText id="status" value="#{locacionesController.selected.status}" title="#{bundle.EditLocacionesTitle_status}" required="true" requiredMessage="#{bundle.EditLocacionesRequiredMessage_status}"/>
                         <p:outputLabel value="#{bundle.EditLocacionesLabel_estadoId}" for="estadoId" />
                         <p:selectOneMenu id="estadoId" value="#{locacionesController.selected.estadoId}" required="true" requiredMessage="#{bundle.EditLocacionesRequiredMessage_estadoId}">
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>

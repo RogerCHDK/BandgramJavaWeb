@@ -13,7 +13,9 @@
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{boletosController.selected != null}">
                         <p:outputLabel value="#{bundle.CreateBoletosLabel_precio}" for="precio" />
-                        <p:inputText id="precio" value="#{boletosController.selected.precio}" title="#{bundle.CreateBoletosTitle_precio}" required="true" requiredMessage="#{bundle.CreateBoletosRequiredMessage_precio}"/>
+                        <p:inputText id="precio" value="#{boletosController.selected.precio}" title="#{bundle.CreateBoletosTitle_precio}" required="true" requiredMessage="#{bundle.CreateBoletosRequiredMessage_precio}">
+                        <f:validateLongRange minimum="0" maximum="10000"></f:validateLongRange>
+                         </p:inputText>
                         <p:outputLabel value="#{bundle.CreateBoletosLabel_eventoId}" for="eventoId" />
                         <p:selectOneMenu id="eventoId" value="#{boletosController.selected.eventoId}" required="true" requiredMessage="#{bundle.EditBoletosRequiredMessage_eventoId}">
                             <f:selectItems value="#{eventosController.itemsAvailableSelectOne}"

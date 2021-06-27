@@ -12,14 +12,10 @@
             <h:form id="DetalleVentaEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{detalleVentaController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditDetalleVentaLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{detalleVentaController.selected.id}" title="#{bundle.EditDetalleVentaTitle_id}" required="true" requiredMessage="#{bundle.EditDetalleVentaRequiredMessage_id}"/>
-                        <p:outputLabel value="#{bundle.EditDetalleVentaLabel_cantidad}" for="cantidad" />
+                       <p:outputLabel value="#{bundle.EditDetalleVentaLabel_cantidad}" for="cantidad" />
                         <p:inputText id="cantidad" value="#{detalleVentaController.selected.cantidad}" title="#{bundle.EditDetalleVentaTitle_cantidad}" required="true" requiredMessage="#{bundle.EditDetalleVentaRequiredMessage_cantidad}"/>
                         <p:outputLabel value="#{bundle.EditDetalleVentaLabel_precioUnitario}" for="precioUnitario" />
                         <p:inputText id="precioUnitario" value="#{detalleVentaController.selected.precioUnitario}" title="#{bundle.EditDetalleVentaTitle_precioUnitario}" required="true" requiredMessage="#{bundle.EditDetalleVentaRequiredMessage_precioUnitario}"/>
-                        <p:outputLabel value="#{bundle.EditDetalleVentaLabel_status}" for="status" />
-                        <p:inputText id="status" value="#{detalleVentaController.selected.status}" title="#{bundle.EditDetalleVentaTitle_status}" required="true" requiredMessage="#{bundle.EditDetalleVentaRequiredMessage_status}"/>
                         <p:outputLabel value="#{bundle.EditDetalleVentaLabel_ventaId}" for="ventaId" />
                         <p:selectOneMenu id="ventaId" value="#{detalleVentaController.selected.ventaId}" required="true" requiredMessage="#{bundle.EditDetalleVentaRequiredMessage_ventaId}">
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>

@@ -57,7 +57,7 @@
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListArtistasTitle_foto}"/>
                             </f:facet>
-                            <h:outputText value="#{item.foto}"/>
+                             <p:graphicImage name="#{item.foto}" width="250px"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
@@ -94,6 +94,12 @@
                                 <h:outputText value="#{bundle.ListArtistasTitle_generoId}"/>
                             </f:facet>
                             <h:outputText value="#{item.generoId.nombre}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="desc"/>
+                            </f:facet>
+                            <h:link outcome="/resources#{item.foto}" value="Descargar archivo" target="_blank"/>
                         </p:column>
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{artistasController.prepareCreate}" update=":ArtistasCreateForm" oncomplete="PF('ArtistasCreateDialog').show()"/>

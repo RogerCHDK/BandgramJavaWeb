@@ -3,6 +3,10 @@ package control;
 import modelo.Artistas;
 import control.util.JsfUtil;
 import control.util.JsfUtil.PersistAction;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
 
 import java.io.Serializable;
 import java.util.List;
@@ -13,10 +17,13 @@ import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import modelo.TiposUsuarios;
+import org.primefaces.model.UploadedFile;
 
 @Named("artistasController")
 @SessionScoped
@@ -24,9 +31,31 @@ public class ArtistasController implements Serializable {
 
     @EJB
     private control.ArtistasFacade ejbFacade;
+    
+    @EJB
+    private TiposUsuariosFacade tipofacade;
+    
     private List<Artistas> items = null;
     private List<Artistas> items_eliminados = null;
     private Artistas selected;
+    private UploadedFile imagen;
+    private String aux;
+
+    public UploadedFile getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(UploadedFile imagen) {
+        this.imagen = imagen;
+    }
+
+    public String getAux() {
+        return aux;
+    }
+
+    public void setAux(String aux) {
+        this.aux = aux;
+    }
 
     public List<Artistas> getItems_eliminados() {
         if (items_eliminados == null) {
@@ -68,7 +97,10 @@ public class ArtistasController implements Serializable {
     }
 
     public void create() {
+        TiposUsuarios tipo_usu = tipofacade.Consultar_tipo();
         selected.setStatus(1);
+        selected.setFoto(aux);
+        selected.setTipoUsuario(tipo_usu);
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("ArtistasCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
@@ -98,6 +130,68 @@ public class ArtistasController implements Serializable {
             selected = null; // Remove selection
             items = null;
             items_eliminados = null;// Invalidate list of items to trigger re-query.
+        }
+    }
+    
+    public void NuevoDocumento(){
+        System.out.println("Entre");
+        System.out.println("MYME TYPE: "+ getImagen().getContentType());
+        System.out.println("TAMAÑO: "+ getImagen().getSize());
+        System.out.println("EXTENSIÓN PNG: "+ getImagen().getFileName().endsWith(".png"));
+        System.out.println("EXTENSIÓN JPG: "+ getImagen().getFileName().endsWith(".jpg"));
+        System.out.println("EXTENSIÓN GIF: "+ getImagen().getFileName().endsWith(".gif"));
+        
+        if (getImagen().getFileName().endsWith(".png")
+                || getImagen().getFileName().endsWith(".jpg")
+                ||getImagen().getFileName().endsWith(".gif")
+                ) {
+            if (SubirArchivo()) {
+                create();
+                aux= "";
+            }else{
+                FacesMessage mensaje = new FacesMessage("El archivo no es una imagen.");
+                FacesContext.getCurrentInstance().addMessage(null, mensaje);
+                selected = null;
+            }
+        }
+    }
+    
+    public Boolean SubirArchivo(){
+        try {
+            aux = "resources/fotosartistas";
+            System.out.println("Ruta= "+aux);
+            File archivo = new  File(JsfUtil.getPath() + aux); //obtengo la ruta de mi proyecto
+            if (!archivo.exists()) { //sino existe la carpeta donde se van a guardar las imagenes, la crea
+                archivo.mkdirs();
+            }
+            copiar_archivo(getImagen().getFileName(), getImagen().getInputstream());
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+    
+    public void copiar_archivo(String nombre_archivo, InputStream in){
+        try {
+            aux = aux + "/" +nombre_archivo;
+            System.out.println("se va a guardar");
+            System.out.println("Ruta ok: "+aux);
+            System.out.println("Ruta real :"+JsfUtil.getPath() + aux);
+            OutputStream out = new FileOutputStream(new File(JsfUtil.getPath() + aux));
+            int read = 0;
+            byte[] bytes = new byte[1024];
+            while((read = in.read(bytes)) != -1){
+                out.write(bytes, 0, read);
+            }
+            System.out.println("Ya se guardo");
+            aux = aux.substring(9);
+            System.out.println("Ruta en la base "+ aux);
+            in.close();
+            out.flush();
+            out.close();
+            
+        } catch (Exception e) {
+            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("No se guardo"));
         }
     }
 

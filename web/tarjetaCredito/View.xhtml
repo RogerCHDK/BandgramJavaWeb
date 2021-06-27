@@ -25,7 +25,7 @@
                         <h:outputText value="#{bundle.ViewTarjetaCreditoLabel_status}"/>
                         <h:outputText value="#{tarjetaCreditoController.selected.status}" title="#{bundle.ViewTarjetaCreditoTitle_status}"/>
                         <h:outputText value="#{bundle.ViewTarjetaCreditoLabel_userId}"/>
-                        <h:outputText value="#{tarjetaCreditoController.selected.userId}" title="#{bundle.ViewTarjetaCreditoTitle_userId}"/>
+                        <h:outputText value="#{tarjetaCreditoController.selected.userId.nombre}" title="#{bundle.ViewTarjetaCreditoTitle_userId}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="TarjetaCreditoViewDialog.hide()"/>
                 </h:panelGroup>

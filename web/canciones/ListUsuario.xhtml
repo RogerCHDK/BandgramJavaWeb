@@ -40,11 +40,12 @@
                             </f:facet>
                             <h:outputText value="#{item.nombre}"/>
                         </p:column>
+                        
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListCancionesTitle_ruta}"/>
+                                <h:outputText value="#{item.ruta}"/>
                             </f:facet>
-                            <h:outputText value="#{item.ruta}"/>
+                            
                         </p:column>
                         <p:column>
                             <f:facet name="header">
@@ -56,7 +57,7 @@
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListCancionesTitle_foto}"/>
                             </f:facet>
-                            <h:outputText value="#{item.foto}"/>
+                             <p:graphicImage name="#{item.foto}" width="250px"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
@@ -68,20 +69,20 @@
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListCancionesTitle_artistaId}"/>
                             </f:facet>
-                            <h:outputText value="#{item.artistaId}"/>
+                            <h:outputText value="#{item.artistaId.nombre} #{item.artistaId.apPaterno} #{item.artistaId.apMaterno}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListCancionesTitle_generoId}"/>
                             </f:facet>
-                            <h:outputText value="#{item.generoId}"/>
+                            <h:outputText value="#{item.generoId.nombre}"/>
                         </p:column>
                         
                      
                         
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="desc"/>
+                                <h:outputText value="Descargar cancion"/>
                             </f:facet>
                             <h:link outcome="/resources#{item.ruta}" value="Descargar archivo" target="_blank"/>
                         </p:column>

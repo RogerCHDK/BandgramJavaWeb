@@ -17,17 +17,17 @@
                         <h:outputText value="#{bundle.ViewCancionesLabel_nombre}"/>
                         <h:outputText value="#{cancionesController.selected.nombre}" title="#{bundle.ViewCancionesTitle_nombre}"/>
                         <h:outputText value="#{bundle.ViewCancionesLabel_ruta}"/>
-                        <h:outputText value="#{cancionesController.selected.ruta}" title="#{bundle.ViewCancionesTitle_ruta}"/>
+                        <audio src="/bandgram/faces/javax.faces.resource#{cancionesController.selected.ruta}" controls="true"></audio>
                         <h:outputText value="#{bundle.ViewCancionesLabel_album}"/>
                         <h:outputText value="#{cancionesController.selected.album}" title="#{bundle.ViewCancionesTitle_album}"/>
                         <h:outputText value="#{bundle.ViewCancionesLabel_foto}"/>
-                        <h:outputText value="#{cancionesController.selected.foto}" title="#{bundle.ViewCancionesTitle_foto}"/>
+                        <p:graphicImage name="#{cancionesController.selected.foto}" width="250px"/>
                         <h:outputText value="#{bundle.ViewCancionesLabel_status}"/>
                         <h:outputText value="#{cancionesController.selected.status}" title="#{bundle.ViewCancionesTitle_status}"/>
                         <h:outputText value="#{bundle.ViewCancionesLabel_artistaId}"/>
-                        <h:outputText value="#{cancionesController.selected.artistaId}" title="#{bundle.ViewCancionesTitle_artistaId}"/>
+                        <h:outputText value="#{cancionesController.selected.artistaId.nombre} #{cancionesController.selected.artistaId.apPaterno} #{cancionesController.selected.artistaId.apMaterno}" title="#{bundle.ViewCancionesTitle_artistaId}"/>
                         <h:outputText value="#{bundle.ViewCancionesLabel_generoId}"/>
-                        <h:outputText value="#{cancionesController.selected.generoId}" title="#{bundle.ViewCancionesTitle_generoId}"/>
+                        <h:outputText value="#{cancionesController.selected.generoId.nombre}" title="#{bundle.ViewCancionesTitle_generoId}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="CancionesViewDialog.hide()"/>
                 </h:panelGroup>

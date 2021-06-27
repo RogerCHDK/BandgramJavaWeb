@@ -51,4 +51,15 @@ public class TarjetaCreditoFacade extends AbstractFacade<TarjetaCredito> {
             return null;
     }
     
+    public List<TarjetaCredito> Consultar_usuario(int usuario){
+    Query consulta = em.createNamedQuery("TarjetaCredito.findByusuario", TarjetaCredito.class)
+            .setParameter("id", usuario);
+    List<TarjetaCredito> lista = consulta.getResultList(); 
+         
+    if(!lista.isEmpty())
+             return lista;
+         else
+            return null;
+    }
+    
 }

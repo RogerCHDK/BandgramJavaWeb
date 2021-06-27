@@ -17,6 +17,8 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import javax.servlet.http.HttpServletRequest;
+import modelo.Users;
 
 @Named("tarjetaCreditoController")
 @SessionScoped
@@ -26,6 +28,21 @@ public class TarjetaCreditoController implements Serializable {
     private control.TarjetaCreditoFacade ejbFacade;
     private List<TarjetaCredito> items = null;
     private List<TarjetaCredito> items_eliminados = null;
+    private List<TarjetaCredito> items_usuario= null;
+    private HttpServletRequest httpservlet;
+
+    public List<TarjetaCredito> getItems_usuario() {
+        if (items_usuario == null) {
+            httpservlet = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        Users usu = (Users) httpservlet.getSession().getAttribute("usuario");
+       items_usuario = ejbFacade.Consultar_usuario(usu.getId().intValue());
+        }
+        return items_usuario;
+    }
+
+    public void setItems_usuario(List<TarjetaCredito> items_usuario) {
+        this.items_usuario = items_usuario;
+    }
 
     public List<TarjetaCredito> getItems_eliminados() {
         if (items_eliminados == null) {
@@ -73,6 +90,18 @@ public class TarjetaCreditoController implements Serializable {
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
+    
+    public void create2() {
+        httpservlet = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        Users usu = (Users) httpservlet.getSession().getAttribute("usuario");
+        selected.setUserId(usu);
+        selected.setStatus(1);
+        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("TarjetaCreditoCreated"));
+        if (!JsfUtil.isValidationFailed()) {
+            items = null;    // Invalidate list of items to trigger re-query.
+        }
+        items_usuario = null;
+    }
 
     public void update() {
         persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("TarjetaCreditoUpdated"));
@@ -86,6 +115,7 @@ public class TarjetaCreditoController implements Serializable {
             selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
             items_eliminados = null;
+            items_usuario = null;
         }
     }
     
@@ -97,6 +127,7 @@ public class TarjetaCreditoController implements Serializable {
             selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
             items_eliminados = null;
+            items_usuario = null;
         }
     }
 

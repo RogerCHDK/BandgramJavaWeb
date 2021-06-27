@@ -14,6 +14,7 @@ import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -155,6 +156,19 @@ public class UsersController implements Serializable {
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
+    public void create2() {
+        selected.setStatus(1);
+        /*selected.setPaisId(miPais);
+        System.out.println("Entreeeeeeee");
+        System.out.println(selected.getNombre());
+        System.out.println("Pais");
+        System.out.println(miPais.getNombre());*/
+        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("UsersCreated"));
+        if (!JsfUtil.isValidationFailed()) {
+            items = null;    // Invalidate list of items to trigger re-query.
+        }
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Usuario registrado correctamente",null));
+    }
 
     public void update() {
         persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("UsersUpdated"));
@@ -199,6 +213,7 @@ public class UsersController implements Serializable {
     
     public List<Estados> buscarEstado(AjaxBehaviorEvent event){
         listestados.clear();
+        listmunicipios.clear();
         System.out.println(selected.getPaisId().getId().intValue());
         listestados = entidadesFacade.Buscar(selected.getPaisId().getId().intValue());
         FacesContext.getCurrentInstance().renderResponse();

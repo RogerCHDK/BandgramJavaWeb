@@ -70,13 +70,13 @@
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListComprasTitle_artistaId}"/>
                             </f:facet>
-                            <h:outputText value="#{item.artistaId}"/>
+                            <h:outputText value="#{item.artistaId.nombre} #{item.artistaId.apPaterno} #{item.artistaId.apMaterno}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListComprasTitle_userId}"/>
                             </f:facet>
-                            <h:outputText value="#{item.userId}"/>
+                            <h:outputText value="#{item.userId.nombre} #{item.userId.apPaterno} #{item.userId.apMaterno}"/>
                         </p:column>
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{comprasController.prepareCreate}" update=":ComprasCreateForm" oncomplete="PF('ComprasCreateDialog').show()"/>

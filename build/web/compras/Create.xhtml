@@ -15,11 +15,17 @@
                         <p:outputLabel value="#{bundle.CreateComprasLabel_fecha}" for="fecha" />
                         <p:calendar id="fecha" pattern="MM/dd/yyyy" value="#{comprasController.selected.fecha}" title="#{bundle.EditComprasTitle_fecha}" required="true" requiredMessage="#{bundle.EditComprasRequiredMessage_fecha}" showOn="button"/>
                         <p:outputLabel value="#{bundle.CreateComprasLabel_subtotal}" for="subtotal" />
-                        <p:inputText id="subtotal" value="#{comprasController.selected.subtotal}" title="#{bundle.CreateComprasTitle_subtotal}" required="true" requiredMessage="#{bundle.CreateComprasRequiredMessage_subtotal}"/>
+                        <p:inputText id="subtotal" value="#{comprasController.selected.subtotal}" title="#{bundle.CreateComprasTitle_subtotal}" required="true" requiredMessage="#{bundle.CreateComprasRequiredMessage_subtotal}">
+                        <f:validateLongRange minimum="0" maximum="10000"></f:validateLongRange>
+                         </p:inputText>
                         <p:outputLabel value="#{bundle.CreateComprasLabel_iva}" for="iva" />
-                        <p:inputText id="iva" value="#{comprasController.selected.iva}" title="#{bundle.CreateComprasTitle_iva}" required="true" requiredMessage="#{bundle.CreateComprasRequiredMessage_iva}"/>
+                        <p:inputText id="iva" value="#{comprasController.selected.iva}" title="#{bundle.CreateComprasTitle_iva}" required="true" requiredMessage="#{bundle.CreateComprasRequiredMessage_iva}">
+                        <f:validateLongRange minimum="0" maximum="20"></f:validateLongRange>
+                         </p:inputText>
                         <p:outputLabel value="#{bundle.CreateComprasLabel_total}" for="total" />
-                        <p:inputText id="total" value="#{comprasController.selected.total}" title="#{bundle.CreateComprasTitle_total}" required="true" requiredMessage="#{bundle.CreateComprasRequiredMessage_total}"/>
+                        <p:inputText id="total" value="#{comprasController.selected.total}" title="#{bundle.CreateComprasTitle_total}" required="true" requiredMessage="#{bundle.CreateComprasRequiredMessage_total}">
+                        <f:validateLongRange minimum="0" maximum="10000"></f:validateLongRange>
+                         </p:inputText>
                         <p:outputLabel value="#{bundle.CreateComprasLabel_artistaId}" for="artistaId" />
                         <p:selectOneMenu id="artistaId" value="#{comprasController.selected.artistaId}" required="true" requiredMessage="#{bundle.EditComprasRequiredMessage_artistaId}">
                             <f:selectItems value="#{artistasController.itemsAvailableSelectOne}"

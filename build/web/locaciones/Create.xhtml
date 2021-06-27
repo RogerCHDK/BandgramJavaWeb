@@ -18,23 +18,58 @@
                         <p:inputText id="colonia" value="#{locacionesController.selected.colonia}" title="#{bundle.CreateLocacionesTitle_colonia}" required="true" requiredMessage="#{bundle.CreateLocacionesRequiredMessage_colonia}"/>
                         <p:outputLabel value="#{bundle.CreateLocacionesLabel_nombre}" for="nombre" />
                         <p:inputText id="nombre" value="#{locacionesController.selected.nombre}" title="#{bundle.CreateLocacionesTitle_nombre}" required="true" requiredMessage="#{bundle.CreateLocacionesRequiredMessage_nombre}"/>
-                        <p:outputLabel value="#{bundle.CreateLocacionesLabel_estadoId}" for="estadoId" />
-                        <p:selectOneMenu id="estadoId" value="#{locacionesController.selected.estadoId}" required="true" requiredMessage="#{bundle.EditLocacionesRequiredMessage_estadoId}">
-                            <f:selectItems value="#{estadosController.itemsAvailableSelectOne}"
-                                           var="estadoIdItem"
-                                           itemValue="#{estadoIdItem}"/>
-                        </p:selectOneMenu>
+                       
                         <p:outputLabel value="#{bundle.CreateLocacionesLabel_paisId}" for="paisId" />
-                        <p:selectOneMenu id="paisId" value="#{locacionesController.selected.paisId}" required="true" requiredMessage="#{bundle.EditLocacionesRequiredMessage_paisId}">
-                            <f:selectItems value="#{paisesController.itemsAvailableSelectOne}"
-                                           var="paisIdItem"
-                                           itemValue="#{paisIdItem}"/>
+                        <p:selectOneMenu 
+                            id="paisId" 
+                            value="#{locacionesController.selected.paisId}" 
+                            filter="true"
+                            style="width: 350px"
+                            required="true" requiredMessage="#{bundle.EditLocacionesRequiredMessage_paisId}">
+                            <f:selectItems 
+                                value="#{locacionesController.listpaises}"
+                                var="paisIdItem"
+                                itemValue="#{paisIdItem}"/>
+                            <p:ajax
+                                event="change"
+                                update="estadoId"
+                                listener="#{locacionesController.buscarEstado}"
+                                rendered="true"
+                                />
                         </p:selectOneMenu>
+                        
+                        <p:outputLabel value="#{bundle.CreateLocacionesLabel_estadoId}" for="estadoId" />
+                        
+                        <p:selectOneMenu 
+                            id="estadoId" 
+                            value="#{locacionesController.selected.estadoId}" 
+                            filter="true"
+                            style="width: 350px"
+                            required="true" requiredMessage="#{bundle.EditLocacionesRequiredMessage_estadoId}">
+                            <f:selectItems 
+                                value="#{locacionesController.listestados}"
+                                var="estadoIdItem"
+                                itemValue="#{estadoIdItem}"/>
+                            <p:ajax
+                                event="change"
+                                update="municipioId"
+                                listener="#{locacionesController.buscarMunicipio}"
+                                rendered="true"
+                                />
+                        </p:selectOneMenu>
+                        
                         <p:outputLabel value="#{bundle.CreateLocacionesLabel_municipioId}" for="municipioId" />
-                        <p:selectOneMenu id="municipioId" value="#{locacionesController.selected.municipioId}" required="true" requiredMessage="#{bundle.EditLocacionesRequiredMessage_municipioId}">
-                            <f:selectItems value="#{municipiosController.itemsAvailableSelectOne}"
-                                           var="municipioIdItem"
-                                           itemValue="#{municipioIdItem}"/>
+                        
+                        <p:selectOneMenu 
+                            id="municipioId" 
+                            value="#{locacionesController.selected.municipioId}"
+                            filter="true"
+                            style="width: 350px"
+                            required="true" requiredMessage="#{bundle.EditLocacionesRequiredMessage_municipioId}">
+                            <f:selectItems 
+                                value="#{locacionesController.listmunicipios}"
+                                var="municipioIdItem"
+                                itemValue="#{municipioIdItem}"/>
                         </p:selectOneMenu>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{locacionesController.create}" value="#{bundle.Save}" update="display,:LocacionesListForm:datalist,:growl" oncomplete="handleSubmit(args,'LocacionesCreateDialog');"/>

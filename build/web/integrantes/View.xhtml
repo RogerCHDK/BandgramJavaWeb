@@ -17,9 +17,9 @@
                         <h:outputText value="#{bundle.ViewIntegrantesLabel_status}"/>
                         <h:outputText value="#{integrantesController.selected.status}" title="#{bundle.ViewIntegrantesTitle_status}"/>
                         <h:outputText value="#{bundle.ViewIntegrantesLabel_artistaId}"/>
-                        <h:outputText value="#{integrantesController.selected.artistaId}" title="#{bundle.ViewIntegrantesTitle_artistaId}"/>
+                        <h:outputText value="#{integrantesController.selected.artistaId.nombre}" title="#{bundle.ViewIntegrantesTitle_artistaId}"/>
                         <h:outputText value="#{bundle.ViewIntegrantesLabel_bandaId}"/>
-                        <h:outputText value="#{integrantesController.selected.bandaId}" title="#{bundle.ViewIntegrantesTitle_bandaId}"/>
+                        <h:outputText value="#{integrantesController.selected.bandaId.nombre}" title="#{bundle.ViewIntegrantesTitle_bandaId}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="IntegrantesViewDialog.hide()"/>
                 </h:panelGroup>

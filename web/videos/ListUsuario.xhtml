@@ -56,7 +56,21 @@
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListVideosTitle_artistaId}"/>
                             </f:facet>
-                            <h:outputText value="#{item.artistaId}"/>
+                            <h:outputText value="#{item.artistaId.nombre} #{item.artistaId.apPaterno} #{item.artistaId.apMaterno}"/>
+                        </p:column>
+                        
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Descargar"/>
+                            </f:facet>
+                            <h:link outcome="/resources#{item.ruta}" value="Descargar archivo" target="_blank"/>
+                        </p:column>
+                        
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Video"/>
+                            </f:facet>
+                            <video src="/bandgram/faces/javax.faces.resource#{item.ruta}" width="200px" controls="controls">Video no es soportado...</video>
                         </p:column>
                         <f:facet name="footer">
                             <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":VideosViewForm" oncomplete="PF('VideosViewDialog').show()" disabled="#{empty videosController.selected}"/>

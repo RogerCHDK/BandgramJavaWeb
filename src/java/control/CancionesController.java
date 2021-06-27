@@ -52,6 +52,24 @@ public class CancionesController implements Serializable {
     }
     private UploadedFile cancion;
     private String aux;
+    private UploadedFile imagen;
+    private String aux2;
+
+    public UploadedFile getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(UploadedFile imagen) {
+        this.imagen = imagen;
+    }
+
+    public String getAux2() {
+        return aux2;
+    }
+
+    public void setAux2(String aux2) {
+        this.aux2 = aux2;
+    }
 
     public UploadedFile getCancion() {
         return cancion;
@@ -110,6 +128,7 @@ public class CancionesController implements Serializable {
     public void create() {
         selected.setStatus(1);
         selected.setRuta(aux);
+      selected.setFoto(aux2);
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("CancionesCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
@@ -121,6 +140,7 @@ public class CancionesController implements Serializable {
         Artistas artista = (Artistas) httpservlet.getSession().getAttribute("artista");
         selected.setStatus(1);
         selected.setRuta(aux);
+          selected.setFoto(aux2);
         selected.setArtistaId(artista);
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("CancionesCreated"));
         items_artista = null;
@@ -163,24 +183,32 @@ public class CancionesController implements Serializable {
         if (SubirArchivo()) {
             create();
             aux = "";
+            aux2 = "";
         }
     }
     public void NuevoDocumento2(){
         if (SubirArchivo()) {
             create2();
             aux = "";
+            aux2 = "";
         }
     }
     
     public Boolean SubirArchivo(){
         try {
             aux = "resources/musica";
-            System.out.println("Ruta= "+aux);
+            aux2 = "resources/fotosmusica";
+            //System.out.println("Ruta= "+aux);
             File archivo = new  File(JsfUtil.getPath() + aux); //obtengo la ruta de mi proyecto
+            File archivo2 = new  File(JsfUtil.getPath() + aux2);
             if (!archivo.exists()) { //sino existe la carpeta donde se van a guardar las imagenes, la crea
                 archivo.mkdirs();
             }
+            if (!archivo2.exists()) { //sino existe la carpeta donde se van a guardar las imagenes, la crea
+                archivo2.mkdirs();
+            }
             copiar_archivo(getCancion().getFileName(), getCancion().getInputstream());
+            copiar_archivo2(getImagen().getFileName(), getImagen().getInputstream());
             return true;
         } catch (Exception e) {
             return false;
@@ -202,6 +230,30 @@ public class CancionesController implements Serializable {
             System.out.println("Ya se guardo");
             aux = aux.substring(9);
             System.out.println("Ruta en la base "+ aux);
+            in.close();
+            out.flush();
+            out.close();
+            
+        } catch (Exception e) {
+            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("No se guardo"));
+        }
+    }
+    
+    public void copiar_archivo2(String nombre_archivo, InputStream in){
+        try {
+            aux2 = aux2 + "/" +nombre_archivo;
+            System.out.println("se va a guardar");
+            System.out.println("Ruta ok: "+aux2);
+            System.out.println("Ruta real :"+JsfUtil.getPath() + aux2);
+            OutputStream out = new FileOutputStream(new File(JsfUtil.getPath() + aux2));
+            int read = 0;
+            byte[] bytes = new byte[1024];
+            while((read = in.read(bytes)) != -1){
+                out.write(bytes, 0, read);
+            }
+            System.out.println("Ya se guardo");
+            aux2 = aux2.substring(9);
+            System.out.println("Ruta en la base "+ aux2);
             in.close();
             out.flush();
             out.close();

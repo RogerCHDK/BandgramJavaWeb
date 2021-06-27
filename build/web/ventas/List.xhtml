@@ -70,13 +70,13 @@
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListVentasTitle_userId}"/>
                             </f:facet>
-                            <h:outputText value="#{item.userId}"/>
+                            <h:outputText value="#{item.userId.nombre}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListVentasTitle_tarjetaCreditoId}"/>
                             </f:facet>
-                            <h:outputText value="#{item.tarjetaCreditoId}"/>
+                            <h:outputText value="#{item.tarjetaCreditoId.numero}"/>
                         </p:column>
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{ventasController.prepareCreate}" update=":VentasCreateForm" oncomplete="PF('VentasCreateDialog').show()"/>

@@ -12,13 +12,9 @@
             <h:form id="CategoriasProductosEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{categoriasProductosController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditCategoriasProductosLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{categoriasProductosController.selected.id}" title="#{bundle.EditCategoriasProductosTitle_id}" required="true" requiredMessage="#{bundle.EditCategoriasProductosRequiredMessage_id}"/>
                         <p:outputLabel value="#{bundle.EditCategoriasProductosLabel_nombre}" for="nombre" />
                         <p:inputText id="nombre" value="#{categoriasProductosController.selected.nombre}" title="#{bundle.EditCategoriasProductosTitle_nombre}" required="true" requiredMessage="#{bundle.EditCategoriasProductosRequiredMessage_nombre}"/>
-                        <p:outputLabel value="#{bundle.EditCategoriasProductosLabel_status}" for="status" />
-                        <p:inputText id="status" value="#{categoriasProductosController.selected.status}" title="#{bundle.EditCategoriasProductosTitle_status}" required="true" requiredMessage="#{bundle.EditCategoriasProductosRequiredMessage_status}"/>
-                    </p:panelGrid>
+                       </p:panelGrid>
                     <p:commandButton actionListener="#{categoriasProductosController.update}" value="#{bundle.Save}" update="display,:CategoriasProductosListForm:datalist,:growl" oncomplete="handleSubmit(args, 'CategoriasProductosEditDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="CategoriasProductosEditDialog.hide()"/>
                 </h:panelGroup>

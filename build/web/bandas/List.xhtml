@@ -62,13 +62,27 @@
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListBandasTitle_artistaId}"/>
                             </f:facet>
-                            <h:outputText value="#{item.artistaId}"/>
+                            <h:outputText value="#{item.artistaId.nombre} #{item.artistaId.apPaterno} #{item.artistaId.apMaterno}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListBandasTitle_generoId}"/>
                             </f:facet>
-                            <h:outputText value="#{item.generoId}"/>
+                            <h:outputText value="#{item.generoId.nombre}"/>
+                        </p:column>
+                        
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Foto"/>
+                            </f:facet>
+                            <p:graphicImage name="#{item.foto}" width="250px"/>
+                        </p:column>
+                        
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="desc"/>
+                            </f:facet>
+                            <h:link outcome="/resources#{item.foto}" value="Descargar archivo" target="_blank"/>
                         </p:column>
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{bandasController.prepareCreate}" update=":BandasCreateForm" oncomplete="PF('BandasCreateDialog').show()"/>

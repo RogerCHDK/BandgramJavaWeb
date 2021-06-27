@@ -13,11 +13,17 @@
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{detalleCompraController.selected != null}">
                         <p:outputLabel value="#{bundle.CreateDetalleCompraLabel_cantidad}" for="cantidad" />
-                        <p:inputText id="cantidad" value="#{detalleCompraController.selected.cantidad}" title="#{bundle.CreateDetalleCompraTitle_cantidad}" required="true" requiredMessage="#{bundle.CreateDetalleCompraRequiredMessage_cantidad}"/>
+                        <p:inputText id="cantidad" value="#{detalleCompraController.selected.cantidad}" title="#{bundle.CreateDetalleCompraTitle_cantidad}" required="true" requiredMessage="#{bundle.CreateDetalleCompraRequiredMessage_cantidad}">
+                            <f:validateLongRange minimum="1" maximum="10000"></f:validateLongRange>
+                         </p:inputText>
                         <p:outputLabel value="#{bundle.CreateDetalleCompraLabel_precioCompra}" for="precioCompra" />
-                        <p:inputText id="precioCompra" value="#{detalleCompraController.selected.precioCompra}" title="#{bundle.CreateDetalleCompraTitle_precioCompra}" required="true" requiredMessage="#{bundle.CreateDetalleCompraRequiredMessage_precioCompra}"/>
+                        <p:inputText id="precioCompra" value="#{detalleCompraController.selected.precioCompra}" title="#{bundle.CreateDetalleCompraTitle_precioCompra}" required="true" requiredMessage="#{bundle.CreateDetalleCompraRequiredMessage_precioCompra}">
+                            <f:validateLongRange minimum="0" maximum="10000"></f:validateLongRange>
+                         </p:inputText>
                         <p:outputLabel value="#{bundle.CreateDetalleCompraLabel_precioVenta}" for="precioVenta" />
-                        <p:inputText id="precioVenta" value="#{detalleCompraController.selected.precioVenta}" title="#{bundle.CreateDetalleCompraTitle_precioVenta}" required="true" requiredMessage="#{bundle.CreateDetalleCompraRequiredMessage_precioVenta}"/>
+                        <p:inputText id="precioVenta" value="#{detalleCompraController.selected.precioVenta}" title="#{bundle.CreateDetalleCompraTitle_precioVenta}" required="true" requiredMessage="#{bundle.CreateDetalleCompraRequiredMessage_precioVenta}">
+                            <f:validateLongRange minimum="0" maximum="10000"></f:validateLongRange>
+                         </p:inputText>
                         <p:outputLabel value="#{bundle.CreateDetalleCompraLabel_compraId}" for="compraId" />
                         <p:selectOneMenu id="compraId" value="#{detalleCompraController.selected.compraId}" required="true" requiredMessage="#{bundle.EditDetalleCompraRequiredMessage_compraId}">
                             <f:selectItems value="#{comprasController.itemsAvailableSelectOne}"

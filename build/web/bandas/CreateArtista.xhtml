@@ -9,15 +9,17 @@
     <ui:composition>
 
         <p:dialog id="BandasCreateDlg" widgetVar="BandasCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateBandasTitle}">
-            <h:form id="BandasCreateForm">
+            <h:form id="BandasCreateForm" enctype="multipart/form-data">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{bandasController.selected != null}">
                         <p:outputLabel value="#{bundle.CreateBandasLabel_nombre}" for="nombre" />
                         <p:inputText id="nombre" value="#{bandasController.selected.nombre}" title="#{bundle.CreateBandasTitle_nombre}" required="true" requiredMessage="#{bundle.CreateBandasRequiredMessage_nombre}"/>
                         <p:outputLabel value="#{bundle.CreateBandasLabel_biografia}" for="biografia" />
                         <p:inputTextarea rows="4" cols="30" id="biografia" value="#{bandasController.selected.biografia}" title="#{bundle.CreateBandasTitle_biografia}" required="true" requiredMessage="#{bundle.CreateBandasRequiredMessage_biografia}"/>
+                        
                         <p:outputLabel value="#{bundle.CreateBandasLabel_foto}" for="foto" />
-                        <p:inputText id="foto" value="#{bandasController.selected.foto}" title="#{bundle.CreateBandasTitle_foto}" />
+                        
+                        <p:fileUpload id="foto" value="#{bandasController.imagen}" mode="simple" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" required="true" requiredMessage="#{bundle.CreateBandasRequiredMessage_nombre}"/>
                         
                         <p:outputLabel value="#{bundle.CreateBandasLabel_generoId}" for="generoId" />
                         <p:selectOneMenu id="generoId" value="#{bandasController.selected.generoId}" required="true" requiredMessage="#{bundle.EditBandasRequiredMessage_generoId}">
@@ -26,7 +28,14 @@
                                            itemValue="#{generoIdItem}"/>
                         </p:selectOneMenu>
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{bandasController.create2}" value="#{bundle.Save}" update="display,:BandasListForm:datalist,:growl" oncomplete="handleSubmit(args,'BandasCreateDialog');"/>
+                    <p:inputText id="aux" value="#{bandasController.aux}" title="aux" type="hidden"/>
+                    <p:commandButton
+                        value="Submit"
+                        action="#{bandasController.NuevoDocumento2()}"
+                        ajax="false"
+                        update="display,:BandasListForm:datalist,:growl"
+                        />
+                    
                     <p:commandButton value="#{bundle.Cancel}" onclick="BandasCreateDialog.hide()"/>
                 </h:panelGroup>
             </h:form>

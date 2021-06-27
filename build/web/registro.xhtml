@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+     <ui:composition template="/template/templateLogin.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="Registro"></h:outputText>
+        </ui:define>
+
+         <ui:define name="body">
+             <div class="container">
+                 <h:form id="LoginForm">
+                     <br/><br/><br/><br/>
+                     <h:panelGrid columns="4"  rendered="#{usersController.selected != null}">
+                        
+                        <p:outputLabel value="#{bundle.CreateUsersLabel_nombre}" for="nombre" />
+                        <p:inputText id="nombre" value="#{usersController.selected.nombre}" title="#{bundle.CreateUsersTitle_nombre}" required="true" requiredMessage="#{bundle.CreateUsersRequiredMessage_nombre}"/>
+                       
+                        <p:outputLabel value="#{bundle.CreateUsersLabel_apPaterno}" for="apPaterno" />
+                        <p:inputText id="apPaterno" value="#{usersController.selected.apPaterno}" title="#{bundle.CreateUsersTitle_apPaterno}" required="true" requiredMessage="#{bundle.CreateUsersRequiredMessage_apPaterno}"/>
+                        <p:outputLabel value="#{bundle.CreateUsersLabel_apMaterno}" for="apMaterno" />
+                        <p:inputText id="apMaterno" value="#{usersController.selected.apMaterno}" title="#{bundle.CreateUsersTitle_apMaterno}" required="true" requiredMessage="#{bundle.CreateUsersRequiredMessage_apMaterno}"/>
+                        <p:outputLabel value="#{bundle.CreateUsersLabel_fechaNacimiento}" for="fechaNacimiento" />
+                        <p:calendar id="fechaNacimiento" pattern="MM/dd/yyyy" value="#{usersController.selected.fechaNacimiento}" title="#{bundle.EditUsersTitle_fechaNacimiento}" required="true" requiredMessage="#{bundle.EditUsersRequiredMessage_fechaNacimiento}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateUsersLabel_genero}" for="genero" />
+                        <p:inputText id="genero" value="#{usersController.selected.genero}" title="#{bundle.CreateUsersTitle_genero}" required="true" requiredMessage="#{bundle.CreateUsersRequiredMessage_genero}"/>
+                        <p:outputLabel value="#{bundle.CreateUsersLabel_calle}" for="calle" />
+                        <p:inputText id="calle" value="#{usersController.selected.calle}" title="#{bundle.CreateUsersTitle_calle}" />
+                        <p:outputLabel value="#{bundle.CreateUsersLabel_colonia}" for="colonia" />
+                        <p:inputText id="colonia" value="#{usersController.selected.colonia}" title="#{bundle.CreateUsersTitle_colonia}" />
+                        <p:outputLabel value="#{bundle.CreateUsersLabel_tipoUsuario}" for="tipoUsuario" />
+                        <p:selectOneMenu id="tipoUsuario" value="#{usersController.selected.tipoUsuario}" required="true" requiredMessage="#{bundle.EditUsersRequiredMessage_tipoUsuario}">
+                            <f:selectItems value="#{tiposUsuariosController.itemsAvailableSelectOne}"
+                                           var="tipoUsuarioItem"
+                                           itemValue="#{tipoUsuarioItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateUsersLabel_email}" for="email" />
+                        <p:inputText id="email" value="#{usersController.selected.email}" title="#{bundle.CreateUsersTitle_email}" required="true" requiredMessage="#{bundle.CreateUsersRequiredMessage_email}">
+                            <f:ajax
+                                event="keyup"
+                                execute="email"
+                                render="mensaje"
+                                listener="#{usersController.buscarCorreo}"
+                                />
+                            </p:inputText>
+                        <p:outputLabel value="#{usersController.mensaje}" id="mensaje" style="color: red"/>
+                             <p:inputText  type="hidden"/>
+                        <p:outputLabel value="#{bundle.CreateUsersLabel_password}" for="password" />
+                        <p:inputText id="password" value="#{usersController.selected.password}" title="#{bundle.CreateUsersTitle_password}" required="true" requiredMessage="#{bundle.CreateUsersRequiredMessage_password}"/>
+                        
+                        <p:outputLabel value="#{bundle.CreateUsersLabel_paisId}" for="paisId" />
+                        <p:selectOneMenu 
+                            id="paisId" 
+                            value="#{usersController.selected.paisId}" 
+                            filter="true"
+                            style="width: 150px"
+                            required="true" requiredMessage="#{bundle.EditUsersRequiredMessage_paisId}">
+                            <f:selectItems 
+                                value="#{usersController.listpaises}"
+                                var="paisIdItem"
+                                itemValue="#{paisIdItem}"/>
+                            <p:ajax
+                                event="change"
+                                update="estadoId"
+                                listener="#{usersController.buscarEstado}"
+                                rendered="true"
+                                />
+                        </p:selectOneMenu>
+                        
+                   
+                        
+
+                        
+                        <p:outputLabel value="#{bundle.CreateUsersLabel_estadoId}" for="estadoId" />
+                        <p:selectOneMenu 
+                            id="estadoId" 
+                            value="#{usersController.selected.estadoId}" 
+                            filter="true"
+                            style="width: 200px"
+                            required="true" requiredMessage="#{bundle.EditUsersRequiredMessage_estadoId}">
+                            <f:selectItems 
+                                value="#{usersController.listestados}"
+                                var="estadoIdItem"
+                                itemValue="#{estadoIdItem}"/>
+                            <p:ajax
+                                event="change"
+                                update="municipioId"
+                                listener="#{usersController.buscarMunicipio}"
+                                rendered="true"
+                                />
+                        </p:selectOneMenu>
+
+
+                        <p:outputLabel value="#{bundle.CreateUsersLabel_municipioId}" for="municipioId" />
+                        <p:selectOneMenu 
+                            id="municipioId" 
+                            value="#{usersController.selected.municipioId}"
+                            filter="true"
+                            style="width: 150px"
+                            required="true" requiredMessage="#{bundle.EditUsersRequiredMessage_municipioId}">
+                            <f:selectItems 
+                                value="#{usersController.listmunicipios}"
+                                var="municipioIdItem"
+                                itemValue="#{municipioIdItem}"/>
+                        </p:selectOneMenu>
+                        
+                        
+                             
+                         </h:panelGrid>
+                     <p:commandButton 
+                         actionListener="#{usersController.create2}" 
+                         value="Registrar" 
+                         update=":growl"
+                         />
+                     <br/><br/>
+                     <p:separator/>
+                 </h:form>
+             </div>
+         </ui:define>
+    </ui:composition>
+</html>

@@ -15,11 +15,17 @@
                         <p:outputLabel value="#{bundle.CreateVentasLabel_fecha}" for="fecha" />
                         <p:calendar id="fecha" pattern="MM/dd/yyyy" value="#{ventasController.selected.fecha}" title="#{bundle.EditVentasTitle_fecha}" required="true" requiredMessage="#{bundle.EditVentasRequiredMessage_fecha}" showOn="button"/>
                         <p:outputLabel value="#{bundle.CreateVentasLabel_subtotal}" for="subtotal" />
-                        <p:inputText id="subtotal" value="#{ventasController.selected.subtotal}" title="#{bundle.CreateVentasTitle_subtotal}" required="true" requiredMessage="#{bundle.CreateVentasRequiredMessage_subtotal}"/>
+                        <p:inputText id="subtotal" value="#{ventasController.selected.subtotal}" title="#{bundle.CreateVentasTitle_subtotal}" required="true" requiredMessage="#{bundle.CreateVentasRequiredMessage_subtotal}">
+                            <f:validateLongRange minimum="0" maximum="10000"></f:validateLongRange>
+                         </p:inputText>
                         <p:outputLabel value="#{bundle.CreateVentasLabel_iva}" for="iva" />
-                        <p:inputText id="iva" value="#{ventasController.selected.iva}" title="#{bundle.CreateVentasTitle_iva}" required="true" requiredMessage="#{bundle.CreateVentasRequiredMessage_iva}"/>
+                        <p:inputText id="iva" value="#{ventasController.selected.iva}" title="#{bundle.CreateVentasTitle_iva}" required="true" requiredMessage="#{bundle.CreateVentasRequiredMessage_iva}">
+                            <f:validateLongRange minimum="0" maximum="20"></f:validateLongRange>
+                         </p:inputText>
                         <p:outputLabel value="#{bundle.CreateVentasLabel_total}" for="total" />
-                        <p:inputText id="total" value="#{ventasController.selected.total}" title="#{bundle.CreateVentasTitle_total}" required="true" requiredMessage="#{bundle.CreateVentasRequiredMessage_total}"/>
+                        <p:inputText id="total" value="#{ventasController.selected.total}" title="#{bundle.CreateVentasTitle_total}" required="true" requiredMessage="#{bundle.CreateVentasRequiredMessage_total}">
+                            <f:validateLongRange minimum="0" maximum="10000"></f:validateLongRange>
+                         </p:inputText>
                         <p:outputLabel value="#{bundle.CreateVentasLabel_userId}" for="userId" />
                         <p:selectOneMenu id="userId" value="#{ventasController.selected.userId}" required="true" requiredMessage="#{bundle.EditVentasRequiredMessage_userId}">
                             <f:selectItems value="#{usersController.itemsAvailableSelectOne}"

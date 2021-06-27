@@ -20,8 +20,10 @@
                         
                         <p:outputLabel value="#{bundle.CreateCancionesLabel_album}" for="album" />
                         <p:inputText id="album" value="#{cancionesController.selected.album}" title="#{bundle.CreateCancionesTitle_album}" />
+                        
+                        
                         <p:outputLabel value="#{bundle.CreateCancionesLabel_foto}" for="foto" />
-                        <p:inputText id="foto" value="#{cancionesController.selected.foto}" title="#{bundle.CreateCancionesTitle_foto}" />
+                        <p:fileUpload id="foto" value="#{cancionesController.imagen}" required="true" mode="simple" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" requiredMessage="#{bundle.CreateCancionesRequiredMessage_ruta}"/>
                        
                         
                         <p:outputLabel value="#{bundle.CreateCancionesLabel_generoId}" for="generoId" />

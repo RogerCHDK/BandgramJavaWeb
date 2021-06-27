@@ -50,13 +50,13 @@
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListBoletosTitle_eventoId}"/>
                             </f:facet>
-                            <h:outputText value="#{item.eventoId}"/>
+                            <h:outputText value="#{item.eventoId.descripcion}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListBoletosTitle_zonaId}"/>
                             </f:facet>
-                            <h:outputText value="#{item.zonaId}"/>
+                            <h:outputText value="#{item.zonaId.nombre}"/>
                         </p:column>
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{boletosController.prepareCreate}" update=":BoletosCreateForm" oncomplete="PF('BoletosCreateDialog').show()"/>

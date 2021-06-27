@@ -23,7 +23,7 @@
                         <h:outputText value="#{bundle.ViewDetalleVentaLabel_ventaId}"/>
                         <h:outputText value="#{detalleVentaController.selected.ventaId}" title="#{bundle.ViewDetalleVentaTitle_ventaId}"/>
                         <h:outputText value="#{bundle.ViewDetalleVentaLabel_productoId}"/>
-                        <h:outputText value="#{detalleVentaController.selected.productoId}" title="#{bundle.ViewDetalleVentaTitle_productoId}"/>
+                        <h:outputText value="#{detalleVentaController.selected.productoId.nombre}" title="#{bundle.ViewDetalleVentaTitle_productoId}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="DetalleVentaViewDialog.hide()"/>
                 </h:panelGroup>

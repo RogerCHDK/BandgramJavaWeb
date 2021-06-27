@@ -3,6 +3,10 @@ package control;
 import modelo.Videos;
 import control.util.JsfUtil;
 import control.util.JsfUtil.PersistAction;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
 
 import java.io.Serializable;
 import java.util.List;
@@ -13,12 +17,14 @@ import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 import javax.servlet.http.HttpServletRequest;
 import modelo.Artistas;
+import org.primefaces.model.UploadedFile;
 
 @Named("videosController")
 @SessionScoped
@@ -30,6 +36,24 @@ public class VideosController implements Serializable {
     private List<Videos> items_eliminados = null;
     private List<Videos> items_artista = null;
     private HttpServletRequest httpservlet;
+    private UploadedFile video;
+
+    public UploadedFile getVideo() {
+        return video;
+    }
+
+    public void setVideo(UploadedFile video) {
+        this.video = video;
+    }
+
+    public String getAux() {
+        return aux;
+    }
+
+    public void setAux(String aux) {
+        this.aux = aux;
+    }
+    private String aux;
 
     public List<Videos> getItems_artista() {
         if (items_artista == null) {
@@ -96,6 +120,7 @@ public class VideosController implements Serializable {
         Artistas artista = (Artistas) httpservlet.getSession().getAttribute("artista");
         selected.setStatus(1);
         selected.setArtistaId(artista);
+        selected.setRuta(aux);
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("VideosCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
@@ -128,6 +153,59 @@ public class VideosController implements Serializable {
             items = null;    // Invalidate list of items to trigger re-query.
             items_eliminados = null;
             items_artista = null;
+        }
+    }
+    
+    public void NuevoDocumento(){
+        if (SubirArchivo()) {
+            create();
+            aux = "";
+        }
+    }
+    
+    public void NuevoDocumento2(){
+        if (SubirArchivo()) {
+            create2();
+            aux = "";
+        }
+    }
+    
+    public Boolean SubirArchivo(){
+        try {
+            aux = "resources/videos";
+            System.out.println("Ruta= "+aux);
+            File archivo = new  File(JsfUtil.getPath() + aux); //obtengo la ruta de mi proyecto
+            if (!archivo.exists()) { //sino existe la carpeta donde se van a guardar las imagenes, la crea
+                archivo.mkdirs();
+            }
+            copiar_archivo(getVideo().getFileName(), getVideo().getInputstream());
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+    
+    public void copiar_archivo(String nombre_archivo, InputStream in){
+        try {
+            aux = aux + "/" +nombre_archivo;
+            System.out.println("se va a guardar");
+            System.out.println("Ruta ok: "+aux);
+            System.out.println("Ruta real :"+JsfUtil.getPath() + aux);
+            OutputStream out = new FileOutputStream(new File(JsfUtil.getPath() + aux));
+            int read = 0;
+            byte[] bytes = new byte[1024];
+            while((read = in.read(bytes)) != -1){
+                out.write(bytes, 0, read);
+            }
+            System.out.println("Ya se guardo");
+            aux = aux.substring(9);
+            System.out.println("Ruta en la base "+ aux);
+            in.close();
+            out.flush();
+            out.close();
+            
+        } catch (Exception e) {
+            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("No se guardo"));
         }
     }
 

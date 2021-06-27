@@ -44,13 +44,13 @@
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListIntegrantesTitle_artistaId}"/>
                             </f:facet>
-                            <h:outputText value="#{item.artistaId}"/>
+                            <h:outputText value="#{item.artistaId.nombre} #{item.artistaId.apPaterno} #{item.artistaId.apMaterno}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListIntegrantesTitle_bandaId}"/>
                             </f:facet>
-                            <h:outputText value="#{item.bandaId}"/>
+                            <h:outputText value="#{item.bandaId.nombre}"/>
                         </p:column>
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{integrantesController.prepareCreate}" update=":IntegrantesCreateForm" oncomplete="PF('IntegrantesCreateDialog').show()"/>

@@ -27,9 +27,9 @@
                         <h:outputText value="#{bundle.ViewVentasLabel_status}"/>
                         <h:outputText value="#{ventasController.selected.status}" title="#{bundle.ViewVentasTitle_status}"/>
                         <h:outputText value="#{bundle.ViewVentasLabel_userId}"/>
-                        <h:outputText value="#{ventasController.selected.userId}" title="#{bundle.ViewVentasTitle_userId}"/>
+                        <h:outputText value="#{ventasController.selected.userId.nombre}" title="#{bundle.ViewVentasTitle_userId}"/>
                         <h:outputText value="#{bundle.ViewVentasLabel_tarjetaCreditoId}"/>
-                        <h:outputText value="#{ventasController.selected.tarjetaCreditoId}" title="#{bundle.ViewVentasTitle_tarjetaCreditoId}"/>
+                        <h:outputText value="#{ventasController.selected.tarjetaCreditoId.numero}" title="#{bundle.ViewVentasTitle_tarjetaCreditoId}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="VentasViewDialog.hide()"/>
                 </h:panelGroup>

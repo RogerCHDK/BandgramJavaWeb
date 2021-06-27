@@ -12,12 +12,8 @@
             <h:form id="FotosEventoEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{fotosEventoController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditFotosEventoLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{fotosEventoController.selected.id}" title="#{bundle.EditFotosEventoTitle_id}" required="true" requiredMessage="#{bundle.EditFotosEventoRequiredMessage_id}"/>
-                        <p:outputLabel value="#{bundle.EditFotosEventoLabel_foto}" for="foto" />
+                       <p:outputLabel value="#{bundle.EditFotosEventoLabel_foto}" for="foto" />
                         <p:inputText id="foto" value="#{fotosEventoController.selected.foto}" title="#{bundle.EditFotosEventoTitle_foto}" required="true" requiredMessage="#{bundle.EditFotosEventoRequiredMessage_foto}"/>
-                        <p:outputLabel value="#{bundle.EditFotosEventoLabel_status}" for="status" />
-                        <p:inputText id="status" value="#{fotosEventoController.selected.status}" title="#{bundle.EditFotosEventoTitle_status}" required="true" requiredMessage="#{bundle.EditFotosEventoRequiredMessage_status}"/>
                         <p:outputLabel value="#{bundle.EditFotosEventoLabel_eventoId}" for="eventoId" />
                         <p:selectOneMenu id="eventoId" value="#{fotosEventoController.selected.eventoId}" required="true" requiredMessage="#{bundle.EditFotosEventoRequiredMessage_eventoId}">
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>

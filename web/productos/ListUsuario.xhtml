@@ -68,13 +68,13 @@
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListProductosTitle_artistaId}"/>
                             </f:facet>
-                            <h:outputText value="#{item.artistaId}"/>
+                            <h:outputText value="#{item.artistaId.nombre} #{item.artistaId.apPaterno} #{item.artistaId.apMaterno}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListProductosTitle_categoriaId}"/>
                             </f:facet>
-                            <h:outputText value="#{item.categoriaId}"/>
+                            <h:outputText value="#{item.categoriaId.nombre}"/>
                         </p:column>
                         <f:facet name="footer">
                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":ProductosViewForm" oncomplete="PF('ProductosViewDialog').show()" disabled="#{empty productosController.selected}"/>

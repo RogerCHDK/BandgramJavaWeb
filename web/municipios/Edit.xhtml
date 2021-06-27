@@ -12,12 +12,8 @@
             <h:form id="MunicipiosEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{municipiosController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditMunicipiosLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{municipiosController.selected.id}" title="#{bundle.EditMunicipiosTitle_id}" required="true" requiredMessage="#{bundle.EditMunicipiosRequiredMessage_id}"/>
                         <p:outputLabel value="#{bundle.EditMunicipiosLabel_nombre}" for="nombre" />
                         <p:inputText id="nombre" value="#{municipiosController.selected.nombre}" title="#{bundle.EditMunicipiosTitle_nombre}" required="true" requiredMessage="#{bundle.EditMunicipiosRequiredMessage_nombre}"/>
-                        <p:outputLabel value="#{bundle.EditMunicipiosLabel_status}" for="status" />
-                        <p:inputText id="status" value="#{municipiosController.selected.status}" title="#{bundle.EditMunicipiosTitle_status}" required="true" requiredMessage="#{bundle.EditMunicipiosRequiredMessage_status}"/>
                         <p:outputLabel value="#{bundle.EditMunicipiosLabel_estadoId}" for="estadoId" />
                         <p:selectOneMenu id="estadoId" value="#{municipiosController.selected.estadoId}" required="true" requiredMessage="#{bundle.EditMunicipiosRequiredMessage_estadoId}">
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>

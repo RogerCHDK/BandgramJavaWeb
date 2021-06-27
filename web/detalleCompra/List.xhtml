@@ -62,13 +62,13 @@
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListDetalleCompraTitle_compraId}"/>
                             </f:facet>
-                            <h:outputText value="#{item.compraId}"/>
+                            <h:outputText value="#{item.compraId.fecha}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListDetalleCompraTitle_productoId}"/>
                             </f:facet>
-                            <h:outputText value="#{item.productoId}"/>
+                            <h:outputText value="#{item.productoId.nombre}"/>
                         </p:column>
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{detalleCompraController.prepareCreate}" update=":DetalleCompraCreateForm" oncomplete="PF('DetalleCompraCreateDialog').show()"/>

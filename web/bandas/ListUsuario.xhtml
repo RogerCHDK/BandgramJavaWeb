@@ -62,13 +62,13 @@
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListBandasTitle_artistaId}"/>
                             </f:facet>
-                            <h:outputText value="#{item.artistaId}"/>
+                            <h:outputText value="#{item.artistaId.nombre} #{item.artistaId.apPaterno} #{item.artistaId.apMaterno}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListBandasTitle_generoId}"/>
                             </f:facet>
-                            <h:outputText value="#{item.generoId}"/>
+                            <h:outputText value="#{item.generoId.nombre}"/>
                         </p:column>
                         <f:facet name="footer">
                             <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":BandasViewForm" oncomplete="PF('BandasViewDialog').show()" disabled="#{empty bandasController.selected}"/>

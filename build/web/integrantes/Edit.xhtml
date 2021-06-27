@@ -12,10 +12,6 @@
             <h:form id="IntegrantesEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{integrantesController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditIntegrantesLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{integrantesController.selected.id}" title="#{bundle.EditIntegrantesTitle_id}" required="true" requiredMessage="#{bundle.EditIntegrantesRequiredMessage_id}"/>
-                        <p:outputLabel value="#{bundle.EditIntegrantesLabel_status}" for="status" />
-                        <p:inputText id="status" value="#{integrantesController.selected.status}" title="#{bundle.EditIntegrantesTitle_status}" required="true" requiredMessage="#{bundle.EditIntegrantesRequiredMessage_status}"/>
                         <p:outputLabel value="#{bundle.EditIntegrantesLabel_artistaId}" for="artistaId" />
                         <p:selectOneMenu id="artistaId" value="#{integrantesController.selected.artistaId}" required="true" requiredMessage="#{bundle.EditIntegrantesRequiredMessage_artistaId}">
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>

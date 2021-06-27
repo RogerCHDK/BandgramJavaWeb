@@ -15,12 +15,15 @@
                         <p:outputLabel value="#{bundle.CreateProductosLabel_nombre}" for="nombre" />
                         <p:inputText id="nombre" value="#{productosController.selected.nombre}" title="#{bundle.CreateProductosTitle_nombre}" required="true" requiredMessage="#{bundle.CreateProductosRequiredMessage_nombre}"/>
                         <p:outputLabel value="#{bundle.CreateProductosLabel_precio}" for="precio" />
-                        <p:inputText id="precio" value="#{productosController.selected.precio}" title="#{bundle.CreateProductosTitle_precio}" required="true" requiredMessage="#{bundle.CreateProductosRequiredMessage_precio}"/>
+                        <p:inputText id="precio" value="#{productosController.selected.precio}" title="#{bundle.CreateProductosTitle_precio}" required="true" requiredMessage="#{bundle.CreateProductosRequiredMessage_precio}">
+                        <f:validateLongRange minimum="0" maximum="10000"></f:validateLongRange>
+                         </p:inputText>
                         <p:outputLabel value="#{bundle.CreateProductosLabel_descripcion}" for="descripcion" />
                         <p:inputTextarea rows="4" cols="30" id="descripcion" value="#{productosController.selected.descripcion}" title="#{bundle.CreateProductosTitle_descripcion}" required="true" requiredMessage="#{bundle.CreateProductosRequiredMessage_descripcion}"/>
                         <p:outputLabel value="#{bundle.CreateProductosLabel_stock}" for="stock" />
-                        <p:inputText id="stock" value="#{productosController.selected.stock}" title="#{bundle.CreateProductosTitle_stock}" />
-                        
+                        <p:inputText id="stock" value="#{productosController.selected.stock}" title="#{bundle.CreateProductosTitle_stock}">
+                        <f:validateLongRange minimum="0" maximum="10000"></f:validateLongRange>
+                         </p:inputText>
                         <p:outputLabel value="#{bundle.CreateProductosLabel_categoriaId}" for="categoriaId" />
                         <p:selectOneMenu id="categoriaId" value="#{productosController.selected.categoriaId}" required="true" requiredMessage="#{bundle.EditProductosRequiredMessage_categoriaId}">
                             <f:selectItems value="#{categoriasProductosController.itemsAvailableSelectOne}"

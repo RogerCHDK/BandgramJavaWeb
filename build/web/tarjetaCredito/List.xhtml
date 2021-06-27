@@ -68,7 +68,7 @@
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListTarjetaCreditoTitle_userId}"/>
                             </f:facet>
-                            <h:outputText value="#{item.userId}"/>
+                            <h:outputText value="#{item.userId.nombre} #{item.userId.apPaterno} #{item.userId.apMaterno}"/>
                         </p:column>
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{tarjetaCreditoController.prepareCreate}" update=":TarjetaCreditoCreateForm" oncomplete="PF('TarjetaCreditoCreateDialog').show()"/>

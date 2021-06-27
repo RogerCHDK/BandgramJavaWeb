@@ -74,13 +74,13 @@
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListEventosTitle_locacionId}"/>
                             </f:facet>
-                            <h:outputText value="#{item.locacionId}"/>
+                            <h:outputText value="#{item.locacionId.nombre}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListEventosTitle_artistaId}"/>
                             </f:facet>
-                            <h:outputText value="#{item.artistaId}"/>
+                            <h:outputText value="#{item.artistaId.nombre} #{item.artistaId.apPaterno} #{item.artistaId.apMaterno}"/>
                         </p:column>
                         <f:facet name="footer">
                             <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":EventosViewForm" oncomplete="PF('EventosViewDialog').show()" disabled="#{empty eventosController.selected}"/>

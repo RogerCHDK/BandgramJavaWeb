@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.inject.Named;
@@ -17,16 +18,54 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import javax.faces.event.AjaxBehaviorEvent;
+import modelo.Estados;
+import modelo.Municipios;
+import modelo.Paises;
 
 @Named("locacionesController")
 @SessionScoped
 public class LocacionesController implements Serializable {
+    
+    @EJB
+    private PaisesFacade paisesFacade;
+    @EJB
+    private EstadosFacade entidadesFacade;
+    @EJB
+    private MunicipiosFacade municipiosFacade;
 
     @EJB
     private control.LocacionesFacade ejbFacade;
     private List<Locaciones> items = null;
     private List<Locaciones> items_eliminados = null;
     private Locaciones selected;
+    private List<Paises> listpaises;
+    private List<Estados> listestados;
+    private List<Municipios> listmunicipios;
+
+    public List<Paises> getListpaises() {
+        return listpaises;
+    }
+
+    public void setListpaises(List<Paises> listpaises) {
+        this.listpaises = listpaises;
+    }
+
+    public List<Estados> getListestados() {
+        return listestados;
+    }
+
+    public void setListestados(List<Estados> listestados) {
+        this.listestados = listestados;
+    }
+
+    public List<Municipios> getListmunicipios() {
+        return listmunicipios;
+    }
+
+    public void setListmunicipios(List<Municipios> listmunicipios) {
+        this.listmunicipios = listmunicipios;
+    }
 
     public List<Locaciones> getItems_eliminados() {
         if (items_eliminados == null) {
@@ -98,6 +137,29 @@ public class LocacionesController implements Serializable {
             items = null;    // Invalidate list of items to trigger re-query.
             items_eliminados = null;
         }
+    }
+    
+    @PostConstruct
+    private void initialize(){
+        listpaises = paisesFacade.findAll();
+        listestados = entidadesFacade.findAll();
+        listmunicipios = municipiosFacade.findAll();
+    }
+    
+    public List<Estados> buscarEstado(AjaxBehaviorEvent event){
+        listestados.clear();
+        System.out.println(selected.getPaisId().getId().intValue());
+        listestados = entidadesFacade.Buscar(selected.getPaisId().getId().intValue());
+        FacesContext.getCurrentInstance().renderResponse();
+        return listestados;
+    }
+    
+    public List<Municipios> buscarMunicipio(AjaxBehaviorEvent event){
+        listmunicipios.clear();
+        System.out.println(selected.getEstadoId().getId().intValue());
+        listmunicipios = municipiosFacade.Buscar(selected.getEstadoId().getId().intValue());
+        FacesContext.getCurrentInstance().renderResponse();
+        return listmunicipios;
     }
 
     public List<Locaciones> getItems() {

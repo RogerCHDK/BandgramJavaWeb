@@ -19,7 +19,7 @@
                         <h:outputText value="#{bundle.ViewEstadosLabel_status}"/>
                         <h:outputText value="#{estadosController.selected.status}" title="#{bundle.ViewEstadosTitle_status}"/>
                         <h:outputText value="#{bundle.ViewEstadosLabel_paisId}"/>
-                        <h:outputText value="#{estadosController.selected.paisId}" title="#{bundle.ViewEstadosTitle_paisId}"/>
+                        <h:outputText value="#{estadosController.selected.paisId.nombre}" title="#{bundle.ViewEstadosTitle_paisId}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="EstadosViewDialog.hide()"/>
                 </h:panelGroup>

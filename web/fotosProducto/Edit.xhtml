@@ -12,12 +12,8 @@
             <h:form id="FotosProductoEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{fotosProductoController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditFotosProductoLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{fotosProductoController.selected.id}" title="#{bundle.EditFotosProductoTitle_id}" required="true" requiredMessage="#{bundle.EditFotosProductoRequiredMessage_id}"/>
                         <p:outputLabel value="#{bundle.EditFotosProductoLabel_foto}" for="foto" />
                         <p:inputText id="foto" value="#{fotosProductoController.selected.foto}" title="#{bundle.EditFotosProductoTitle_foto}" required="true" requiredMessage="#{bundle.EditFotosProductoRequiredMessage_foto}"/>
-                        <p:outputLabel value="#{bundle.EditFotosProductoLabel_status}" for="status" />
-                        <p:inputText id="status" value="#{fotosProductoController.selected.status}" title="#{bundle.EditFotosProductoTitle_status}" required="true" requiredMessage="#{bundle.EditFotosProductoRequiredMessage_status}"/>
                         <p:outputLabel value="#{bundle.EditFotosProductoLabel_productoId}" for="productoId" />
                         <p:selectOneMenu id="productoId" value="#{fotosProductoController.selected.productoId}" required="true" requiredMessage="#{bundle.EditFotosProductoRequiredMessage_productoId}">
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>

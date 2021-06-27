@@ -19,13 +19,13 @@
                         <h:outputText value="#{bundle.ViewBandasLabel_biografia}"/>
                         <h:outputText value="#{bandasController.selected.biografia}" title="#{bundle.ViewBandasTitle_biografia}"/>
                         <h:outputText value="#{bundle.ViewBandasLabel_foto}"/>
-                        <h:outputText value="#{bandasController.selected.foto}" title="#{bundle.ViewBandasTitle_foto}"/>
+                        <p:graphicImage name="#{bandasController.selected.foto}" width="250px"/>
                         <h:outputText value="#{bundle.ViewBandasLabel_status}"/>
                         <h:outputText value="#{bandasController.selected.status}" title="#{bundle.ViewBandasTitle_status}"/>
                         <h:outputText value="#{bundle.ViewBandasLabel_artistaId}"/>
-                        <h:outputText value="#{bandasController.selected.artistaId}" title="#{bundle.ViewBandasTitle_artistaId}"/>
+                        <h:outputText value="#{bandasController.selected.artistaId.nombre} #{bandasController.selected.artistaId.apPaterno} #{bandasController.selected.artistaId.apMaterno}" title="#{bundle.ViewBandasTitle_artistaId}"/>
                         <h:outputText value="#{bundle.ViewBandasLabel_generoId}"/>
-                        <h:outputText value="#{bandasController.selected.generoId}" title="#{bundle.ViewBandasTitle_generoId}"/>
+                        <h:outputText value="#{bandasController.selected.generoId.nombre}" title="#{bundle.ViewBandasTitle_generoId}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="BandasViewDialog.hide()"/>
                 </h:panelGroup>

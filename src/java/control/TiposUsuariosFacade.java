@@ -51,4 +51,15 @@ public class TiposUsuariosFacade extends AbstractFacade<TiposUsuarios> {
             return null;
     }
     
+    public TiposUsuarios Consultar_tipo(){
+    Query consulta = em.createNamedQuery("TiposUsuarios.findById", TiposUsuarios.class)
+            .setParameter("id", 2);
+    List<TiposUsuarios> lista = consulta.getResultList(); 
+         
+    if(!lista.isEmpty())
+             return lista.get(0);
+         else
+            return null;
+    }
+    
 }

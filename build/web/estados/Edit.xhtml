@@ -12,12 +12,8 @@
             <h:form id="EstadosEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{estadosController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditEstadosLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{estadosController.selected.id}" title="#{bundle.EditEstadosTitle_id}" required="true" requiredMessage="#{bundle.EditEstadosRequiredMessage_id}"/>
                         <p:outputLabel value="#{bundle.EditEstadosLabel_nombre}" for="nombre" />
                         <p:inputText id="nombre" value="#{estadosController.selected.nombre}" title="#{bundle.EditEstadosTitle_nombre}" required="true" requiredMessage="#{bundle.EditEstadosRequiredMessage_nombre}"/>
-                        <p:outputLabel value="#{bundle.EditEstadosLabel_status}" for="status" />
-                        <p:inputText id="status" value="#{estadosController.selected.status}" title="#{bundle.EditEstadosTitle_status}" required="true" requiredMessage="#{bundle.EditEstadosRequiredMessage_status}"/>
                         <p:outputLabel value="#{bundle.EditEstadosLabel_paisId}" for="paisId" />
                         <p:selectOneMenu id="paisId" value="#{estadosController.selected.paisId}" required="true" requiredMessage="#{bundle.EditEstadosRequiredMessage_paisId}">
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>

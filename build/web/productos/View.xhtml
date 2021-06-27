@@ -25,9 +25,9 @@
                         <h:outputText value="#{bundle.ViewProductosLabel_status}"/>
                         <h:outputText value="#{productosController.selected.status}" title="#{bundle.ViewProductosTitle_status}"/>
                         <h:outputText value="#{bundle.ViewProductosLabel_artistaId}"/>
-                        <h:outputText value="#{productosController.selected.artistaId}" title="#{bundle.ViewProductosTitle_artistaId}"/>
+                        <h:outputText value="#{productosController.selected.artistaId.nombre} #{productosController.selected.artistaId.apPaterno} #{productosController.selected.artistaId.apMaterno}" title="#{bundle.ViewProductosTitle_artistaId}"/>
                         <h:outputText value="#{bundle.ViewProductosLabel_categoriaId}"/>
-                        <h:outputText value="#{productosController.selected.categoriaId}" title="#{bundle.ViewProductosTitle_categoriaId}"/>
+                        <h:outputText value="#{productosController.selected.categoriaId.nombre}" title="#{bundle.ViewProductosTitle_categoriaId}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="ProductosViewDialog.hide()"/>
                 </h:panelGroup>

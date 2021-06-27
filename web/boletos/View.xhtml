@@ -19,9 +19,9 @@
                         <h:outputText value="#{bundle.ViewBoletosLabel_status}"/>
                         <h:outputText value="#{boletosController.selected.status}" title="#{bundle.ViewBoletosTitle_status}"/>
                         <h:outputText value="#{bundle.ViewBoletosLabel_eventoId}"/>
-                        <h:outputText value="#{boletosController.selected.eventoId}" title="#{bundle.ViewBoletosTitle_eventoId}"/>
+                        <h:outputText value="#{boletosController.selected.eventoId.descripcion}" title="#{bundle.ViewBoletosTitle_eventoId}"/>
                         <h:outputText value="#{bundle.ViewBoletosLabel_zonaId}"/>
-                        <h:outputText value="#{boletosController.selected.zonaId}" title="#{bundle.ViewBoletosTitle_zonaId}"/>
+                        <h:outputText value="#{boletosController.selected.zonaId.nombre}" title="#{bundle.ViewBoletosTitle_zonaId}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="BoletosViewDialog.hide()"/>
                 </h:panelGroup>

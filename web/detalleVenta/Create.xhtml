@@ -13,9 +13,13 @@
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{detalleVentaController.selected != null}">
                         <p:outputLabel value="#{bundle.CreateDetalleVentaLabel_cantidad}" for="cantidad" />
-                        <p:inputText id="cantidad" value="#{detalleVentaController.selected.cantidad}" title="#{bundle.CreateDetalleVentaTitle_cantidad}" required="true" requiredMessage="#{bundle.CreateDetalleVentaRequiredMessage_cantidad}"/>
+                        <p:inputText id="cantidad" value="#{detalleVentaController.selected.cantidad}" title="#{bundle.CreateDetalleVentaTitle_cantidad}" required="true" requiredMessage="#{bundle.CreateDetalleVentaRequiredMessage_cantidad}">
+                            <f:validateLongRange minimum="1" maximum="10000"></f:validateLongRange>
+                         </p:inputText>
                         <p:outputLabel value="#{bundle.CreateDetalleVentaLabel_precioUnitario}" for="precioUnitario" />
-                        <p:inputText id="precioUnitario" value="#{detalleVentaController.selected.precioUnitario}" title="#{bundle.CreateDetalleVentaTitle_precioUnitario}" required="true" requiredMessage="#{bundle.CreateDetalleVentaRequiredMessage_precioUnitario}"/>
+                        <p:inputText id="precioUnitario" value="#{detalleVentaController.selected.precioUnitario}" title="#{bundle.CreateDetalleVentaTitle_precioUnitario}" required="true" requiredMessage="#{bundle.CreateDetalleVentaRequiredMessage_precioUnitario}">
+                            <f:validateLongRange minimum="0" maximum="10000"></f:validateLongRange>
+                         </p:inputText>
                         <p:outputLabel value="#{bundle.CreateDetalleVentaLabel_ventaId}" for="ventaId" />
                         <p:selectOneMenu id="ventaId" value="#{detalleVentaController.selected.ventaId}" required="true" requiredMessage="#{bundle.EditDetalleVentaRequiredMessage_ventaId}">
                             <f:selectItems value="#{ventasController.itemsAvailableSelectOne}"

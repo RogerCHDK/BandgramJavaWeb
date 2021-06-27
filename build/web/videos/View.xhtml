@@ -17,11 +17,11 @@
                         <h:outputText value="#{bundle.ViewVideosLabel_nombre}"/>
                         <h:outputText value="#{videosController.selected.nombre}" title="#{bundle.ViewVideosTitle_nombre}"/>
                         <h:outputText value="#{bundle.ViewVideosLabel_ruta}"/>
-                        <h:outputText value="#{videosController.selected.ruta}" title="#{bundle.ViewVideosTitle_ruta}"/>
+                        <video src="/bandgram/faces/javax.faces.resource#{videosController.selected.ruta}" width="200px" controls="controls">Video no es soportado...</video>
                         <h:outputText value="#{bundle.ViewVideosLabel_status}"/>
                         <h:outputText value="#{videosController.selected.status}" title="#{bundle.ViewVideosTitle_status}"/>
                         <h:outputText value="#{bundle.ViewVideosLabel_artistaId}"/>
-                        <h:outputText value="#{videosController.selected.artistaId}" title="#{bundle.ViewVideosTitle_artistaId}"/>
+                        <h:outputText value="#{videosController.selected.artistaId.nombre} #{videosController.selected.artistaId.apPaterno} #{videosController.selected.artistaId.apMaterno}" title="#{bundle.ViewVideosTitle_artistaId}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="VideosViewDialog.hide()"/>
                 </h:panelGroup>

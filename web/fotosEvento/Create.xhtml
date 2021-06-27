@@ -9,11 +9,13 @@
     <ui:composition>
 
         <p:dialog id="FotosEventoCreateDlg" widgetVar="FotosEventoCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateFotosEventoTitle}">
-            <h:form id="FotosEventoCreateForm">
+            <h:form id="FotosEventoCreateForm" enctype="multipart/form-data">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{fotosEventoController.selected != null}">
+                        
                         <p:outputLabel value="#{bundle.CreateFotosEventoLabel_foto}" for="foto" />
-                        <p:inputText id="foto" value="#{fotosEventoController.selected.foto}" title="#{bundle.CreateFotosEventoTitle_foto}" required="true" requiredMessage="#{bundle.CreateFotosEventoRequiredMessage_foto}"/>
+                        <p:fileUpload id="foto" value="#{fotosEventoController.imagen}" required="true"  mode="simple" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" requiredMessage="#{bundle.CreateFotosEventoRequiredMessage_foto}"/>
+                        
                         <p:outputLabel value="#{bundle.CreateFotosEventoLabel_eventoId}" for="eventoId" />
                         <p:selectOneMenu id="eventoId" value="#{fotosEventoController.selected.eventoId}" required="true" requiredMessage="#{bundle.EditFotosEventoRequiredMessage_eventoId}">
                             <f:selectItems value="#{eventosController.itemsAvailableSelectOne}"
@@ -21,7 +23,15 @@
                                            itemValue="#{eventoIdItem}"/>
                         </p:selectOneMenu>
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{fotosEventoController.create}" value="#{bundle.Save}" update="display,:FotosEventoListForm:datalist,:growl" oncomplete="handleSubmit(args,'FotosEventoCreateDialog');"/>
+                    <p:inputText id="aux" value="#{fotosProductoController.aux}" title="aux" type="hidden"/>    
+                    
+                    <p:commandButton
+                        value="Submit"
+                        action="#{fotosEventoController.NuevoDocumento()}"
+                        ajax="false"
+                        update="display,:FotosEventoListForm:datalist,:growl"
+                        />
+                   
                     <p:commandButton value="#{bundle.Cancel}" onclick="FotosEventoCreateDialog.hide()"/>
                 </h:panelGroup>
             </h:form>

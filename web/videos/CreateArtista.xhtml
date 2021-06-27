@@ -9,16 +9,26 @@
     <ui:composition>
 
         <p:dialog id="VideosCreateDlg" widgetVar="VideosCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateVideosTitle}">
-            <h:form id="VideosCreateForm">
+            <h:form id="VideosCreateForm" enctype="multipart/form-data">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{videosController.selected != null}">
                         <p:outputLabel value="#{bundle.CreateVideosLabel_nombre}" for="nombre" />
                         <p:inputText id="nombre" value="#{videosController.selected.nombre}" title="#{bundle.CreateVideosTitle_nombre}" required="true" requiredMessage="#{bundle.CreateVideosRequiredMessage_nombre}"/>
+                        
                         <p:outputLabel value="#{bundle.CreateVideosLabel_ruta}" for="ruta" />
-                        <p:inputText id="ruta" value="#{videosController.selected.ruta}" title="#{bundle.CreateVideosTitle_ruta}" required="true" requiredMessage="#{bundle.CreateVideosRequiredMessage_ruta}"/>
+                        
+                        <p:fileUpload id="ruta" value="#{videosController.video}" required="true"  mode="simple" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" requiredMessage="#{bundle.CreateVideosRequiredMessage_ruta}"/>
                         
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{videosController.create2()}" value="#{bundle.Save}" update="display,:VideosListForm:datalist,:growl" oncomplete="handleSubmit(args,'VideosCreateDialog');"/>
+                    <p:inputText id="aux" value="#{videosController.aux}" title="aux" type="hidden"/>
+                    
+                    
+                    <p:commandButton
+                        value="Submit"
+                        action="#{videosController.NuevoDocumento2()}"
+                        ajax="false"
+                        update="display,:VideosListForm:datalist,:growl"
+                        />
                     <p:commandButton value="#{bundle.Cancel}" onclick="VideosCreateDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
